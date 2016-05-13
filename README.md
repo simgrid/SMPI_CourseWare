@@ -1,1 +1,0 @@
-# SMPI_CourseWare
