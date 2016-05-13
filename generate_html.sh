@@ -7,8 +7,8 @@
 #   - pushes the changes to the gh-pages branch
 #   - the gh-branch content is magically seen at: https://simgrid.github.io/SMPI_CourseWare/
 
-( set -x ; /bin/rm -rf ./gh-pages )
-( set -x ; git clone https://github.com/simgrid/SMPI_CourseWare.git gh-pages; cd gh-pages; git checkout gh-pages; git branch -u origin/gh-pages; cd ..)
-( set -x ; jekyll build --source ./site --destination ./gh-pages)
-( set -x; cd gh-pages; git add --all .; git commit -a; git push; cd ..)
-( set -x; /bin/rm -rf ./gh-pages )
+( set -x ; /bin/rm -rf /tmp/gh-pages )
+( set -x ; cd /tmp; git clone https://github.com/simgrid/SMPI_CourseWare.git gh-pages; cd gh-pages; git checkout gh-pages; git branch -u origin/gh-pages; )
+( set -x ; jekyll build --source . --destination /tmp/gh-pages; )
+( set -x; cd /tmp/gh-pages; git add --all .; git commit -a; git push; )
+( set -x; /bin/rm -rf /tmp/gh-pages; )
