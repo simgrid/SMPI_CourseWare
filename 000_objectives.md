@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About
+title: Objectives
+description: Approach and learning objectives
 ---
 
 <p class="message">
