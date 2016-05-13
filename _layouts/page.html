@@ -3,6 +3,12 @@ layout: default
 ---
 
 <div class="page">
+  {% if page.description != null %}
 	<h1 class="page-title">{{ page.title }}: {{ page.description}}</h1>
+  {% else %}
+  <h1 class="page-title">{{ page.title }}</h1>
+  {% endif %}
+
+  <hr>
   {{ content }}
 </div>

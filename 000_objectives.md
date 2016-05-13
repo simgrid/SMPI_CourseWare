@@ -1,31 +1,35 @@
 ---
 layout: page
 title: Objectives
-description: Approach and learning objectives
+description: Learning objectives and approach
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+### Target audience
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+* Students/Researchers/Practitioners who want to complement their learning with hands-on experience with distributed-memory programming, message-passing, MPI, and high performance computing
+* Instructors who want to provide students with compelling hands-on experiences as part of the coursework they develop
 
-There are currently two themes built on Poole:
+### Learning objectives
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+**The broad learning objective of SMPI CourseWare is to learn how to write efficient message-passing
+programs that run on distributed-memory architectures, using the MPI standard.**
 
-Learn more and contribute on [GitHub](https://github.com/poole).
 
-## Setup
+Specific learning objectives include:
 
-Some fun facts about the setup of this project include:
+* Learn the fundamentals of the MPI API
+* Understand general distributed-memory programming and learn standard solutions
+* Learn how to implement distributed-memory programs, going from traditional "rigid" programs to more "dynamic" programs
+* Understand and experience performance trade-offs when implementing and executing distributed-memory programs on ranges of distributed-memory platforms
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+### Approach
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+While many curricular materials have been developed for teaching message-passing, MPI, and distributed-memory programming,
+this CourseWare relies on the use of _simulation_, which has the following advantages:
 
-Thanks for reading!
+* No need to have access to a distributed-memory platform
+* Ability to run many experiments quickly and reproducibly on one's own computer
+* Ability to explore arbitrary "what if?" scenarios, in particular to experience performance trade-offs first-hand
+
+This CourseWare uses [SMPI](http://simgrid.gforge.inria.fr/simgrid/latest/doc/group__SMPI__API.html) (Simulated MPI),
+which is provided as part of the [SimGrid](http://simgrid.gforge.inria.fr) project. SMPI simulates the execution of unmodified MPI applications.

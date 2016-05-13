@@ -12,8 +12,5 @@ tagline:          'SMPI CourseWare'
 description:      ''
 baseurl:          /SMPI_CourseWare/
 
-gems: [jekyll-paginate]
-
-paginate:         5
 
 
