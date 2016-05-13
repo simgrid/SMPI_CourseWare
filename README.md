@@ -9,3 +9,6 @@ This repository (master branch) contains the source (i.e., jekyll configuration 
 
 The Web content can be seen 
 [on this github.io page](https://simgrid.github.io/SMPI_CourseWare/).
+
+The Jekyll theme is based on 
+[Hyde](https://github.com/poole/hyde)
