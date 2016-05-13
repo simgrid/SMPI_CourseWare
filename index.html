@@ -11,7 +11,7 @@
 
   <title>
     
-      Hyde &middot; A Jekyll theme
+      SMPI<br> CourseWare &middot; SMPI XX CourseWare
     
   </title>
 
@@ -32,19 +32,53 @@
 
   <body>
 
-    <div class="sidebar">
+    <style>
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    left: 115%;
+    top: -5px;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+</style>
+
+
+
+<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <h1>
+      <h2>
         <a href="/SMPI_CourseWare/">
-          Hyde
+          SMPI<br> CourseWare
         </a>
-      </h1>
-      <p class="lead">A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+      </h2>
+      <p class="lead"></p>
+      <hr>
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item" href="/SMPI_CourseWare/">Home</a>
+    <!--      <a class="sidebar-nav-item" href="/SMPI_CourseWare/">Home</a> -->
 
       
 
@@ -52,11 +86,71 @@
       
         
           
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//000_objectives/">Objectives</a> 
+	    <span class="tooltiptext">Approach and learning objectives </span>
+          </div>
+	</h4>
+          
         
       
         
           
-            <a class="sidebar-nav-item" href="/about/">About</a>
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//00_topic/">Topic &#35;0</a> 
+	    <span class="tooltiptext">Getting started with SMPI </span>
+          </div>
+	</h4>
+          
+        
+      
+        
+          
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//01_topic/">Topic &#35;1</a> 
+	    <span class="tooltiptext">Communication on distributed platforms </span>
+          </div>
+	</h4>
+          
+        
+      
+        
+          
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//02_topic/">Topic &#35;2</a> 
+	    <span class="tooltiptext">Rigid distributed memory progams </span>
+          </div>
+	</h4>
+          
+        
+      
+        
+          
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//03_topic/">Topic &#35;3</a> 
+	    <span class="tooltiptext">Mitigating performance impact of communications </span>
+          </div>
+	</h4>
+          
+        
+      
+        
+          
+	  <h4>
+	  <div class="tooltip">
+	  <a class="sidebar-nav-item" href="/SMPI_CourseWare//04_topic/">Topic &#35;4</a> 
+	    <span class="tooltiptext">Flexible distributed memory programs </span>
+          </div>
+	</h4>
+          
+        
+      
+        
           
         
       
@@ -67,13 +161,10 @@
         
       
 
-      <a class="sidebar-nav-item" href="/archive/v.zip">Download</a>
-      <a class="sidebar-nav-item" href="">GitHub project</a>
-      <span class="sidebar-nav-item">Currently v</span>
     </nav>
 
-    <p>&copy; 2016. All rights reserved.</p>
   </div>
+      <hr>
 </div>
 
 
