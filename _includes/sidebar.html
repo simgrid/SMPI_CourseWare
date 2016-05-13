@@ -61,12 +61,11 @@
       {% if node.title != null %}
       {% if node.layout == "page" %}
       {% if node.navigate != false %}
-      <h4>
         <div class="tooltip">
           <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}/{{ node.url }}">{{ node.title }}</a>
           <span class="tooltiptext">{{ node.description }} </span>
         </div>
-      </h4>
+        <br>
       {% endif %}
       {% endif %}
       {% endif %}
