@@ -1,0 +1,8 @@
+name: SMPI_CourseWare
+markdown: kramdown
+kramdown:
+  hard_wrap: false
+  input: GFM
+  syntax_highlighter: rouge
+mathjax: true
+baseurl: /SMPI_CourseWare
