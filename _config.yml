@@ -7,8 +7,8 @@ permalink:        pretty
 #relative_permalinks: true
 
 # Setup
-title:            SMPI<br> CourseWare
-tagline:          'SMPI XX CourseWare'
+title:            SMPI CourseWare
+tagline:          'SMPI CourseWare'
 description:      ''
 baseurl:          /SMPI_CourseWare/
 
