@@ -3,7 +3,6 @@ layout: page
 title: Objectives
 description: Learning objectives and approach
 ---
-
 ### Target audience
 
 * Students/Researchers/Practitioners who want to complement their learning with hands-on experience with distributed-memory programming, message-passing, MPI, and high performance computing
