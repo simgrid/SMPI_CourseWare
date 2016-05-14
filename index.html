@@ -40,6 +40,7 @@
   .tooltip {
     position: relative;
     display: inline-block;
+    /* border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
   }
 
   /* Tooltip text */
@@ -56,7 +57,7 @@
     left: 115%;
     top: -5px;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
   }
 
   /* Show the tooltip text when you mouse over the tooltip container */
@@ -186,7 +187,8 @@
   <h1 class="page-title">Welcome to SMPI CourseWare</h1>
   
 
-  <hr>
+  <div style="border:1px solid">
+   </div>
   <p>SMPI CourseWare is a set of hands-on pedagogic material focused on teaching high performance computing and distributed memory computing in simulation. This is
 done with
   <a href="http://simgrid.gforge.inria.fr/simgrid/latest/doc/group__SMPI__API.html">SMPI</a> (Simulated MPI),
