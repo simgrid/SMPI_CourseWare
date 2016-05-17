@@ -18,10 +18,21 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="{{ site.baseurl }}/semantic/components/accordion.js"></script>
+  <script src="{{ site.baseurl }}/semantic/components/popup.js"></script>
+  <script src="{{ site.baseurl }}/semantic/components/transition.js"></script>
 
   <script language='javascript'>
                $(document).ready(function(){
                $('.ui.accordion').accordion();
+
+                 $('.popable')
+                     .popup({
+                       position: 'right center'
+                     })
+                 ;
+
+
+
                });
   </script>
 

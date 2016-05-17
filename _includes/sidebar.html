@@ -1,38 +1,6 @@
 
-<!--TOOLTIPS!!!-->
-<style>
-  /* Tooltip container */
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    /* border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
 
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 350px;
-    background-color: gray;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text */
-    left: 115%;
-    top: -5px;
-    position: absolute;
-    z-index: 0;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-</style>
-
-
-<div class="ui vertical left fixed menu  ">
+<div class="ui vertical left fixed menu basic ">
   <br>
   <a href="http://simgrid.org" target="_blank">
   <img width=99 src="{{site.baseurl}}public/simgrid_logo.jpg" style="margin-left:5px">
@@ -40,26 +8,25 @@
   <br>
   <br>
 
+
+
+
   <a class="ui item {% if page.url ==  '/' %} active{% endif %}" href="{{site.baseurl}}">
     <h4 class="ui header">Home</h4>
   </a>
+
 
   {% assign pages_list = site.pages %}
   {% for node in pages_list %}
   {% if node.title != null %}
   {% if node.layout == "page" %}
   {% if node.navigate != false %}
-  <a class="ui item {% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}">
-    <div class="tooltip">
-      <h4 class="ui header">{{node.title}}
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">{{ node.description }} </span>
+  <a class="ui popable item fluid {% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}"
+       data-content="{{node.description}}" data-variation="inverted">
+      <h4 class="ui header fluid">{{node.title}}
       </h4>
-    </div>
   </a>
+
   {% endif %}
   {% endif %}
   {% endif %}
