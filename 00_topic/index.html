@@ -20,10 +20,21 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
 
   <script language='javascript'>
                $(document).ready(function(){
                $('.ui.accordion').accordion();
+
+                 $('.popable')
+                     .popup({
+                       position: 'right center'
+                     })
+                 ;
+
+
+
                });
   </script>
 
@@ -34,42 +45,9 @@
 
 <body>
 
-
 	
-<!--TOOLTIPS!!!-->
-<style>
-  /* Tooltip container */
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    /* border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
 
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 350px;
-    background-color: gray;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text */
-    left: 115%;
-    top: -5px;
-    position: absolute;
-    z-index: 0;
-  }
-
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
-</style>
-
-
-<div class="ui vertical left fixed menu  ">
+<div class="ui vertical left fixed menu basic ">
   <br>
   <a href="http://simgrid.org" target="_blank">
   <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
@@ -77,8 +55,23 @@
   <br>
   <br>
 
+
+
+
   <a class="ui item " href="/SMPI_CourseWare/">
     <h4 class="ui header">Home</h4>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Learning objectives and approach" data-variation="inverted">
+      <h4 class="ui header fluid">About
+      </h4>
   </a>
 
   
@@ -86,16 +79,14 @@
   
   
   
-  <a class="ui item " href="/SMPI_CourseWare//000_objectives/">
-    <div class="tooltip">
-      <h4 class="ui header">About
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Learning objectives and approach </span>
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h4 class="ui header fluid">Topic &#35;0
       </h4>
-    </div>
   </a>
+
   
   
   
@@ -103,16 +94,12 @@
   
   
   
-  <a class="ui item  active" href="/SMPI_CourseWare//00_topic/">
-    <div class="tooltip">
-      <h4 class="ui header">Topic &#35;0
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Getting started with SMPI </span>
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h4 class="ui header fluid">Topic &#35;1
       </h4>
-    </div>
   </a>
+
   
   
   
@@ -120,16 +107,12 @@
   
   
   
-  <a class="ui item " href="/SMPI_CourseWare//01_topic/">
-    <div class="tooltip">
-      <h4 class="ui header">Topic &#35;1
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Communication on distributed platforms </span>
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//02_topic/"
+       data-content="Rigid distributed memory progams" data-variation="inverted">
+      <h4 class="ui header fluid">Topic &#35;2
       </h4>
-    </div>
   </a>
+
   
   
   
@@ -137,16 +120,12 @@
   
   
   
-  <a class="ui item " href="/SMPI_CourseWare//02_topic/">
-    <div class="tooltip">
-      <h4 class="ui header">Topic &#35;2
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Rigid distributed memory progams </span>
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
+       data-content="Mitigating performance impact of communications" data-variation="inverted">
+      <h4 class="ui header fluid">Topic &#35;3
       </h4>
-    </div>
   </a>
+
   
   
   
@@ -154,33 +133,12 @@
   
   
   
-  <a class="ui item " href="/SMPI_CourseWare//03_topic/">
-    <div class="tooltip">
-      <h4 class="ui header">Topic &#35;3
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Mitigating performance impact of communications </span>
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h4 class="ui header fluid">Topic &#35;4
       </h4>
-    </div>
   </a>
-  
-  
-  
-  
-  
-  
-  
-  <a class="ui item " href="/SMPI_CourseWare//04_topic/">
-    <div class="tooltip">
-      <h4 class="ui header">Topic &#35;4
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <span class="tooltiptext">Flexible distributed memory programs </span>
-      </h4>
-    </div>
-  </a>
+
   
   
   
@@ -198,18 +156,14 @@
 </div>
 
 
-
 	<div class="contentpage container fluid">
 	<div class="page">
   <br>
 	
 	<h1 class="ui header">Topic &#35;0: Getting started with SMPI</h1>
 	
+  <div class="ui divider"></div>
 
-	<div style="border:1px solid">
-	</div>
-
-  <br>
 	<p>TBD:</p>
 
 <ul>
@@ -219,6 +173,8 @@
 <li>Getting Help with SMPI/SimGrid</li>
 </ul>
 
+
+  <br>
 
 </div>
 	</div>
