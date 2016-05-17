@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en-us">
 
-  {% include head.html %}
 
-  <body>
+{% include head.html %}
 
-    {% include sidebar.html %}
+<body>
 
-    <div class="content container">
-      {{ content }}
-    </div>
+<div class="ui grid">
 
-  </body>
+	<div class="column one">
+<div class="ui container">
+	{% include sidebar.html %}
+</div>
+	</div>
+</div>
+
+
+
+<div class=" ui container contentpage">
+	{{ content }}
+</div>
+
+
+
+</body>
 </html>

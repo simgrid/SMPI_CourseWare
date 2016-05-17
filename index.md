@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Welcome to SMPI CourseWare
 description:
 navigate: false
