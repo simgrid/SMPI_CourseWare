@@ -33,8 +33,10 @@
 
 
 <div class="ui vertical left fixed menu  ">
-  <br><br>
-  <img width=80 src="{{site.baseurl}}public/simgrid_logo.jpg">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="{{site.baseurl}}public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
   <br>
   <br>
 
@@ -50,6 +52,10 @@
   <a class="ui item {% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}">
     <div class="tooltip">
       <h4 class="ui header">{{node.title}}
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
         <span class="tooltiptext">{{ node.description }} </span>
       </h4>
     </div>
