@@ -1,3 +1,7 @@
 .contentpage{
-padding-left: 200px;
+padding-left: 7.5rem;
+}
+
+.ui.vertical.menu {
+    width: 6.5rem;
 }

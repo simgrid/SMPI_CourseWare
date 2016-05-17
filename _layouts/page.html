@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<div class="page">
+  <br>
+	{% if page.description != null %}
+	<h1 class="ui header">{{ page.title }}: {{ page.description}}</h1>
+	{% else %}
+	<h1 class="ui header">{{ page.title }}</h1>
+	{% endif %}
+
+	<div style="border:1px solid">
+	</div>
+
+  <br>
+	{{ content }}
+
+</div>
