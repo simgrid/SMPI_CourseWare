@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Topic &#35;4
-description: Flexible distributed memory programs
+description: Mitigating performance impact of communications
 ---
 
+{% include_relative topic_mitigating_communication/index.md %}
 
-TODO

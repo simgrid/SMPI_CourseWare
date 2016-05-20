@@ -1,8 +1,8 @@
 ---
 layout: page
 title: Topic &#35;2
-description: Rigid distributed memory progams
+description: Communication on distributed platforms
 ---
 
+{% include_relative topic_communication/index.md %}
 
-TODO

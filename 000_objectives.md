@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About
-description: Learning objectives and approach
+description: Curricular information
 ---
 
 
@@ -18,6 +18,23 @@ Target audience
 </ul>
 
 </div>
+
+<div class="ui container raised border segment">
+
+<h3 class="ui header">
+Prerequisites
+</h3>
+
+<ul class="ui list">
+<li class="ui item">Access to a Linux (virtual) machine</li>
+<li class="ui item">Some Computer Science background (i.e., a few courses)</li>
+<li class="ui item">Basic C programming skills (i.e., a 1-semester course)</li>
+<li class="ui item">Elementary Linux command-line skills</li>
+</ul>
+
+</div>
+
+
 
 
 <div class="ui container raised border segment">
