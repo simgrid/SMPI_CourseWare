@@ -187,7 +187,9 @@
 
 <div class="ui tab segment active" data-tab="first">
   
-<p class="ui">This topic introduces basic but essential concepts for distributed-memory programming, such as:</p>
+<p class="ui">This topic consists of <b>3 activities, each described in its own tab above,</b> which should be done in sequence.
+  It introduces basic but essential concepts for distributed-memory programming, such as:
+</p>
 
   <ul class="ui list">
     <li class="ui item"> Single-Program Multiple-Data (SPMD) programming style</li>
@@ -207,11 +209,46 @@
 
   </p>
 
-<div class="ui divider"></div>
-<b>This topic consists of 3 activities, each described in its own tab above, which should be done in sequence</b>
 
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    What is a Julia set?
+  </div>
+  <div class=" content">
+    <div class="ui container message ">
+    <p class="ui">A Julia set is a fractal, i.e., an object that is self-similar across scales (you "zoom in"
+      and you keep seeing similar structures/features). It is a generalization
+        of the famous Mandelbrot set<sup><a href="https://en.wikipedia.org/wiki/Mandelbrot_set">[Wikipedia]</a></sup>,
+      which adorns many T-shirts (search for "Mandelbrot zoom" for psychedelic videos). </p>
+
+      <p class="ui">The particular Julia set
+        that we compute here is defined as follows. Given z a point in the 2-D complex plane, we compute the
+      series defined as:
+      <ul class="ui list">
+      <li class="item">z<sub>0</sub> = z</li>
+      <li class="item">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</li>
+      </ul>
+      where c is a chosen complex number. The set in the picture above is for c = -0.79 + i * 0.15. Different
+      values of c lead to different pictures, and there are known values that produce "pretty" pictures.
+      </p>
+      <p class="ui">
+      The color of a pixel corresponding to point z is then determined based on the number of iterations
+      before the modulus of z<sub>n</sub> is above 2 (or until a maximum number of iterations
+      is reached).
+    </p>
+      <p class="ui">
+        Not to worries, code is provided for you for the above. However, feel free to tweak it to create different
+        images, or to find out more about Julia sets<sup><a href="https://en.wikipedia.org/wiki/Julia_set">[Wikipedia]</a></sup>.
+      </p>
+
+
+
+  </div>
+  </div>
 </div>
 
+<p></div>
 <div class="ui tab segment " data-tab="second">
   <div class="ui top attached tabular menu">
     <a class="item active" data-tab="second/a">2A</a>
@@ -222,7 +259,6 @@
   <div class="ui bottom attached tab segment" data-tab="second/b">2B</div>
   <div class="ui bottom attached tab segment" data-tab="second/c">2C</div>
 </div>
-
 <div class="ui tab segment" data-tab="third">
   <div class="ui top attached tabular menu">
     <a class="item" data-tab="third/a">3A</a>
@@ -233,7 +269,6 @@
   <div class="ui bottom attached tab segment" data-tab="third/b">3B</div>
   <div class="ui bottom attached tab segment" data-tab="third/c">3C</div>
 </div>
-
 <div class="ui tab segment" data-tab="fourth">
   <div class="ui top attached tabular menu">
     <a class="item" data-tab="third/a">3A</a>
@@ -243,7 +278,7 @@
   <div class="ui bottom attached tab segment" data-tab="third/a">3A</div>
   <div class="ui bottom attached tab segment" data-tab="third/b">3B</div>
   <div class="ui bottom attached tab segment" data-tab="third/c">3C</div>
-</div>
+</div></p>
 
 <!--</div>-->
 
