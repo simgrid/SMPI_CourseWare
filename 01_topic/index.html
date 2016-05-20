@@ -22,18 +22,23 @@
   <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
 
   <script language='javascript'>
                $(document).ready(function(){
                $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
 
-                 $('.popable')
-                     .popup({
-                       position: 'right center'
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
                      })
                  ;
-
-
 
                });
   </script>
@@ -173,17 +178,74 @@
 	
   <div class="ui divider"></div>
 
-	<p>TBD</p>
-
-<div class="ui styled accordion">
-  <div class="title">
-    <i class="dropdown icon"></i>
-    What is a dog?
-  </div>
-  <div class="content ui">
-    <p class="transition ">A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.</p>
-  </div>
+	<div class="ui pointing secondary menu">
+  <a class="item active" data-tab="first">About</a>
+  <a class="item " data-tab="second">Activity #1</a>
+  <a class="item" data-tab="third">Activity #2</a>
+  <a class="item" data-tab="fourth">Activity #3</a>
 </div>
+
+<div class="ui tab segment active" data-tab="first">
+  
+<p class="ui">This topic introduces basic but essential concepts for distributed-memory programming, such as:</p>
+
+  <ul class="ui list">
+    <li class="ui item"> Single-Program Multiple-Data (SPMD) programming style</li>
+    <li class="ui item"> The use of <i>process rank</i> to distribute work among processes</li>
+    <li class="ui item"> Local vs. Global indices for 1-D and 2-D data distribution of arrays</li>
+    <li class="ui item"> Simple message-passing to coordinate processes</li>
+  </ul>
+
+  <p class="ui">
+  In this topic we do not focus on performance at all, and we implement a "toy" application that
+  computes a Julia set and saves it as a bitmap file for display. Below is (a low-res version of) the
+  Julia set we will compute:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <img align="center" src="/SMPI_CourseWare//topic_basics_of_distributed_memory_programming/julia_small.jpg">
+
+  </p>
+
+<div class="ui divider"></div>
+<b>This topic consists of 3 activities, each described in its own tab above, which should be done in sequence</b>
+
+</div>
+
+<div class="ui tab segment " data-tab="second">
+  <div class="ui top attached tabular menu">
+    <a class="item active" data-tab="second/a">2A</a>
+    <a class="item" data-tab="second/b">2B</a>
+    <a class="item" data-tab="second/c">2C</a>
+  </div>
+  <div class="ui bottom attached tab segment active" data-tab="second/a">2A</div>
+  <div class="ui bottom attached tab segment" data-tab="second/b">2B</div>
+  <div class="ui bottom attached tab segment" data-tab="second/c">2C</div>
+</div>
+
+<div class="ui tab segment" data-tab="third">
+  <div class="ui top attached tabular menu">
+    <a class="item" data-tab="third/a">3A</a>
+    <a class="item" data-tab="third/b">3B</a>
+    <a class="item" data-tab="third/c">3C</a>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="third/a">3A</div>
+  <div class="ui bottom attached tab segment" data-tab="third/b">3B</div>
+  <div class="ui bottom attached tab segment" data-tab="third/c">3C</div>
+</div>
+
+<div class="ui tab segment" data-tab="fourth">
+  <div class="ui top attached tabular menu">
+    <a class="item" data-tab="third/a">3A</a>
+    <a class="item" data-tab="third/b">3B</a>
+    <a class="item" data-tab="third/c">3C</a>
+  </div>
+  <div class="ui bottom attached tab segment" data-tab="third/a">3A</div>
+  <div class="ui bottom attached tab segment" data-tab="third/b">3B</div>
+  <div class="ui bottom attached tab segment" data-tab="third/c">3C</div>
+</div>
+
+<!--</div>-->
 
 
   <br>

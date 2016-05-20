@@ -22,18 +22,23 @@
   <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
 
   <script language='javascript'>
                $(document).ready(function(){
                $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
 
-                 $('.popable')
-                     .popup({
-                       position: 'right center'
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
                      })
                  ;
-
-
 
                });
   </script>
