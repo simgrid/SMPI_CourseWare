@@ -30,6 +30,7 @@ Prerequisites
 <li class="ui item">Some Computer Science background (i.e., a few courses)</li>
 <li class="ui item">Basic C programming skills (i.e., a 1-semester course)</li>
 <li class="ui item">Elementary Linux command-line skills</li>
+<li class="ui item">Access to MPI documentation/tutorials</li>
 </ul>
 
 </div>

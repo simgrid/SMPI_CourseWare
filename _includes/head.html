@@ -14,24 +14,29 @@
 
   <!-- Semantic UI, JQuery, etc. -->
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/semantic/semantic.min.css">
-  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/public/css/basics.css">
+  <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/public/basics.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="{{ site.baseurl }}/semantic/components/accordion.js"></script>
   <script src="{{ site.baseurl }}/semantic/components/popup.js"></script>
   <script src="{{ site.baseurl }}/semantic/components/transition.js"></script>
+  <script src="{{ site.baseurl }}/semantic/components/tab.js"></script>
 
   <script language='javascript'>
                $(document).ready(function(){
                $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
 
-                 $('.popable')
-                     .popup({
-                       position: 'right center'
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
                      })
                  ;
-
-
 
                });
   </script>

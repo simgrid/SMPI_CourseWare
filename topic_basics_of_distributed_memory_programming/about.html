@@ -1,0 +1,20 @@
+
+<p class="ui">This topic introduces basic but essential concepts for distributed-memory programming, such as:</p>
+
+  <ul class="ui list">
+    <li class="ui item"> Single-Program Multiple-Data (SPMD) programming style</li>
+    <li class="ui item"> The use of <i>process rank</i> to distribute work among processes</li>
+    <li class="ui item"> Local vs. Global indices for 1-D and 2-D data distribution of arrays</li>
+    <li class="ui item"> Simple message-passing to coordinate processes</li>
+  </ul>
+
+  <p class="ui">
+  In this topic we do not focus on performance at all, and we implement a "toy" application that
+  computes a Julia set and saves it as a bitmap file for display. Below is (a low-res version of) the
+  Julia set we will compute:
+  </p>
+
+  <p style="text-align:center;">
+    <img align="center" src="{{ site.baseurl}}/topic_basics_of_distributed_memory_programming/julia_small.jpg">
+  </p>
+

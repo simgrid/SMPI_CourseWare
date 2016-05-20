@@ -9,12 +9,17 @@ navigate: false
 <font size=+1>
 
 <p class="ui">
-SMPI CourseWare is a set of hands-on pedagogic material focused on teaching high performance computing and distributed memory computing in simulation. This is
+SMPI CourseWare is a set of hands-on pedagogic materials focused on teaching high performance computing and distributed memory computing in simulation. This is
 done with
   <a href="http://simgrid.gforge.inria.fr/simgrid/latest/doc/group__SMPI__API.html">SMPI</a> (Simulated MPI),
  a simulator for <a href="http://www.mpi-forum.org/docs/docs.html">MPI</a> applications provided as part of
  <a href="http://simgrid.gforge.inria.fr">SimGrid</a>.
  </p>
+
+<p class="ui">
+This not self-contained course. Although tutorial information is provided, the intent is for this material
+to be included into existing courses.
+</p>
 
 <p class="ui">
  Using the navigation bar on the left you can see the specific learning objectives, and explore the covered topics. Each topic consists of

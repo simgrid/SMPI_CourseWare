@@ -12,7 +12,7 @@
 
 
   <a class="ui item {% if page.url ==  '/' %} active{% endif %}" href="{{site.baseurl}}">
-    <h4 class="ui header">Home</h4>
+    <h3 class="ui header">Home</h3>
   </a>
 
 
@@ -23,14 +23,14 @@
   {% if node.navigate != false %}
   <a class="ui popable item fluid {% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}"
        data-content="{{node.description}}" data-variation="inverted">
-      <h4 class="ui header fluid">{{node.title}}
-      </h4>
+      <h3 class="ui header fluid">{{node.title}}
+      </h3>
   </a>
-
   {% endif %}
   {% endif %}
   {% endif %}
   {% endfor %}
+  <div class="ui divider" style="margin-top:0em"></div>
 
-  <div class="ui divider"></div>
 </div>
+
