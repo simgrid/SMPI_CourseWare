@@ -1,0 +1,36 @@
+Implement a C (or C++) program called <code>sequential_julia</code> (source file  <code>sequential_julia.c</code>) that:
+
+<div class="ui list bulleted">
+  <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
+  <div class="item">Allocates an 1-D <code>char</code> array of (n*840)*(2*n*840)*3 elements. This array is used to
+    store an
+    image with height (in pixels) of n*840, width (in pixels) of 2*n*840, where each pixel is encoded using 3 bytes (RBG
+    values).
+  </div>
+  <div class="item">Fills this array with pixel values corresponding to the Julia set.</div>
+</div>
+
+<p class="ui">
+  To make the above easier you are provided with one helper C function, <code>compute_julia_pixel()</code>, to which
+  you pass the (x,y) coordinates of a pixed, the (width, height) dimensions of the image, a "tint" float (pass 1.0
+  for now), and a pointer to 3 contiguous bytes. These bytes are set to appropriate RGB values (Red Green Blue) for
+  displaying the Julia set.
+  <a target="_blank" href="{{site.baseurl}}topic_basics_of_distributed_memory_programming/compute_julia_pixel.c">[Download
+  source of compute_julia_pixel()]</a>
+</p>
+
+<div class="ui accordion styled fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the source of compute_julia_pixel()
+  </div>
+  <div class=" content">
+    <div class="ui container ">
+
+        {% highlight Java %}
+        {% include_relative topic_basics_of_distributed_memory_programming/compute_julia_pixel.c %}
+        {% endhighlight %}
+    </div>
+  </div>
+</div>
+
