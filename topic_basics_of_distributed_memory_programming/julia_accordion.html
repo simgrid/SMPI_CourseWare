@@ -1,0 +1,38 @@
+
+
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    What is a Julia set?
+  </div>
+  <div class=" content">
+    <div class="ui container message ">
+      <p class="ui">A Julia set is a fractal, i.e., an object that is self-similar across scales (you "zoom in"
+        and you keep seeing similar structures/features). It is a generalization
+        of the famous Mandelbrot set<sup><a href="https://en.wikipedia.org/wiki/Mandelbrot_set">[Wikipedia]</a></sup>,
+        which adorns many T-shirts (search for "Mandelbrot zoom" for psychedelic videos). </p>
+
+      <p class="ui">The particular Julia set
+        that we compute here is defined as follows. Given z a point in the 2-D complex plane, we compute the
+        series defined as:
+      <ul class="ui list">
+        <li class="item">z<sub>0</sub> = z</li>
+        <li class="item">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</li>
+      </ul>
+      where c = -0.79 + i * 0.15. Different
+      values of c lead to different images, we know many values that produce "pretty" images.
+      </p>
+      <p class="ui">
+        The color of a pixel corresponding to point z is determined based on the number of iterations
+        before the modulus of z<sub>n</sub> is above 2 (or until a maximum number of iterations
+        is reached).
+      </p>
+      <p class="ui">
+        Not to worry, code is provided for you for the above. However, feel free to tweak it to create different
+        images and to find out more about Julia sets<sup><a href="https://en.wikipedia.org/wiki/Julia_set">[Wikipedia]</a></sup>.
+      </p>
+    </div>
+  </div>
+</div>

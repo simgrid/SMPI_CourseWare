@@ -6,7 +6,6 @@ navigate: false
 ---
 
 <div class="ui container raised segment padded">
-<font size=+1>
 
 <p class="ui">
 SMPI CourseWare is a set of hands-on pedagogic materials focused on teaching high performance computing and distributed memory computing in simulation. This is
@@ -23,8 +22,7 @@ to be included into existing courses.
 
 <p class="ui">
  Using the navigation bar on the left you can see the specific learning objectives, and explore the covered topics. Each topic consists of
- short tutorial information and of many hands-on activities. Topic #0 is a good place to start :)
+ short tutorial information and of many hands-on activities. Topic #0 is a good place to start.
 </p>
 
-</font>
 </div>
