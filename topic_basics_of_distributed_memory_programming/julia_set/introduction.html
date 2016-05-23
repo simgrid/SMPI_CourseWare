@@ -2,29 +2,23 @@
 
   <h3 class="ui header">Overview</h3>
 
-  <p class="ui">This topic introduces basic but essential concepts for distributed-memory programming
-    (Single-Program Multiple-Data (SPMD) programming style, the use of <i>process rank</i> to distribute work among processes,
-    local vs. Global indices for 1-D and 2-D data distribution of arrays, simple message-passing to coordinate processes).
-    The focus is not on performance but on correctness.
-  </p>
-
   <p class="ui">
-    <b>Goal: </b> To implement several versions of a "toy" parallel application that
+    <b>Objective: </b> To implement several versions of a "toy" parallel application that
     computes the Julia set displayed below and saves it as a bitmap file:
   </p>
 
   <p style="text-align:center;" class="ui">
-    <img align="center" src="{{ site.baseurl}}/topic_basics_of_distributed_memory_programming/julia_small.jpg">
+    <img align="center" src="{{ site.baseurl}}/topic_basics_of_distributed_memory_programming/julia_set/julia_small.jpg">
 
   </p>
 
-  {% include_relative topic_basics_of_distributed_memory_programming/julia_accordion.html %}
+  {% include_relative julia_accordion.html %}
 
 </div>
 
 <div class="ui container segment raised fluid">
   <h3 class="ui header">Roadmap</h3>
-  <p class="ui">This topic consists of <b>3 activities, each described in its own tab above, which should be done in
+  <p class="ui">This experiences consists of <b>3 activities, each described in its own tab above, which should be done in
     sequence:</b>
   </p>
   <ul class="ui list">

@@ -74,12 +74,6 @@
   
   
   
-  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
-       data-content="Curricular information" data-variation="inverted">
-      <h3 class="ui header fluid">About
-      </h3>
-  </a>
-  
   
   
   
@@ -123,8 +117,8 @@
   
   
   <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
-       data-content="Rigid distributed memory progams" data-variation="inverted">
-      <h3 class="ui header fluid">Topic &#35;2
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
       </h3>
   </a>
   
@@ -165,6 +159,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
   <div class="ui divider" style="margin-top:0em"></div>
 
 </div>
@@ -180,295 +180,27 @@
   <div class="ui divider"></div>
 
 	
-<div class="ui pointing secondary menu">
-  <a class="item active" data-tab="first">Introduction</a>
-  <a class="item " data-tab="second">Activity #1</a>
-  <a class="item" data-tab="third">Activity #2</a>
-  <a class="item" data-tab="fourth">Activity #3</a>
-</div>
-
-<div class="ui tab segment active" data-tab="first">
-  <div class="ui container raised segment fluid">
-
-  <h3 class="ui header">Overview</h3>
+<div class="container ui raised segment">
+<h3 class="ui header">Overview</h3>
 
   <p class="ui">This topic introduces basic but essential concepts for distributed-memory programming
     (Single-Program Multiple-Data (SPMD) programming style, the use of <i>process rank</i> to distribute work among processes,
     local vs. Global indices for 1-D and 2-D data distribution of arrays, simple message-passing to coordinate processes).
-    The focus is not on performance but on correctness.
-  </p>
-
-  <p class="ui">
-    <b>Goal: </b> To implement several versions of a "toy" parallel application that
-    computes the Julia set displayed below and saves it as a bitmap file:
-  </p>
-
-  <p style="text-align:center;" class="ui">
-    <img align="center" src="/SMPI_CourseWare//topic_basics_of_distributed_memory_programming/julia_small.jpg" />
-
-  </p>
-
-  
-
-
-
-<div class="ui accordion">
-  <div class=" title">
-    <i class="dropdown icon"></i>
-    What is a Julia set?
-  </div>
-  <div class=" content">
-    <div class="ui container message ">
-      <p class="ui">A Julia set is a fractal, i.e., an object that is self-similar across scales (you "zoom in"
-        and you keep seeing similar structures/features). It is a generalization
-        of the famous Mandelbrot set<sup><a href="https://en.wikipedia.org/wiki/Mandelbrot_set">[Wikipedia]</a></sup>,
-        which adorns many T-shirts (search for "Mandelbrot zoom" for psychedelic videos). </p>
-
-      <p class="ui">The particular Julia set
-        that we compute here is defined as follows. Given z a point in the 2-D complex plane, we compute the
-        series defined as:
-      <ul class="ui list">
-        <li class="item">z<sub>0</sub> = z</li>
-        <li class="item">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</li>
-      </ul>
-      where c = -0.79 + i * 0.15. Different
-      values of c lead to different images, we know many values that produce "pretty" images.
-      </p>
-      <p class="ui">
-        The color of a pixel corresponding to point z is determined based on the number of iterations
-        before the modulus of z<sub>n</sub> is above 2 (or until a maximum number of iterations
-        is reached).
-      </p>
-      <p class="ui">
-        Not to worry, code is provided for you for the above. However, feel free to tweak it to create different
-        images and to find out more about Julia sets<sup><a href="https://en.wikipedia.org/wiki/Julia_set">[Wikipedia]</a></sup>.
-      </p>
-    </div>
-  </div>
-</div>
-
-
-</div>
-
-<div class="ui container segment raised fluid">
-  <h3 class="ui header">Roadmap</h3>
-  <p class="ui">This topic consists of <b>3 activities, each described in its own tab above, which should be done in
-    sequence:</b>
-  </p>
-  <ul class="ui list">
-    <li class="item"><b>Activity #1:</b> Realize a sequential implementation of a program that computes the Julia set
-      and
-      outputs it to a bmp file.
-    </li>
-    <li class="item"><b>Activity #2:</b> Realize a parallel implementation the program using MPI, using a 1-D data
-      distribution.
-    </li>
-    <li class="item"><b>Activity #3:</b> Realize a parallel implementation the program using MPI, using a 2-D data
-      distribution.
-    </li>
-  </ul>
-
-</div>
-
-
-<div class="ui container segment raised fluid">
-  <h3 class="ui header">What to turn in</h3>
-  <p class="ui">You should turn in a single archive (or a github repo) with:
-  <div class="ui bulleted list">
-    <div class="item">All source code</div>
-    <div class="item">XML platform files (see details in the activities)</div>
-    <div class="item">A Makefile with:
-      <div class="ui bulleted  list">
-        <div class="item">A "default" target that compiles all sources to generate all required executables</div>
-        <div class="item">A "run" target that runs all programs (or that displays a message detailing individual targets to run each program) </div>
-      </div>
-    </div>
-    <div class="item">A README file with answers to the questions asked in the activities</div>
-  </div>
+    The focus is mostly on correctness, and only a little bit on performance.
   </p>
 </div>
-</div>
 
-<div class="ui tab segment " data-tab="second">
-  In this activity we develop a simple sequential (i.e., non-parallel) programs that computes a
-Julia set and saves it to a bitmap file. We break it down into the two steps below:
-<br />
-
-<div class="ui top attached tabular menu">
-  <a class="item active" data-tab="seq_compute_julia">Step #1: Computing the Julia set</a>
-  <a class="item" data-tab="seq_save_to_file">Step #2: Saving it to a file</a>
-</div>
-
-<div class="ui bottom attached tab segment active" data-tab="seq_compute_julia">
-
-  Implement a C (or C++) program called <code>sequential_julia</code> (source file  <code>sequential_julia.c</code>) that:
+<div class="container ui raised segment">
+<h3 class="ui header">Available hands-on Experiences</h3>
 
 <div class="ui list bulleted">
-  <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
-  <div class="item">Allocates an 1-D <code>char</code> array of (n*840)*(2*n*840)*3 elements. This array is used to
-    store an
-    image with height (in pixels) of n*840, width (in pixels) of 2*n*840, where each pixel is encoded using 3 bytes (RBG
-    values). By passing different values of n we can scale the resolution of the image, with n=1 being the
-    smallest resolution (840 x 1680).
-  </div>
-  <div class="item">Fills this array with pixel values corresponding to the Julia set.</div>
+<div class="ui item">
+<h4 class="ui header"><a href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/julia_set/">Computing a Julia set</a></h4>
 </div>
-
-<p class="ui">
-  To make the above easier you are provided with one helper C function, <code>compute_julia_pixel()</code>, to which
-  you pass the (x,y) coordinates of a pixed, the (width, height) dimensions of the image, a "tint" float (pass 1.0
-  for now), and a pointer to 3 contiguous bytes (<code>unsigned char</code>). These bytes are set to appropriate
-  RGB values (Red Green Blue) for displaying the Julia set.
-  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/compute_julia_pixel.c">[Download
-    source of compute_julia_pixel()]</a>
-</p>
-
-<div class="ui accordion fluid">
-  <div class=" title">
-    <i class="dropdown icon"></i>
-    See the source of compute_julia_pixel()...
-  </div>
-  <div class=" content">
-    <div class="ui raised container segment ">
-
-      
-<figure class="highlight"><pre><code class="language-java" data-lang="java">      
-<span class="cm">/*
- * compute_julia_pixel(): compute RBG values of a pixel in a
- *                        particular Julia set image.
- *
- *  In:
- *      (x,y):            pixel coordinates
- *      (width, height):  image dimensions
- *      tint_bias:        a float to "tweak" the tint (1.0 is "no tint")
- *  Out:
- *      rgb: an already-allocated 3-byte array into which R, G, and B
- *           values are written.
- *
- *  Return:
- *      0 in success, -1 on failure
- *
- */</span>
-
-<span class="kt">int</span> <span class="nf">compute_julia_pixel</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tint_bias</span><span class="o">,</span> <span class="n">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">rgb</span><span class="o">)</span> <span class="o">{</span>
-
-  <span class="c1">// Check coordinates</span>
-  <span class="k">if</span> <span class="o">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">fprintf</span><span class="o">(</span><span class="n">stderr</span><span class="o">,</span><span class="s">"Invalid (%d,%d) pixel coordinates in a %d x %d image\n"</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-  <span class="o">}</span>
-
-  <span class="c1">// "Zoom in" to a pleasing view of the Julia set</span>
-  <span class="kt">float</span> <span class="n">X_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.6</span><span class="o">,</span> <span class="n">X_MAX</span> <span class="o">=</span> <span class="mf">1.6</span><span class="o">,</span> <span class="n">Y_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.9</span><span class="o">,</span> <span class="n">Y_MAX</span> <span class="o">=</span> <span class="o">+</span><span class="mf">0.9</span><span class="o">;</span>
-  <span class="kt">float</span> <span class="n">float_y</span> <span class="o">=</span> <span class="o">(</span><span class="n">Y_MAX</span> <span class="o">-</span> <span class="n">Y_MIN</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">y</span> <span class="o">/</span> <span class="n">height</span> <span class="o">+</span> <span class="n">Y_MIN</span> <span class="o">;</span>
-  <span class="kt">float</span> <span class="n">float_x</span> <span class="o">=</span> <span class="o">(</span><span class="n">X_MAX</span> <span class="o">-</span> <span class="n">X_MIN</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">x</span> <span class="o">/</span> <span class="n">width</span>  <span class="o">+</span> <span class="n">X_MIN</span> <span class="o">;</span>
-
-  <span class="c1">// Point that defines the Julia set</span>
-  <span class="kt">float</span> <span class="n">julia_real</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">79</span><span class="o">;</span>
-  <span class="kt">float</span> <span class="n">julia_img</span> <span class="o">=</span> <span class="o">.</span><span class="mi">15</span><span class="o">;</span>
-
-  <span class="c1">// Maximum number of iteration</span>
-  <span class="kt">int</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">300</span><span class="o">;</span>
-
-  <span class="c1">// Compute the complex series convergence</span>
-  <span class="kt">float</span> <span class="n">real</span><span class="o">=</span><span class="n">float_y</span><span class="o">,</span> <span class="n">img</span><span class="o">=</span><span class="n">float_x</span><span class="o">;</span>
-  <span class="kt">int</span> <span class="n">num_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="o">;</span>
-  <span class="k">while</span> <span class="o">((</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">+</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span> <span class="n">num_iter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">))</span> <span class="o">{</span>
-    <span class="kt">float</span> <span class="n">xtemp</span> <span class="o">=</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">-</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_real</span><span class="o">;</span>
-    <span class="n">real</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">img</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_img</span><span class="o">;</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">xtemp</span><span class="o">;</span>
-    <span class="n">num_iter</span><span class="o">--;</span>
-  <span class="o">}</span>
-
-  <span class="c1">// Paint pixel based on how many iterations were used, using some funky colors</span>
-  <span class="kt">float</span> <span class="n">color_bias</span> <span class="o">=</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">num_iter</span> <span class="o">/</span> <span class="n">max_iter</span><span class="o">;</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">200</span> <span class="o">:</span> <span class="o">-</span> <span class="mf">500.0</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">tint_bias</span><span class="o">,</span> <span class="mf">1.2</span><span class="o">)</span> <span class="o">*</span>  <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">1.6</span><span class="o">));</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="o">-</span><span class="mf">255.0</span> <span class="o">*</span>  <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">0.3</span><span class="o">));</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="mi">255</span> <span class="o">-</span> <span class="mf">255.0</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">tint_bias</span><span class="o">,</span> <span class="mf">1.2</span><span class="o">)</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">));</span>
-
-  <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-<span class="o">}</span>
-      </code></pre></figure>
-
-    </div>
-  </div>
-</div>
-
-<br />
-
-<p class="ui">
-  The program must store the pixels of the 2-D image into a <b>1-D array using a <i>row-major scheme</i></b>.
-</p>
-
-
-<div class="ui accordion fluid">
-  <div class=" title">
-    <i class="dropdown icon"></i>
-    See more details about this "row-major" business...
-  </div>
-
-  <div class="content">
-    <div class="ui container raised segment">
-      <h4 class="ui header">Storing 2-D data is a row-major 1-D array</h4>
-      <p class="ui">
-        You may find the use of a 1-D array to store the pixels surprising, since after all the image is 2-D. However, it is
-        common to use 1-D arrays, especially when they are dynamically allocated. One option would be to allocate an array
-        of pointers to
-        1-D arrays, making it possible to access elements with the convenient syntax <code>Array[i][j]</code>.
-        But this is typically a bad idea as it reduces locality (i.e., the efficient use of the cache), which in turns harms
-        performance.
-      </p>
-      <p>Therefore, we instead store 2-D data into a 1-D array of contiguous elements. The "row-major" scheme consists in storing rows in sequence. In other
-        terms, if the width of the image is <code>N</code>, then pixel (i,j) is stored as <code>Array[i * N + j]</code>. This is actually
-        the scheme used by the C language to store 2-D arrays.
-      </p>
-    </div>
-  </div>
-</div>
-<br />
-
-
-Now that the program computes the Julia set pixels as a 1-D array of 3-byte elements, it would be nice to see them (if only to check
-that they're set correctly). So move on to Step #2 (next tab)...
-
-
-
-
 
 </div>
 
-
-
-<div class="ui bottom attached tab segment" data-tab="seq_save_to_file">
-
-  TBD
-
-
 </div>
-</div>
-
-<div class="ui tab segment" data-tab="third">
-  <div class="ui top attached tabular menu">
-  <a class="item active" data-tab="second/a">2A</a>
-  <a class="item" data-tab="second/b">2B</a>
-  <a class="item" data-tab="second/c">2C</a>
-</div>
-<div class="ui bottom attached tab segment active" data-tab="second/a">2A</div>
-<div class="ui bottom attached tab segment" data-tab="second/b">2B</div>
-<div class="ui bottom attached tab segment" data-tab="second/c">2C</div>
-</div>
-
-<div class="ui tab segment" data-tab="fourth">
-  <div class="ui top attached tabular menu">
-  <a class="item active" data-tab="second/a">2A</a>
-  <a class="item" data-tab="second/b">2B</a>
-  <a class="item" data-tab="second/c">2C</a>
-</div>
-<div class="ui bottom attached tab segment active" data-tab="second/a">2A</div>
-<div class="ui bottom attached tab segment" data-tab="second/b">2B</div>
-<div class="ui bottom attached tab segment" data-tab="second/c">2C</div>
-</div>
-
 
 
   <br>
