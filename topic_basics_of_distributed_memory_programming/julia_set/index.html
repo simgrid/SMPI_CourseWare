@@ -324,9 +324,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
   <div class=" content">
     <div class="ui raised container segment ">
 
-      
-<figure class="highlight"><pre><code class="language-java" data-lang="java">      
-<span class="cm">/*
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/*
  * compute_julia_pixel(): compute RBG values of a pixel in a
  *                        particular Julia set image.
  *
@@ -343,45 +341,44 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
  *
  */</span>
 
-<span class="kt">int</span> <span class="nf">compute_julia_pixel</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tint_bias</span><span class="o">,</span> <span class="n">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">rgb</span><span class="o">)</span> <span class="o">{</span>
+<span class="kt">int</span> <span class="nf">compute_julia_pixel</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">float</span> <span class="n">tint_bias</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">rgb</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="c1">// Check coordinates</span>
-  <span class="k">if</span> <span class="o">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">||</span> <span class="o">(</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">fprintf</span><span class="o">(</span><span class="n">stderr</span><span class="o">,</span><span class="s">"Invalid (%d,%d) pixel coordinates in a %d x %d image\n"</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-  <span class="o">}</span>
+  <span class="c1">// Check coordinates
+</span>  <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">width</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">y</span> <span class="o">&gt;=</span> <span class="n">height</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"Invalid (%d,%d) pixel coordinates in a %d x %d image</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  <span class="c1">// "Zoom in" to a pleasing view of the Julia set</span>
-  <span class="kt">float</span> <span class="n">X_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.6</span><span class="o">,</span> <span class="n">X_MAX</span> <span class="o">=</span> <span class="mf">1.6</span><span class="o">,</span> <span class="n">Y_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.9</span><span class="o">,</span> <span class="n">Y_MAX</span> <span class="o">=</span> <span class="o">+</span><span class="mf">0.9</span><span class="o">;</span>
-  <span class="kt">float</span> <span class="n">float_y</span> <span class="o">=</span> <span class="o">(</span><span class="n">Y_MAX</span> <span class="o">-</span> <span class="n">Y_MIN</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">y</span> <span class="o">/</span> <span class="n">height</span> <span class="o">+</span> <span class="n">Y_MIN</span> <span class="o">;</span>
-  <span class="kt">float</span> <span class="n">float_x</span> <span class="o">=</span> <span class="o">(</span><span class="n">X_MAX</span> <span class="o">-</span> <span class="n">X_MIN</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">x</span> <span class="o">/</span> <span class="n">width</span>  <span class="o">+</span> <span class="n">X_MIN</span> <span class="o">;</span>
+  <span class="c1">// "Zoom in" to a pleasing view of the Julia set
+</span>  <span class="kt">float</span> <span class="n">X_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">6</span><span class="p">,</span> <span class="n">X_MAX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">.</span><span class="mi">6</span><span class="p">,</span> <span class="n">Y_MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="p">,</span> <span class="n">Y_MAX</span> <span class="o">=</span> <span class="o">+</span><span class="mi">0</span><span class="p">.</span><span class="mi">9</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">float_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y_MAX</span> <span class="o">-</span> <span class="n">Y_MIN</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">y</span> <span class="o">/</span> <span class="n">height</span> <span class="o">+</span> <span class="n">Y_MIN</span> <span class="p">;</span>
+  <span class="kt">float</span> <span class="n">float_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_MAX</span> <span class="o">-</span> <span class="n">X_MIN</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">x</span> <span class="o">/</span> <span class="n">width</span>  <span class="o">+</span> <span class="n">X_MIN</span> <span class="p">;</span>
 
-  <span class="c1">// Point that defines the Julia set</span>
-  <span class="kt">float</span> <span class="n">julia_real</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">79</span><span class="o">;</span>
-  <span class="kt">float</span> <span class="n">julia_img</span> <span class="o">=</span> <span class="o">.</span><span class="mi">15</span><span class="o">;</span>
+  <span class="c1">// Point that defines the Julia set
+</span>  <span class="kt">float</span> <span class="n">julia_real</span> <span class="o">=</span> <span class="o">-</span><span class="p">.</span><span class="mi">79</span><span class="p">;</span>
+  <span class="kt">float</span> <span class="n">julia_img</span> <span class="o">=</span> <span class="p">.</span><span class="mi">15</span><span class="p">;</span>
 
-  <span class="c1">// Maximum number of iteration</span>
-  <span class="kt">int</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">300</span><span class="o">;</span>
+  <span class="c1">// Maximum number of iteration
+</span>  <span class="kt">int</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
 
-  <span class="c1">// Compute the complex series convergence</span>
-  <span class="kt">float</span> <span class="n">real</span><span class="o">=</span><span class="n">float_y</span><span class="o">,</span> <span class="n">img</span><span class="o">=</span><span class="n">float_x</span><span class="o">;</span>
-  <span class="kt">int</span> <span class="n">num_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="o">;</span>
-  <span class="k">while</span> <span class="o">((</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">+</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span> <span class="n">num_iter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">))</span> <span class="o">{</span>
-    <span class="kt">float</span> <span class="n">xtemp</span> <span class="o">=</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">-</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_real</span><span class="o">;</span>
-    <span class="n">real</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">img</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_img</span><span class="o">;</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">xtemp</span><span class="o">;</span>
-    <span class="n">num_iter</span><span class="o">--;</span>
-  <span class="o">}</span>
+  <span class="c1">// Compute the complex series convergence
+</span>  <span class="kt">float</span> <span class="n">real</span><span class="o">=</span><span class="n">float_y</span><span class="p">,</span> <span class="n">img</span><span class="o">=</span><span class="n">float_x</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">num_iter</span> <span class="o">=</span> <span class="n">max_iter</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">((</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">+</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span> <span class="n">num_iter</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">))</span> <span class="p">{</span>
+    <span class="kt">float</span> <span class="n">xtemp</span> <span class="o">=</span> <span class="n">img</span> <span class="o">*</span> <span class="n">img</span> <span class="o">-</span> <span class="n">real</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_real</span><span class="p">;</span>
+    <span class="n">real</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">img</span> <span class="o">*</span> <span class="n">real</span> <span class="o">+</span> <span class="n">julia_img</span><span class="p">;</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">xtemp</span><span class="p">;</span>
+    <span class="n">num_iter</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  <span class="c1">// Paint pixel based on how many iterations were used, using some funky colors</span>
-  <span class="kt">float</span> <span class="n">color_bias</span> <span class="o">=</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">num_iter</span> <span class="o">/</span> <span class="n">max_iter</span><span class="o">;</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">200</span> <span class="o">:</span> <span class="o">-</span> <span class="mf">500.0</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">tint_bias</span><span class="o">,</span> <span class="mf">1.2</span><span class="o">)</span> <span class="o">*</span>  <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">1.6</span><span class="o">));</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="o">-</span><span class="mf">255.0</span> <span class="o">*</span>  <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">0.3</span><span class="o">));</span>
-  <span class="n">rgb</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="mi">255</span> <span class="o">-</span> <span class="mf">255.0</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">tint_bias</span><span class="o">,</span> <span class="mf">1.2</span><span class="o">)</span> <span class="o">*</span> <span class="n">pow</span><span class="o">(</span><span class="n">color_bias</span><span class="o">,</span> <span class="mf">3.0</span><span class="o">));</span>
+  <span class="c1">// Paint pixel based on how many iterations were used, using some funky colors
+</span>  <span class="kt">float</span> <span class="n">color_bias</span> <span class="o">=</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span> <span class="n">num_iter</span> <span class="o">/</span> <span class="n">max_iter</span><span class="p">;</span>
+  <span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">200</span> <span class="o">:</span> <span class="o">-</span> <span class="mi">500</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">tint_bias</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span>  <span class="n">pow</span><span class="p">(</span><span class="n">color_bias</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">6</span><span class="p">));</span>
+  <span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="o">-</span><span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span>  <span class="n">pow</span><span class="p">(</span><span class="n">color_bias</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">3</span><span class="p">));</span>
+  <span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_iter</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="mi">255</span> <span class="o">-</span> <span class="mi">255</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">tint_bias</span><span class="p">,</span> <span class="mi">1</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="n">color_bias</span><span class="p">,</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span><span class="p">));</span>
 
-  <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-<span class="o">}</span>
-      </code></pre></figure>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
 
     </div>
   </div>
@@ -434,7 +431,87 @@ that they're set correctly). So move on to Step #2 (next tab)...
 
 <div class="ui bottom attached tab segment" data-tab="seq_save_to_file">
 
-  TBD
+  <p class="ui">
+Augment your program so that it saves the image to a file called <code>julia.bmp</code>, which stores
+the image in the bmp format.
+  To make the above easier you are provided with a helper C function, <code>write_bmp_header()</code>, which
+  writes to a file the 40-byte header required for a bmp file.
+  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/write_bmp_header.c">[Download
+    source of write_bmp_header()]</a>
+</p>
+
+<div class="ui accordion fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the source of write_bmp_header()...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* write_bmp_header():
+ *
+ *   In:
+ *      f: A file open for writing ('w') 
+ *      (width, height): image dimensions
+ *   
+ *   Return:
+ *      0 on success, -1 on failure
+ *
+ */</span>
+
+<span class="kt">int</span> <span class="nf">write_bmp_header</span><span class="p">(</span><span class="kt">FILE</span> <span class="o">*</span><span class="n">f</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Define all fields in the bmp header
+</span>  <span class="kt">char</span> <span class="n">id</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">"BM"</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">filesize</span> <span class="o">=</span> <span class="mi">102</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">width</span> <span class="o">*</span> <span class="n">height</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
+  <span class="kt">short</span> <span class="n">reserved</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">54</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">planes</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">bits</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">compression</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">image_size</span> <span class="o">=</span> <span class="n">width</span> <span class="o">*</span> <span class="n">height</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">x_res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">y_res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">ncolors</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">importantcolors</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">// Write the bytes to the file, keeping track of the
+</span>  <span class="c1">// number of written "objects"
+</span>  <span class="kt">size_t</span> <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">filesize</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="n">reserved</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">offset</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">size</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">width</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">height</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">planes</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bits</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">short</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">compression</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">image_size</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x_res</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">y_res</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ncolors</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+  <span class="n">ret</span> <span class="o">+=</span> <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="n">importantcolors</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+
+  <span class="c1">// Success means that we wrote 17 "objects" successfully
+</span>  <span class="k">return</span> <span class="p">(</span><span class="n">ret</span> <span class="o">!=</span> <span class="mi">17</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  Verify that your program outputs the expected Julia set. Try different values of n and check that
+  your obtain images with the expected resolutions.
+</p>
+
+<p class="ui">
+  You are now ready to go on to Activity #2, in which we make the program parallel.
+</p>
+
 
 
 </div>
