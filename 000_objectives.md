@@ -64,7 +64,7 @@ Approach
 </h3>
 
 While many curricular materials have been developed for teaching message-passing, MPI, and distributed-memory programming,
-this CourseWare relies on the use of _simulation_, which has the following advantages:
+this CourseWare relies on the use of <b>simulation</b>, which has the following advantages:
 
 
 <div class="ui list bulleted">
