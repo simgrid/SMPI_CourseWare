@@ -20,8 +20,8 @@
   {% for node in pages_list %}
   {% if node.title != null %}
   {% if node.layout == "page" %}
-  {% if node.navigate != false %}
-  <a class="ui popable item fluid {% if page.url == node.url %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}"
+  {% if node.top_level == true %}
+  <a class="ui popable item fluid {% if page.topic == node.topic %} active{% endif %}" href="{{site.baseurl}}{{ node.url }}"
        data-content="{{node.description}}" data-variation="inverted">
       <h3 class="ui header fluid">{{node.title}}
       </h3>

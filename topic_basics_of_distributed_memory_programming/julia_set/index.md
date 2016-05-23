@@ -1,4 +1,10 @@
-
+---
+layout: page
+title: Topic &#35;1 Experience
+description: Computing a Julia Set
+top_level: false
+topic: topic01
+---
 
 
 <div class="ui pointing secondary menu">
@@ -9,20 +15,20 @@
 </div>
 
 <div class="ui tab segment active" data-tab="first">
-  {% include_relative topic_basics_of_distributed_memory_programming/introduction.html %}
+  {% include_relative introduction.html %}
 </div>
 
 
 <div class="ui tab segment " data-tab="second">
-  {% include_relative topic_basics_of_distributed_memory_programming/sequential.html %}
+  {% include_relative sequential.html %}
 </div>
 
 <div class="ui tab segment" data-tab="third">
-  {% include_relative topic_basics_of_distributed_memory_programming/1D.html %}
+  {% include_relative 1D.html %}
 </div>
 
 <div class="ui tab segment" data-tab="fourth">
-  {% include_relative topic_basics_of_distributed_memory_programming/2D.html %}
+  {% include_relative 2D.html %}
 </div>
 
 

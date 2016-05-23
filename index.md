@@ -21,8 +21,9 @@ to be included into existing courses.
 </p>
 
 <p class="ui">
- Using the navigation bar on the left you can see the specific learning objectives, and explore the covered topics. Each topic consists of
- short tutorial information and of many hands-on activities. Topic #0 is a good place to start.
+ Using the navigation bar on the left you can see the specific learning objectives,
+ and explore the covered topics. Each topic consists on hands-on activities, which
+ include brief turial information. Topic #0 is a good place to start.
 </p>
 
 </div>
