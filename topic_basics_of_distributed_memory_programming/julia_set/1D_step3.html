@@ -9,12 +9,14 @@
 </p>
 
 <p class="ui">
-  First you must pick on process to create the file and write the header to it
+  First you must pick one process to create the file and write the header to it
   (it is typical to pick process of rank 0).  Second, each process, after its done computing
   its pixels, waits for a "go ahead!" message from its predecessor, and then sends a "go ahead!"
-  message to its successor.  The exceptions are process of rank 0, which does not need to wait for
+  message to its successor.  The exceptions are the process with rank 0, which does not need to wait for
   a message, and the last process, which does not need to send a message. It doesn't really matter
-  what these messages contain (e.g., they can be a single byte, or even zero-byte messages), as the whole purpose is to
+  what these messages contain (e.g., they can be a single byte, or even zero-byte messages),
+  as the whole purpose is to just have processes wait for their predecessors, not really receive
+  meaningful data from them.
 
 </p>
 
