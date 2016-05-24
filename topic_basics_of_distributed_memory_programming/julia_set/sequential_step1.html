@@ -1,12 +1,10 @@
 Implement a C (or C++) program called <code>sequential_julia</code> (source file  <code>sequential_julia.c</code>) that:
 
 <div class="ui list bulleted">
-  <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
-  <div class="item">Allocates an 1-D <code>char</code> array of (n*840)*(2*n*840)*3 elements. This array is used to
-    store an
-    image with height (in pixels) of n*840, width (in pixels) of 2*n*840, where each pixel is encoded using 3 bytes (RBG
-    values). By passing different values of n we can scale the resolution of the image, with n=1 being the
-    smallest resolution (840 x 1680).
+  <div class="item">Takes a single command-line argument, n, an <code>integer</code> that's strictly positive.</div>
+  <div class="item">Allocates an 1-D <code>unsigned char</code> n * (2 * n) *3 elements. This array is used to
+    the pixels of an image with height (in pixels) of n width (in pixels) of 2n, where each pixel is encoded using 3 bytes (RGB
+    values).
   </div>
   <div class="item">Fills this array with pixel values corresponding to the Julia set.</div>
 </div>

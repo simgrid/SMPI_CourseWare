@@ -1,6 +1,14 @@
 <p class="ui">
 Augment your program so that it saves the image to a file called <code>julia.bmp</code>, which stores
-the image in the bmp format.
+the image in the bmp format.  A bmp file consists of two parts:
+  <div class="ui list bulleted">
+  <div class="ui item"> A header </div>
+  <div class="ui item"> The 3-byte pixels of the image, in a row-major fashion</div>
+</div>
+
+  </p>
+
+<p class="ui">
   To make the above easier you are provided with a helper C function, <code>write_bmp_header()</code>, which
   writes to a file the 40-byte header required for a bmp file.
   <a target="_blank" href="{{site.baseurl}}topic_basics_of_distributed_memory_programming/write_bmp_header.c">[Download
@@ -22,9 +30,22 @@ the image in the bmp format.
 </div>
 
 <p class="ui">
-  Verify that your program outputs the expected Julia set. Try different values of n and check that
+  <b>Warning: </b> If the number of width of the image in number of pixels, 2n, is not a multiple of 4 (i.e., in our case
+  if n is odd), then the bmp file format requires that each row of pixel be <i>padded</i>. This means that
+  extra bytes must be written to the file to make the number of bytes in each pixel row a multiple of 4 in case it
+  is not.  <b>For
+  our purposes, you can simply assume that n is always even, so that no padding is necessary.</b> But if you want to allow odd values of n, then you must
+  write extra padding bytes to the file after each row of pixels (for instance bytes with value 0).
+</p>
+
+
+
+<p class="ui">
+  Verify that your program outputs the expected Julia set, by opening the bmp file with your favorite
+  image viewer. Try different values of n and check that
   your obtain images with the expected resolutions.
 </p>
+
 
 <p class="ui">
   You are now ready to go on to Activity #2, in which we make the program parallel.

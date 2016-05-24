@@ -1,0 +1,164 @@
+<p class="ui">
+  The first step when designing a distributed-memory program is to pick a particular
+  "data distribution", i.e., a way in which the data (input and or output) is
+  split across the participating processes. In our Julia set program, the only data
+  is the output image, and we opt for a simple and popular data-distribution scheme:
+  <b>a 1-D data-distribution</b>. Simply put, we logically split our image into slabs
+  and each process computes one slab.
+</p>
+
+<p class="ui">Because in the previous activity we used
+  a <i>row-major</i> storing scheme for our image, it makes sense to pick horizontal
+  slabs.  Our image has n rows of pixels (recall that n is the integer
+  command-line argument).  Let us first compute the data distribution,
+  without computing the Julia set at all. The idea is that, based on its rank, each
+  process must figure out which rows it will compute.
+</p>
+
+
+<p class="ui">
+  Implement a C (or C++) MPI program called <code>1D_parallel_julia</code> (source file  <code>1D_parallel_julia.c</code>)
+  that:
+</p>
+
+<div class="ui list bulleted">
+  <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
+  <div class="item">Have each process print out its rank (out of how many processes in total), and
+          which rows of the image (as a range) it should compute (but actually do nothing for now). See the sample
+           executions below to see what kind of output is expected.</div>
+  <div class="item">The intended data distribution should be in as many "slabs" as there are processes, where
+    each process is in charge of a set of contiguous rows.</div>
+  <div class="item">The distribution should be <b>as balanced as possible</b> (at most
+    a difference of one row between two processes)</div>
+</div>
+
+<p class="ui">
+  Run your program on this simple simulated 1024-node cluster
+  (download <a href="simple_cluster.xml">simple_cluster.xml</a> and
+  <a href="simple_cluster_hostfile.txt">simple_cluster_hostfile.txt</a>).
+</p>
+
+<div class="ui accordion fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the content of simple_cluster.xml ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight xml %}
+      {% include_relative simple_cluster.xml %}
+      {% endhighlight %}
+    </div>
+  </div>
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the (long and boring) content of simple_cluster_hostfile.txt ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight text %}
+      {% include_relative simple_cluster_hostfile.txt %}
+      {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="ui divider"></div>
+
+
+<p class="ui">
+  Below are a few sample executions of the program:
+</p>
+
+<div class="ui accordion  fluid">
+
+  <div class="title">
+    <i class="dropdown icon"></i>
+    See a sample execution with 5 processes for n=1000 ...
+  </div>
+
+  <div class="  styled content">
+
+    <div class="ui container raised segment">
+      <h5 class="ui">As expected, each process process should process 200 rows:</h5>
+{% highlight text %}
+% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
+% smpirun --cfg=smpi/running_power:1 -np 5 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 1000
+[Process 0 out of 5]: I should compute pixel rows 0 to 199, for a total of 200 rows
+[Process 1 out of 5]: I should compute pixel rows 200 to 399, for a total of 200 rows
+[Process 2 out of 5]: I should compute pixel rows 400 to 599, for a total of 200 rows
+[Process 3 out of 5]: I should compute pixel rows 600 to 799, for a total of 200 rows
+[Process 4 out of 5]: I should compute pixel rows 800 to 999, for a total of 200 rows
+{% endhighlight %}
+    </div>
+  </div>
+
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See a sample execution with 16 processes for n=100 ...
+  </div>
+
+  <div class=" content">
+    <div class="ui container segment raised">
+      <h5 class="ui">Note that the distribution is balanced, meaning that the number of rows
+        differs by at most 1 across processors. This is not the only possible balanced data distribution (e.g.,
+      process 0 could compute only 6 rows, while process 15 could compute 7 rows).</h5>
+{% highlight text %}
+% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
+% smpirun --cfg=smpi/running_power:1 -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+[Process 0 out of 16]: I should compute pixel rows 0 to 6, for a total of 7 rows
+[Process 1 out of 16]: I should compute pixel rows 7 to 13, for a total of 7 rows
+[Process 2 out of 16]: I should compute pixel rows 14 to 20, for a total of 7 rows
+[Process 3 out of 16]: I should compute pixel rows 21 to 27, for a total of 7 rows
+[Process 4 out of 16]: I should compute pixel rows 28 to 33, for a total of 6 rows
+[Process 5 out of 16]: I should compute pixel rows 34 to 39, for a total of 6 rows
+[Process 6 out of 16]: I should compute pixel rows 40 to 45, for a total of 6 rows
+[Process 7 out of 16]: I should compute pixel rows 46 to 51, for a total of 6 rows
+[Process 8 out of 16]: I should compute pixel rows 52 to 57, for a total of 6 rows
+[Process 9 out of 16]: I should compute pixel rows 58 to 63, for a total of 6 rows
+[Process 10 out of 16]: I should compute pixel rows 64 to 69, for a total of 6 rows
+[Process 11 out of 16]: I should compute pixel rows 70 to 75, for a total of 6 rows
+[Process 12 out of 16]: I should compute pixel rows 76 to 81, for a total of 6 rows
+[Process 13 out of 16]: I should compute pixel rows 82 to 87, for a total of 6 rows
+[Process 14 out of 16]: I should compute pixel rows 88 to 93, for a total of 6 rows
+[Process 15 out of 16]: I should compute pixel rows 94 to 99, for a total of 6 rows
+{% endhighlight %}
+    </div>
+  </div>
+
+
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See a sample execution with 16 processes for n=12 ...
+  </div>
+
+  <div class=" content">
+    <div class="ui container segment raised">
+      <h5 class="ui">Note that because n is small, some processes have nothing to do. (We don't care what
+      these processes print as their range of rows).</h5>
+{% highlight text %}
+% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
+% smpirun --cfg=smpi/running_power:1 -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+[Process 1 out of 16]: I should compute pixel rows 1 to 1, for a total of 1 rows
+[Process 2 out of 16]: I should compute pixel rows 2 to 2, for a total of 1 rows
+[Process 3 out of 16]: I should compute pixel rows 3 to 3, for a total of 1 rows
+[Process 4 out of 16]: I should compute pixel rows 4 to 4, for a total of 1 rows
+[Process 5 out of 16]: I should compute pixel rows 5 to 5, for a total of 1 rows
+[Process 6 out of 16]: I should compute pixel rows 6 to 6, for a total of 1 rows
+[Process 7 out of 16]: I should compute pixel rows 7 to 7, for a total of 1 rows
+[Process 8 out of 16]: I should compute pixel rows 8 to 8, for a total of 1 rows
+[Process 9 out of 16]: I should compute pixel rows 9 to 9, for a total of 1 rows
+[Process 10 out of 16]: I should compute pixel rows 10 to 10, for a total of 1 rows
+[Process 11 out of 16]: I should compute pixel rows 11 to 11, for a total of 1 rows
+[Process 12 out of 16]: I should compute pixel rows 12 to 11, for a total of 0 rows
+[Process 13 out of 16]: I should compute pixel rows 12 to 11, for a total of 0 rows
+[Process 14 out of 16]: I should compute pixel rows 12 to 11, for a total of 0 rows
+[Process 15 out of 16]: I should compute pixel rows 12 to 11, for a total of 0 rows
+{% endhighlight %}
+    </div>
+  </div>
+
+
+</div>
+
