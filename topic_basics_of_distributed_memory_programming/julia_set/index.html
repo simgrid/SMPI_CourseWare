@@ -1829,7 +1829,49 @@ host-1023.me.org
 
 <div class="ui bottom attached tab segment" data-tab="1D_save_to_file">
 
-  TBD
+  <p class="ui">
+  Augment your program that that the Julia set is saved to a bmp file. This requires some coordination between the
+  processes:
+<div class="ui list bulleted">
+  <div class="ui item">Only one process must create the file and write the header</div>
+  <div class="ui item">Processes need to write pixel rows in sequence, one after the other</div>
+  <div class="ui item">It's probably a good idea to have the file opened in only a single process at a time</div>
+</div>
+</p>
+
+<p class="ui">
+  First you must pick on process to create the file and write the header to it
+  (it is typical to pick process of rank 0).  Second, each process, after its done computing
+  its pixels, waits for a "go ahead!" message from its predecessor, and then sends a "go ahead!"
+  message to its successor.  The exceptions are process of rank 0, which does not need to wait for
+  a message, and the last process, which does not need to send a message. It doesn't really matter
+  what these messages contain (e.g., they can be a single byte, or even zero-byte messages), as the whole purpose is to
+
+</p>
+
+
+<div class="ui accordion fluid">
+
+  <div class="title">
+    <i class="dropdown icon"></i>
+    What are logical topologies???
+  </div>
+
+  <div class="content">
+    <p class="ui message">
+      Although the above scheme is pretty simple, what we are really doing is creating a <i>logical topology</i>. That is,
+      based on ranks, we impose structure on our set of processes. In this case, a "linear chain" in which process #i communicates
+      with process #i+1. Probably the simplest structure. We will see examples of more complex logical topologies.
+      Different applications lend themselves naturally to different logical topologies (rings, grids, trees, etc.).
+      One interesting question, which is outside
+      the score of this topic, is how well the logical topology matches the physical topology of the actual
+      parallel platform in use (a good match typically boosts performance).  Ideally, one can define a logical topology
+      that makes writing the application intuitive, and that is also well-matched to the physical platform.
+    </p>
+  </div>
+</div>
+
+
 
 
 </div>
