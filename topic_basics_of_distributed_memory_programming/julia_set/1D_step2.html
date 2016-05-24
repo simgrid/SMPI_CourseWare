@@ -1,0 +1,60 @@
+<p class="ui">
+  Augment your program that that each process allocates space to store the pixels it needs to compute, and
+  then computes them. <b>A process must only allocate space for the pixels it needs to compute</b>.  In practice,
+  each process runs on a different hosts, and one wishes to compute a large image that does not fit in the
+  memory of a single host (which is one of the main motivations for going the "distributed-memory computing" route).
+</p>
+
+<p class="ui">
+  The main difficulty here is keeping local vs. global indexing straight. That is, although as a programmer
+  with think of the image as an array of, say, N pixels, no N-pixel array is ever allocated in the program (only
+  smaller arrays allocated on each process).
+</p>
+
+<div class="ui accordion fluid">
+
+  <div class="title">
+    <i class="dropdown icon"></i>
+    See more details about this local/global indexing thing ...
+  </div>
+
+  <div class="content">
+
+    <div class="ui container message ">
+
+<p class="ui">One of the difficulties of distributed-memory computing is just that... well... memory is distributed.
+      Say my sequential non-distributed-memory program processes 2000 items. I can simply store them
+      in a 2000-item array.  Say now that I need to use distributed-memory computing (perhaps 2000 items don't
+      fit in the memory of a single host, perhaps I just want to compute faster). I now use 20 hosts instead
+      of 1, and on each host one process runs and allocates memory for 100 items.  So, at each process I allocate
+      a 100-item array. So far, so good.</p>
+
+      <p class="ui"> The problem is that when my sequential program says "process item #i", for some i between 0
+        and 1999, I need to figure out two things:
+      </p>
+
+      <div class="ui list bulleted">
+      <div class="ui item">Which process holds item #i?</div>
+      <div class="ui item">In that process' item array, at which index is item #i stored?</div>
+      </div>
+
+      <p class="ui">
+      The answer to the above depends on the data distribution!  Say that process 0 (i.e., process with
+        rank 0) holds items 0 to 99 (global indices), process 1 holds items 100 to 199 (global indices), etc.
+        So, for a given i between 0 and 1999, which this data distribution, I have:
+      </p>
+      <div class="ui list bulleted">
+        <div class="ui item">Item #i is held by process with rank i/100</div>
+        <div class="ui item">At that process, item #i is store at index i%100 of the item array</div>
+      </div>
+
+      <p class="ui">i%100 ("i modulo 100") above is called the <i>local index</i> (i.e., where the element is stored
+      in the array declared locally in the process), as opposed to i which is the <i>global index</i>.</p>
+
+      <p>The more complicated the distribution, the more intricate the global-to-local or local-to-global
+      conversion. 1-D data distributions are the simplest. In an upcoming activity we'll deal with a 2-D
+      data distribution.</p>
+
+    </div>
+  </div>
+</div>

@@ -1,8 +1,33 @@
+In this activity we develop a parallel implementation of the program using
+a simple "1-D data distribution". We break it down into the three steps below:
+<br>
+
 <div class="ui top attached tabular menu">
-  <a class="item active" data-tab="second/a">2A</a>
-  <a class="item" data-tab="second/b">2B</a>
-  <a class="item" data-tab="second/c">2C</a>
+  <a class="item active" data-tab="1D_data_distribution">Step #1: Data distribution</a>
+  <a class="item" data-tab="1D_compute_julia">Step #2: Computing the Julia set</a>
+  <a class="item" data-tab="1D_save_to_file">Step #3: Saving to a file</a>
 </div>
-<div class="ui bottom attached tab segment active" data-tab="second/a">2A</div>
-<div class="ui bottom attached tab segment" data-tab="second/b">2B</div>
-<div class="ui bottom attached tab segment" data-tab="second/c">2C</div>
+
+<div class="ui bottom attached tab segment active" data-tab="1D_data_distribution">
+
+  {% include_relative 1D_step1.html %}
+
+</div>
+
+
+
+<div class="ui bottom attached tab segment" data-tab="1D_compute_julia">
+
+  {% include_relative 1D_step2.html %}
+
+
+</div>
+
+
+
+<div class="ui bottom attached tab segment" data-tab="1D_save_to_file">
+
+  {% include_relative 1D_step3.html %}
+
+
+</div>
