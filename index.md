@@ -3,6 +3,7 @@ layout: page
 title: Welcome to SMPI CourseWare
 description:
 navigate: false
+topic: none
 ---
 
 <div class="ui container raised segment padded">
