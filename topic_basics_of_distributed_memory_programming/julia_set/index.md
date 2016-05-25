@@ -12,6 +12,7 @@ topic: topic01
   <a class="item " data-tab="second">Activity #1</a>
   <a class="item" data-tab="third">Activity #2</a>
   <a class="item" data-tab="fourth">Activity #3</a>
+  <a class="item" data-tab="fifth">Conclusion</a>
 </div>
 
 <div class="ui tab segment active" data-tab="first">
@@ -30,5 +31,11 @@ topic: topic01
 <div class="ui tab segment" data-tab="fourth">
   {% include_relative 2D.html %}
 </div>
+
+
+<div class="ui tab segment" data-tab="fifth">
+  {% include_relative conclusion.html %}
+</div>
+
 
 
