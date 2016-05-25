@@ -1,1 +1,48 @@
-TBD
+<p class="ui">
+  Augment your program that that the Julia set is saved to a bmp file.
+  The difference with Activity #2 is that now each process holds a tile, and
+  yet the file must contains the pixels in row major order. So each process
+  will have to append many times to the file, writing one piece of a row at a time.
+  As a result, more complex coordination is required compared to
+  Activity #2.
+</p>
+
+
+<div class="ui accordion fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See a visual example/explanation ...
+  </div>
+  <div class="content">
+    <div class="ui message ">
+      <div class="ui grid">
+
+        <div class="ui row">
+          <p style="text-align:center;" class="ui">
+          <img align="center" src="./2D_file_writing_pattern_figure.jpg" width="300px" >
+          </p>
+        </div>
+        <div class="ui row">
+      The figure above show an example with 9 processes (2-D rank coordinates are shown
+      in red), where each process holds a 4x8 tile (4 row segments).  The numbers on
+      each segment indicate the sequence in which the pixels must be written to the
+      file. In this example, there are 36 row segments. First process (0,0)
+      writes its first segment, then process (0,1) writes its first segment, etc.  
+      For instance, at step 20, process (1,1) writes its third segment. You must implement
+          the "go ahead!" messaging scheme so that the processes write to the file in
+          the correct order.
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui divider"></div>
+
+To verify that your program is computing the right image, here is a sample picture:
+<br>
+<br>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./julia_small_checkered.jpg">
+</p>
