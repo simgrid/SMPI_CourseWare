@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Topic &#35;1 Experience
+title: Topic &#35;1 Module
 description: Computing a Julia Set
 top_level: false
 topic: topic01

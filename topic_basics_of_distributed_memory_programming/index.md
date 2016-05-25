@@ -11,7 +11,7 @@
 
 
 <div class="container ui raised segment">
-<h3 class="ui header">Available hands-on experiences</h3>
+<h3 class="ui header">Available hands-on modules</h3>
 
 <div class="ui list bulleted">
 <div class="ui item">
