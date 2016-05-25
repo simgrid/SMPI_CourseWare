@@ -1,0 +1,210 @@
+<p class="ui" xmlns="http://www.w3.org/1999/html">
+  We now implement our parallel Julia set application using a <i>2-D data distribution</i>. This means
+  that each process now is in charge of a <b>tile</b> of the image in a logical checkerboard pattern. To
+  make things simple we assume two things:
+
+<div class="ui list bulleted">
+  <div class="ui item">the total number of processes used is always a perfect square, p<sup>2</sup></div>
+  <div class="ui item">n, the image height, is perfectly divisible by p</div>
+</div>
+
+</p>
+
+<p class="ui">
+  These assumptions will not change the spirit of the program, but simplify its implementation
+  significantly. This is because each process is responsible for a tile of the image
+  with height n/p and width 2n/p. This is the amount of memory each process should allocate.
+</p>
+
+<p class="ui">
+  This 2-D data distribution complicates the global vs. local indexing issue that was
+  discussed in Activity #2. The first thing to do is to figure out which process is responsible
+  for each tile. A common approach is to use a row-major view of the processes. In other words,
+  we think of a logical topology in which the processes are organized in a square grid (because
+  our number of processes is a perfect square).  By default, MPI gives us only a linear (i.e., 1-D) rank.
+  We "transform" this rank into a 2-D rank where each process has a "row" and a "column", using a row-major
+  scheme. This can be done with a little bit of discrete math (alternately, MPI provides
+  a <code>MPI_Cart_coords</code> function that does this for you).  Based on its 2-D coordinates, a process
+  now knows which tile is is responsible for.
+</p>
+
+<div class="ui accordion fluid">
+
+  <div class="title">
+    <i class="dropdown icon"></i>
+    See an example...
+  </div>
+
+  <div class="content">
+    <div class="ui message">
+
+      <p class="ui">
+        Let's say our image has height 300 and width 600, and that we are using 9 processes. Each process
+        then is responsible for a 100x200 tile. Let's see this on a "picture":
+      </p>
+
+      <div class="grid ui">
+
+        <div class="column two wide"></div>
+        <div class="column twelve wide">
+          <table class="ui table definition celled">
+            <thead>
+            <tr>
+              <th> global index ranges</th>
+              <th> cols [0-199]</th>
+              <th> cols [200-399]</th>
+              <th> cols [400-599]</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td> rows [0-99]</td>
+              <td> rank: 0<br>2-D rank: (0,0)<br></td>
+              <td> rank: 1<br>2-D rank: (0,1)<br></td>
+              <td> rank: 2<br>2-D rank: (0,2)<br></td>
+            </tr>
+            <tr>
+              <td> rows [100-199]</td>
+              <td> rank: 3<br>2-D rank: (1,0)<br></td>
+              <td> rank: 4<br>2-D rank: (1,1)<br></td>
+              <td> rank: 5<br>2-D rank: (1,2)<br></td>
+            </tr>
+            <tr>
+              <td> rows [200-299]</td>
+              <td> Rank: 6<br>2-D rank: (2,0)<br></td>
+              <td> Rank: 7<br>2-D rank: (2,1)<br></td>
+              <td> Rank: 8<br>2-D rank: (2,2)<br></td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="column two wide"></div>
+      </div>
+      <br>
+
+      <p class="ui">
+        Every white cell above represents a tile. The (global) row
+        and column index ranges for the pixels in the tile are shown
+        in the first row/column. In each tile is shown the rank of the process
+        that owns it, and the 2-D rank of this process (computed based
+        in the process rank and  p). For instance, process of rank 5
+        has 2-D rank (1,2), meaning that it is in the 2nd row and the 3rd
+        column of the logical 3x3 process grid. As such, it is responsible
+        for image pixels between rows 100 and 199 and between columns 400 and 599. In
+        "array slice notation, this would be [100:199, 400:599].
+      </p>
+
+    </div>
+
+  </div>
+</div>
+
+<p class="ui">
+  Implement a program called <code>2D_parallel_julia</code> (source <code>2D_parallel_julia.c</code>)
+  that does not allocate memory or compute anything for now, but
+  that merely has each process print out its rank, it's 2-D rank, and the pixel row
+  and column ranges for which it is responsible.
+</p>
+
+<p class="ui">
+  Run your program on this simple simulated 1024-node cluster
+  (download <a href="simple_cluster.xml">simple_cluster.xml</a> and
+  <a href="simple_cluster_hostfile.txt">simple_cluster_hostfile.txt</a>). These
+  are the same files are for Activity #1.
+</p>
+
+<div class="ui accordion fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the content of simple_cluster.xml ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight xml %}
+      {% include_relative simple_cluster.xml %}
+      {% endhighlight %}
+    </div>
+  </div>
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the (long and boring) content of simple_cluster_hostfile.txt ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight text %}
+      {% include_relative simple_cluster_hostfile.txt %}
+      {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<br>
+<div class="ui divider"></div>
+
+
+<p class="ui">
+  Below are a few sample executions of the program:
+</p>
+
+<div class="ui accordion  fluid">
+
+  <div class="title">
+    <i class="dropdown icon"></i>
+    See a sample execution with 9 processes for n=30 ...
+  </div>
+
+  <div class="  styled content">
+
+    <div class="ui container raised segment">
+{% highlight text %}
+% smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
+% smpirun --cfg=smpi/running_power:1Gf -np 9 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 30
+[Process rank 0]: my 2-D rank is (0, 0), my tile is [0:9, 0:19]
+[Process rank 1]: my 2-D rank is (0, 1), my tile is [0:9, 20:39]
+[Process rank 2]: my 2-D rank is (0, 2), my tile is [0:9, 40:59]
+[Process rank 3]: my 2-D rank is (1, 0), my tile is [10:19, 0:19]
+[Process rank 4]: my 2-D rank is (1, 1), my tile is [10:19, 20:39]
+[Process rank 5]: my 2-D rank is (1, 2), my tile is [10:19, 40:59]
+[Process rank 6]: my 2-D rank is (2, 0), my tile is [20:29, 0:19]
+[Process rank 7]: my 2-D rank is (2, 1), my tile is [20:29, 20:39]
+[Process rank 8]: my 2-D rank is (2, 2), my tile is [20:29, 40:59]
+{% endhighlight %}
+    </div>
+  </div>
+
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See a sample execution with 16 processes for n=200 ...
+  </div>
+
+  <div class=" content">
+    <div class="ui container segment raised">
+{% highlight text %}
+% smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
+% smpirun --cfg=smpi/running_power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./2D_parallel_julia 200
+[Process rank 0]: my 2-D rank is (0, 0), my tile is [0:49, 0:99]
+[Process rank 1]: my 2-D rank is (0, 1), my tile is [0:49, 100:199]
+[Process rank 2]: my 2-D rank is (0, 2), my tile is [0:49, 200:299]
+[Process rank 3]: my 2-D rank is (0, 3), my tile is [0:49, 300:399]
+[Process rank 4]: my 2-D rank is (1, 0), my tile is [50:99, 0:99]
+[Process rank 5]: my 2-D rank is (1, 1), my tile is [50:99, 100:199]
+[Process rank 6]: my 2-D rank is (1, 2), my tile is [50:99, 200:299]
+[Process rank 7]: my 2-D rank is (1, 3), my tile is [50:99, 300:399]
+[Process rank 8]: my 2-D rank is (2, 0), my tile is [100:149, 0:99]
+[Process rank 9]: my 2-D rank is (2, 1), my tile is [100:149, 100:199]
+[Process rank 10]: my 2-D rank is (2, 2), my tile is [100:149, 200:299]
+[Process rank 11]: my 2-D rank is (2, 3), my tile is [100:149, 300:399]
+[Process rank 12]: my 2-D rank is (3, 0), my tile is [150:199, 0:99]
+[Process rank 13]: my 2-D rank is (3, 1), my tile is [150:199, 100:199]
+[Process rank 14]: my 2-D rank is (3, 2), my tile is [150:199, 200:299]
+[Process rank 15]: my 2-D rank is (3, 3), my tile is [150:199, 300:399]
+{% endhighlight %}
+    </div>
+  </div>
+
+</div>
+
+

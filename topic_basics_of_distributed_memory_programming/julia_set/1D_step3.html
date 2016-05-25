@@ -17,8 +17,21 @@
   what these messages contain (e.g., they can be a single byte, or even zero-byte messages),
   as the whole purpose is to just have processes wait for their predecessors, not really receive
   meaningful data from them.
-
 </p>
+
+<p class="ui">
+  <b>Warning:</b> Make sure that your processes compute in parallel. That is, all processes compute, and then
+  they take turn writing what they have computed to the file.
+</p>
+
+
+<p class="ui">
+  Experiment with different numbers of processors and different values of n, and check that your bmp file
+  is correct (valid, and contains the correct image).
+</p>
+
+
+
 
 
 <div class="ui accordion fluid">
