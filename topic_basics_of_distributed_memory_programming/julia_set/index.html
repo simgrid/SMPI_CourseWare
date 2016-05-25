@@ -10,7 +10,7 @@
 
   <title>
     
-      Topic &#35;1 Experience &middot; SMPI CourseWare
+      Topic &#35;1 Module &middot; SMPI CourseWare
     
   </title>
 
@@ -181,7 +181,7 @@
 	<div class="page">
   <br>
 	
-	<h1 class="ui header">Topic &#35;1 Experience: Computing a Julia Set</h1>
+	<h1 class="ui header">Topic &#35;1 Module: Computing a Julia Set</h1>
 	
   <div class="ui divider"></div>
 
@@ -190,6 +190,7 @@
   <a class="item " data-tab="second">Activity #1</a>
   <a class="item" data-tab="third">Activity #2</a>
   <a class="item" data-tab="fourth">Activity #3</a>
+  <a class="item" data-tab="fifth">Conclusion</a>
 </div>
 
 <div class="ui tab segment active" data-tab="first">
@@ -251,7 +252,7 @@
 
 <div class="ui container segment raised fluid">
   <h3 class="ui header">Roadmap</h3>
-  <p class="ui">This experiences consists of <b>3 activities, each described in its own tab above, which should be done in
+  <p class="ui">This module consists of <b>3 activities, each described in its own tab above, which should be done in
     sequence:</b>
   </p>
   <ul class="ui list">
@@ -3173,7 +3174,7 @@ host-1023.me.org
 
 <p class="ui">
   Have each process apply a <i>tint</i> to the pixels it handles, by passing
-  value <code>(1.0 + 100.0 * rank)</code> as the 5th argument to
+  value <code>rank<sup>2</sup></code> as the 5th argument to
   function <code>compute_julia_pixel()</code> (instead of passing the default
   1.0 value).
 </p>
@@ -3228,15 +3229,70 @@ host-1023.me.org
 
 <div class="ui divider"></div>
 
-To verify that your program is computing the right image, here is a sample picture:
+Using a tint of <code>1.0</code> at each process, this program should produce the
+same images as that in Activity #2 (which can be useful for debugging). When using
+<code>rank<sup>2</sup></code>, one sees a checkered pattern. Here is a sample
+image generated
+with 9 processors for n=300:
 <br />
 <br />
 
 <p style="text-align:center;" class="ui">
-  <img align="center" src="./julia_small_checkered.jpg" />
+  <img align="center" width="400" src="./julia_small_checkered.jpg" />
 </p>
 
 
+
+</div>
+</div>
+
+<div class="ui tab segment" data-tab="fifth">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What have we learned?</h3>
+
+  <p class="ui">
+    Congratulations for making it this far. At this point you have learned how
+    to design a distributed-memory application as an SMPD program using SMPI, have been
+    exposed to both 1-D and 2-D data distributions, and have
+    learned how to use communication to orchestrate the executions of MPI
+    processes.  You may also have learned about memory layouts of 2-D arrays.
+  </p>
+
+  <p class="ui">
+    Our Julia set computation is a "toy application". Admittedly, our use of
+    a 2-D data distribution made the application more complicated to write without
+    any clear benefit. We will see other examples for which 2-D data distributions
+    provide significant performance advantages.  Also, we handled all file I/O
+    "by hand". In practice, MPI provides a set of abstractions and functions to perform parallel
+    I/O, called MPI IO, that could be used to achieve better performance on a real
+    systems with high-performance parallel file systems.
+  </p>
+
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What was difficult?</h3>
+
+  <p class="ui">
+    In a README file write a brief "essay" explaining what you found
+    surprising/challenging, and what solutions you used to solve
+    your difficulties. Are you happy with your implementations? Do you
+    see room for improvement?
+  </p>
+
+
+</div>
+
+
+<div class="ui container raised segment fluid">
+
+<div class="ui horizontal divider">
+  The End
+</div>
 
 </div>
 </div>
