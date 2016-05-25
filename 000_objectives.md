@@ -3,6 +3,7 @@ layout: page
 title: About
 description: Curricular information
 top_level: true
+topic: topic000
 ---
 
 <div class="ui container raised border segment">
