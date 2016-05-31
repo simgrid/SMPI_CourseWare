@@ -1,0 +1,11 @@
+<p class="ui">
+  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+  <b><code>ring_bcast</code></b> (first command-line argument). In this implementation,
+  the process of rank 0 (the root of the broadcast) does a single <code>MPI_Send</code> of the
+  whole buffer to the process of rank 1, the process of rank 1 then does a single <code>MPI_Send</code>
+  to the process of rank 2, etc. In other words, the processes are logically organized as
+  a <i>mono-directional ring</i>.  The last process should not send the buffer back to the root process (the root process
+  does not call <code>MPI_Recv</code>).
+  The second command-line argument (chunk size) is ignored.
+
+</p>

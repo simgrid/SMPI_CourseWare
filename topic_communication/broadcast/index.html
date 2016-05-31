@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Topic &#35;2 Module &middot; SMPI CourseWare
+    
+  </title>
+
+  <!-- Semantic UI, JQuery, etc. -->
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
+
+  <script language='javascript'>
+               $(document).ready(function(){
+               $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
+
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
+                     })
+                 ;
+
+               });
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+	
+
+<div class="ui vertical left fixed menu basic  ">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
+  <br>
+  <br>
+
+
+
+
+  <a class="ui item " href="/SMPI_CourseWare/">
+    <h3 class="ui header">Home</h3>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Curricular information" data-variation="inverted">
+      <h3 class="ui header fluid">About
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;0
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Basics of distributed memory programming" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;1
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//02_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;2
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
+       data-content="Mitigating performance impact of communications" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;4
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;5
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ui divider" style="margin-top:0em"></div>
+
+</div>
+
+
+
+	<div class="contentpage container fluid">
+	<div class="page">
+  <br>
+	
+	<h1 class="ui header">Topic &#35;2 Module: Broadcast Communication</h1>
+	
+  <div class="ui divider"></div>
+
+	<div class="ui pointing secondary menu">
+  <a class="item active" data-tab="first">Introduction</a>
+  <a class="item " data-tab="second">Activity #1</a>
+  <a class="item" data-tab="third">Activity #2</a>
+  <a class="item" data-tab="fourth">Activity #3</a>
+  <a class="item" data-tab="fifth">Activity #4</a>
+  <a class="item" data-tab="sixth">Conclusion</a>
+</div>
+
+<div class="ui tab segment active" data-tab="first">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Overview</h3>
+
+  <p class="ui">
+    <b>Objective: </b> To implement several versions of a broadcast collective (i.e., a one-to-many communication),
+    and to compare them in various platform setups.
+  </p>
+
+</div>
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">Roadmap</h3>
+  <p class="ui">This module consists of <b>4 activities, each described in its own tab above, which should be done in
+    sequence:</b>
+  </p>
+  <ul class="ui list">
+    <li class="item"><b>Activity #1:</b> Realize a naive and a ring-based implementation.
+    </li>
+    <li class="item"><b>Activity #2:</b> Enhance the ring-based implementation with pipelining.
+    </li>
+    <li class="item"><b>Activity #3:</b> Enhance the ring-based implementation further using asynchronous communication.
+    </li>
+    <li class="item"><b>Activity #4:</b> Implement a binary-tree-based implementation (with pipelining and asynchronous communication).
+    </li>
+  </ul>
+  <p class="ui">In all activities above you will compare your implementation with <code></code>MPI_Bcast&lt;/code&gt;, for different platform configurations.</p>
+
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">Skeleton Program</h3>
+  <p class="ui">
+    Throughout this module, you will be adding code to a "skeleton program" (download <a href="bcast_skeleton.c">bcast_skeleton.c</a>):
+
+  <div class="ui accordion fluid">
+    <div class=" title">
+      <i class="dropdown icon"></i>
+      See the source in bcast_skeleton.c ...
+    </div>
+    <div class=" content">
+      <div class="ui raised container segment ">
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;mpi.h&gt;
+#include &lt;string.h&gt;
+</span>
+<span class="c1">// See for the (bad) default random number generator
+</span><span class="cp">#define RAND_SEED 842270
+</span>
+<span class="c1">// Number of bytes to broadcast
+</span>
+<span class="cp">#define NUM_BYTES 100000000
+</span>
+<span class="c1">///////////////////////////////////////////////////////
+//// program_abort() and print_usage() functions //////
+///////////////////////////////////////////////////////
+</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="n">program_abort</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="n">print_usage</span><span class="p">();</span>
+
+<span class="c1">// Abort, printing the usage information only if the
+// first argument is non-NULL (and hopefully set to argv[0]), and
+// printing the second argument regardless.
+</span><span class="k">static</span> <span class="kt">void</span> <span class="nf">program_abort</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">my_rank</span><span class="p">;</span>
+  <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">my_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"%s"</span><span class="p">,</span><span class="n">message</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">exec_name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">print_usage</span><span class="p">(</span><span class="n">exec_name</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">MPI_Abort</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Print the usage information
+</span><span class="k">static</span> <span class="kt">void</span> <span class="nf">print_usage</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">my_rank</span><span class="p">;</span>
+  <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">my_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"Usage: mpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf -np &lt;num processes&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"              -platform &lt;XML platform file&gt; -hostfile &lt;host file&gt;</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"              %s &lt;bcast implementation name&gt; [-c &lt;chunk size&gt;]</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">exec_name</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"MPIRUN arguments:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">&lt;num processes&gt;: number of MPI processes</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">&lt;XML platform file&gt;: a Simgrid platform description file</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">&lt;host file&gt;: MPI host file with host names from the platform file</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"PROGRAM arguments:</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">&lt;bcast implementation name&gt;: the name of the broadcast implementaion (e.g., naive_bcast)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">[-c &lt;chunk size&gt;]: chunk size in bytes for message splitting (optional)</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">///////////////////////////
+////// Main function //////
+///////////////////////////
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">NUM_BYTES</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">bcast_implementation_name</span><span class="p">;</span>
+
+  <span class="c1">// Parse command-line arguments (not using getopt because not thread-safe
+</span>  <span class="c1">// and annoying anyway). The code below ignores extraneous command-line
+</span>  <span class="c1">// arguments, which is lame, but we're not in the business of developing
+</span>  <span class="c1">// a cool thread-safe command-line argument parser.
+</span>
+  <span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+
+  <span class="c1">// Bcast implementation name
+</span>  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Missing &lt;bcast implementation name&gt; argument</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">bcast_implementation_name</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Chunk size optional argument
+</span>  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s">"-c"</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">argc</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">sscanf</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chunk_size</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Invalid &lt;chunk size&gt; argument</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// Determine rank and number of processes
+</span>  <span class="kt">int</span> <span class="n">num_procs</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">rank</span><span class="p">;</span>
+  <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+  <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span>
+
+  <span class="c1">// Allocate buffer
+</span>  <span class="kt">int</span> <span class="n">checksum</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
+  
+  <span class="k">if</span> <span class="p">((</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">NUM_BYTES</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Out of memory!"</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// On rank 0 fill the buffer with random data 
+</span>  <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="p">{</span> 
+    <span class="n">checksum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">srandom</span><span class="p">(</span><span class="n">RAND_SEED</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">NUM_BYTES</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">buffer</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="o">%</span> <span class="mi">256</span><span class="p">);</span> 
+      <span class="n">checksum</span> <span class="o">+=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Start the timer
+</span>  <span class="kt">double</span> <span class="n">start_time</span><span class="p">;</span>
+  <span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">MPI_Wtime</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////
+</span>  <span class="c1">//////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////
+</span>  <span class="c1">/////////////////////////////////////////////////////////////////////////////
+</span>
+  <span class="c1">// char *bcast_implementation_name:   the bcast implementation name (argument #1)
+</span>  <span class="c1">// int chunk_size:                    the chunk size (optional argument #2)
+</span>  <span class="c1">// int NUM_BYTES:                     the number of bytes to broadcast
+</span>  <span class="c1">// char *buffer:                      the buffer to broadcast
+</span>
+  <span class="c1">// Process rank 0 should be  the source of the broadcast
+</span>
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////
+</span>  <span class="c1">///////////////////////////// TO IMPLEMENT: END /////////////////////////////
+</span>  <span class="c1">/////////////////////////////////////////////////////////////////////////////
+</span> 
+  <span class="c1">// All processes send checksums back to the root, which checks for consistency
+</span>  <span class="kt">char</span> <span class="n">all_ok</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">num_procs</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">received_checksum</span><span class="p">;</span>
+      <span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">received_checksum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">MPI_ANY_SOURCE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+      <span class="c1">// Print a single message in case of a mismatch, but continue
+</span>      <span class="c1">// receiving other checksums to ensure that all processes
+</span>      <span class="c1">// reach the MPI_Finalize()
+</span>      <span class="k">if</span> <span class="p">((</span><span class="n">all_ok</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">checksum</span> <span class="o">!=</span> <span class="n">received_checksum</span><span class="p">))</span> <span class="p">{</span>
+	    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">** Non-matching checksum! **</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+	    <span class="n">all_ok</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	    <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">checksum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">NUM_BYTES</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">checksum</span> <span class="o">+=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">checksum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Print out bcast implementation name and wall-clock time, only if the bcast was successful
+</span>  <span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">((</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">all_ok</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">"%s %.3lf</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="n">MPI_Wtime</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Clean-up
+</span>  <span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+  <span class="n">MPI_Finalize</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+      </div>
+    </div>
+  </div>
+  </p>
+
+  <p class="ui">
+    This program takes the following command-line arguments:
+  <div class="ui list bulleted">
+    <div class="ui item">required argument #1: a string that is the name of the broadcast implementation (see each activity)</div>
+    <div class="ui item">optional argument #2 (<i> [-c chunksize]</i>): an integer that specifies a "chunk size" (see activity #2)</div>
+  </div>
+  </p>
+  <p class="ui">
+    <b>You should not modify <code>bcast_skeleton.c</code> outside of the "<code>TO IMPLEMENT: BEGIN</code>" and
+      "<code>TO IMPLEMENT: END</code>" comments.</b>  See comments therein for all needed information to implement
+    your code. Note that you can opt to write your code directly in between these two comments,
+    or <code>#include</code> it, up to you.  Regardless, the goal is to have a single program,
+    <code>bcast_skeleton</code>, that is executed with different command-line arguments for
+    all activities in this module.
+  </p>
+
+  <p class="ui">
+    The skeleton program does the following for you:  parsing of command-line arguments, creation of broadcast data,
+    checking that the broadcast operation was done correctly, timing of the broadcast operation.
+  </p>
+
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">What to turn in</h3>
+  <p class="ui">You should turn in a single archive (or a github repo) with:
+  <div class="ui bulleted list">
+    <div class="item">All source code</div>
+    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
+    <div class="item">A README file with answers to the questions asked in the activities</div>
+  </div>
+  </p>
+</div>
+</div>
+
+<div class="ui tab segment " data-tab="second">
+  In this activity we develop two simple implementations of a broadcast, in the first two steps below.
+You can verify correctness of your broadcast implementations using any SimGrid platform files
+and corresponding MPI hostfile. In the third step below we evaluate performance for a particular
+platform file.
+<br />
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="naive_broadcast">Step #1: Naive Broadcast</a>
+  <a class="item" data-tab="ring_broadcast">Step #2: Ring Broadcast</a>
+  <a class="item" data-tab="naive_ring_broadcast_evaluation">Step #3: Evaluation</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="naive_broadcast">
+
+  
+
+
+<p class="ui">
+  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+  <b><code>naive_bcast</code></b> (first command-line argument). This implementation simply
+  has the root of the broadcast (process with rank 0) perform a single
+  point-to-point <code>MPI_Send</code> of the whole buffer to each other process (which performs an <code>MPI_Recv</code>).
+  In other words, the processes are logically organized as
+  a <i>mono-directional star</i> with process of rank 0 at the center.
+  The second command-line argument (chunk size) is ignored.
+</p>
+
+
+
+
+</div>
+
+
+<div class="ui bottom attached tab segment" data-tab="ring_broadcast">
+
+  <p class="ui">
+  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+  <b><code>ring_bcast</code></b> (first command-line argument). In this implementation,
+  the process of rank 0 (the root of the broadcast) does a single <code>MPI_Send</code> of the
+  whole buffer to the process of rank 1, the process of rank 1 then does a single <code>MPI_Send</code>
+  to the process of rank 2, etc. In other words, the processes are logically organized as
+  a <i>mono-directional ring</i>.  The last process should not send the buffer back to the root process (the root process
+  does not call <code>MPI_Recv</code>).
+  The second command-line argument (chunk size) is ignored.
+
+</p>
+
+
+</div>
+
+
+<div class="ui bottom attached tab segment" data-tab="naive_ring_broadcast_evaluation">
+
+  <p class="ui">
+  Before you proceed with the evaluation of your two implementation, augment <code>bcast_skeleton.c</code>
+  with a third broadcast implementation named <b>default_bcast</b> that simply has all processes
+  call <code>MPI_Bcast</code>. This is the MPI implementation of the broadcast collective communication,
+  which in this module we implement "by hand" using point-to-point communications.
+</p>
+
+<p class="ui">
+  We compare the performance of the three implementations on a <b>100-processor physical ring</b>. Although some
+  supercomputers
+  in the old days were designed with a ring network topology, this is no longer the case. The main drawback of a
+  physical
+  ring is that it has very large diameter (i.e., there can be ~n/2 hops between two processors in an n-processor ring).
+  The main advantages
+  is that the degree is low (2), which implies low cost, and that routing is straightforward. For now we assume a simple
+  physical ring
+  so as to better understand broadcast performance.
+</p>
+
+<p class="ui">
+  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile, but they are
+  provided for you just in case (download <a href="ring_100.xml">ring_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>).
+</p>
+
+<p class="ui">
+  The way to invoke the program is as follows:
+</p>
+
+<div class="ui container raised segment">
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
+        -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+        ./bcast_skeleton &amp;lt; implementation name &amp;gt;</code></pre></figure>
+
+</div>
+
+<p class="ui">
+  The <code>--cfg=smpi/bcase:mpich</code> specifies that we simulate <code>MPI_Bcast</code> (for the
+  default_bcast implementation) as implemented
+  in MPICH. Other options are possible, but it's okay to stick with this implementation
+</p>
+
+<p class="ui">
+  Report the (simulated) wall-clock time of the three implementations on the 100-processor ring.
+  How far are your "by hand" implementations from the default
+  broadcast? You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising. What do you think the reason
+  is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
+  try to understand what's going on. Given that we're using simulation, you should take advantage of it and
+  experiment with all kinds of platform configurations to gain understanding of the performance behavior. For instance,
+  you can modify link latencies and bandwidths.
+  The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
+  function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+</p>
+
+<p class="ui">
+  <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
+  protocol idiosyncrasies, MPI implementation idiosyncrasies).
+  These effects will be seen in your experiments, just as they would with a real-world platform,
+  and they tend to make performance behavior more difficult to understand.  For instance, if you modify
+  the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
+  may not require twice as much time).
+</p>
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="third">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">TBD</h3>
+
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="fourth">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">TBD</h3>
+
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="fourth">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">TBD</h3>
+
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="fifth">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">TBD</h3>
+
+
+</div>
+
+</div>
+
+
+
+  <br>
+
+</div>
+	</div>
+
+
+
+</body>
+</html>
