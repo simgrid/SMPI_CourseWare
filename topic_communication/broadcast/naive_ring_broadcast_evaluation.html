@@ -1,0 +1,80 @@
+<p class="ui">
+  Before you proceed with the evaluation of your two implementation, augment <code>bcast_skeleton.c</code>
+  with a third broadcast implementation named <b>default_bcast</b> that simply has the processes
+  call <code>MPI_Bcast</code>. This is the MPI implementation of the broadcast collective communication,
+  which in this module we implement "by hand" using point-to-point communications.
+</p>
+
+<p class="ui">
+  We compare the performance of the three implementations on a <b>100-processor physical ring</b>. Although some
+  supercomputers
+  in the old days were designed with a ring network topology, this is no longer the case. The main drawback of a
+  physical
+  ring is that it has very large diameter (i.e., there can be ~n/2 hops between two processors in an n-processor ring).
+  The main advantages
+  is that the degree is low (2), which implies low cost, and that routing is straightforward. For now we assume a simple
+  physical ring
+  so as to better understand broadcast performance.
+</p>
+
+<p class="ui">
+  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile, but they are
+  provided for you just in case: Download <a href="ring_100.xml">ring_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>).
+</p>
+
+<div class="ui accordion fluid">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the content of ring_100.xml ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight xml %}
+      {% include_relative ring_100.xml %}
+      {% endhighlight %}
+    </div>
+  </div>
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the (long and boring) content of hostfile_100.txt ...
+  </div>
+  <div class=" content">
+    <div class="ui raised container segment ">
+      {% highlight text %}
+      {% include_relative hostfile_100.txt %}
+      {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  The way to invoke the program is as follows:
+</p>
+
+{% highlight text %}
+smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf \
+-np 100 -platform ring_100.xml -hostfile hostfile_100.txt \
+./bcast_skeleton &lt; implementation name &gt;
+{% endhighlight %}
+
+<p class="ui">
+  Report the (simulated) wall-clock time of the three implementations on the 100-processor ring.
+  How far are your "by hand" implementations from the default
+  broadcast? You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising. What do you think the reason
+  is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
+  try to understand what's going on. Given that we're using simulation, you should take advantage of it and
+  experiment with all kinds of platform configurations to gain understanding of the performance behavior. For instance,
+  you can modify link latencies and bandwidths.
+  The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
+  function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+</p>
+
+<p class="ui">
+  <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
+  protocol idiosyncrasies, MPI implementation idiosyncrasies).
+  These effects will be seen in your experiments, just as they would in a real-world platform,
+  and they tend to make performance behavior more difficult to understand.  For instance, if you modify
+  the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
+  many not require twice as much time).
+</p>

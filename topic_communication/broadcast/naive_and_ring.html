@@ -1,0 +1,35 @@
+In this activity we develop two simple implementations of a broadcast, in the first two steps below.
+You can verify correctness of your broadcast implementations using any SimGrid platform files
+and corresponding MPI hostfile. In the third step below we evaluate performance for a particular
+platform file.
+<br>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="naive_broadcast">Step #1: Naive Broadcast</a>
+  <a class="item" data-tab="ring_broadcast">Step #2: Ring Broadcast</a>
+</div>
+
+
+
+<div class="ui bottom attached tab segment active" data-tab="naive_broadcast">
+
+  {% include_relative naive_broadcast.html %}
+
+</div>
+
+
+
+<div class="ui bottom attached tab segment" data-tab="ring_broadcast">
+
+  {% include_relative ring_broadcast.html %}
+
+
+</div>
+
+
+<div class="ui bottom attached tab segment" data-tab="naive_ring_broadcast_evaluation">
+
+  {% include_relative naive_ring_broadcast_evaluation.html %}
+
+
+</div>

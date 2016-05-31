@@ -23,8 +23,8 @@ to be included into existing courses.
 
 <p class="ui">
  Using the navigation bar on the left you can see the specific learning objectives,
- and explore the covered topics. Each topic consists on hands-on activities, which
- include brief tutorial information. Topic #0 is a good place to start.
+ and explore the covered topics. Each topic consists on hands-on modules, which each
+ include brief tutorial information as well as homework activities. Topic #0 is a good place to start.
 </p>
 
 </div>
