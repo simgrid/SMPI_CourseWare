@@ -1,0 +1,20 @@
+<p class="ui">
+  One of the reasons why the default MPI broadcast is fast is likely that it does <i>pipelining</i>
+  of communication. Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  called <b>pipelined_ring_bcast</b>.
+</p>
+
+<p class="ui">This implementation uses the chunk size passed as the second command-line argument
+  to split the broadcast data buffer into multiple chunks. These chunks are communicated in sequence along
+  the ring. In the first step, process #0 sends chunk #0 to process #1; in the second step, process #1 sends chunk #0 to
+  process #2
+  and process #0 sends chunk #1 to process #1; and so on. As a result of this pipelining, provided the chunk size is
+  small
+  enough, all network links can be utilized simultaneously.
+</p>
+
+<p class="ui">
+  Note that the chunk size may not divide the message size, in which case the last chunk will be smaller.
+</p>
+
+
