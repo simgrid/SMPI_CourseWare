@@ -33,7 +33,6 @@
   <h3 class="ui header">Skeleton Program</h3>
   <p class="ui">
     Throughout this module, you will be adding code to a "skeleton program" (download <a href="bcast_skeleton.c">bcast_skeleton.c</a>):
-  </p>
 
   <div class="ui accordion fluid">
     <div class=" title">
@@ -42,12 +41,13 @@
     </div>
     <div class=" content">
       <div class="ui raised container segment ">
-        {% highlight C %}
-        {% include_relative bcast_skeleton.c %}
-        {% endhighlight %}
+{% highlight C %}
+{% include_relative bcast_skeleton.c %}
+{% endhighlight %}
       </div>
     </div>
   </div>
+  </p>
 
   <p class="ui">
     This program takes the following command-line arguments:
@@ -57,8 +57,8 @@
   </div>
   </p>
   <p class="ui">
-    <b>You should not modify <code>bcast_skeleton.c</code> outside of the <code>TO IMPLEMENT: BEGIN</code> and
-    <code>TO IMPLEMENT: END</code> comments.</b>  See comments therein for all needed information to implement
+    <b>You should not modify <code>bcast_skeleton.c</code> outside of the "<code>TO IMPLEMENT: BEGIN</code>" and
+      "<code>TO IMPLEMENT: END</code>" comments.</b>  See comments therein for all needed information to implement
     your code. Note that you can opt to write your code directly in between these two comments,
     or <code>#include</code> it, up to you.  Regardless, the goal is to have a single program,
     <code>bcast_skeleton</code>, that is executed with different command-line arguments for
@@ -67,7 +67,7 @@
 
   <p class="ui">
     The skeleton program does the following for you:  parsing of command-line arguments, creation of broadcast data,
-    checksum-based checking that the broadcast operation was done correctly, timing of the broadcast operation. 
+    checking that the broadcast operation was done correctly, timing of the broadcast operation.
   </p>
 
 </div>

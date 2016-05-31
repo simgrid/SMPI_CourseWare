@@ -1,6 +1,6 @@
 <p class="ui">
   Before you proceed with the evaluation of your two implementation, augment <code>bcast_skeleton.c</code>
-  with a third broadcast implementation named <b>default_bcast</b> that simply has the processes
+  with a third broadcast implementation named <b>default_bcast</b> that simply has all processes
   call <code>MPI_Bcast</code>. This is the MPI implementation of the broadcast collective communication,
   which in this module we implement "by hand" using point-to-point communications.
 </p>
@@ -19,7 +19,7 @@
 
 <p class="ui">
   It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile, but they are
-  provided for you just in case: Download <a href="ring_100.xml">ring_100.xml</a> and
+  provided for you just in case (download <a href="ring_100.xml">ring_100.xml</a> and
   <a href="hostfile_100.txt">hostfile_100.txt</a>).
 </p>
 
@@ -27,11 +27,19 @@
   The way to invoke the program is as follows:
 </p>
 
+<div class="ui container raised segment">
 {% highlight text %}
-smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf \
--np 100 -platform ring_100.xml -hostfile hostfile_100.txt \
-./bcast_skeleton &lt; implementation name &gt;
+smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
+        -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+        ./bcast_skeleton &lt; implementation name &gt;
 {% endhighlight %}
+</div>
+
+<p class="ui">
+  The <code>--cfg=smpi/bcase:mpich</code> specifies that we simulate <code>MPI_Bcast</code> (for the
+  default_bcast implementation) as implemented
+  in MPICH. Other options are possible, but it's okay to stick with this implementation
+</p>
 
 <p class="ui">
   Report the (simulated) wall-clock time of the three implementations on the 100-processor ring.
@@ -48,8 +56,8 @@ smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf \
 <p class="ui">
   <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
   protocol idiosyncrasies, MPI implementation idiosyncrasies).
-  These effects will be seen in your experiments, just as they would in a real-world platform,
+  These effects will be seen in your experiments, just as they would with a real-world platform,
   and they tend to make performance behavior more difficult to understand.  For instance, if you modify
   the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
-  many not require twice as much time).
+  may not require twice as much time).
 </p>

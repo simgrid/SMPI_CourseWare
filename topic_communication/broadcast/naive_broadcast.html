@@ -4,10 +4,10 @@
 <p class="ui">
   Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
   <b><code>naive_bcast</code></b> (first command-line argument). This implementation simply
-  has the root of the broadcast (profess with rank 0) loop over all other processes and perform a single
-  point-to-point <code>MPI_Send</code> to each process (which performs an <code>MPI_Recv</code>).
+  has the root of the broadcast (process with rank 0) perform a single
+  point-to-point <code>MPI_Send</code> of the whole buffer to each other process (which performs an <code>MPI_Recv</code>).
   In other words, the processes are logically organized as
-  a <i>mono-directional star</i>.
+  a <i>mono-directional star</i> with process of rank 0 at the center.
   The second command-line argument (chunk size) is ignored.
 </p>
 
