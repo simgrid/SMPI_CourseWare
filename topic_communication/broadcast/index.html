@@ -19,7 +19,8 @@
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
@@ -197,7 +198,8 @@
   <a class="item" data-tab="third">Activity #2</a>
   <a class="item" data-tab="fourth">Activity #3</a>
   <a class="item" data-tab="fifth">Activity #4</a>
-  <a class="item" data-tab="sixth">Conclusion</a>
+  <a class="item" data-tab="sixth">Activity #5</a>
+  <a class="item" data-tab="seventh">Conclusion</a>
 </div>
 
 <div class="ui tab segment active" data-tab="first">
@@ -462,11 +464,12 @@
 </div>
 
 <div class="ui tab segment " data-tab="second">
-  In this activity we develop two simple implementations of a broadcast, in the first two steps below.
+  <div class="ui container segment raised">In this activity we develop <b>two simple broadcast implementations</b>,
+  in the first two steps below.
 You can verify correctness of your broadcast implementations using any SimGrid platform files
 and corresponding MPI hostfile. In the third step below we evaluate performance for a particular
 platform file.
-<br />
+</div>
 
 <div class="ui top attached tabular menu">
   <a class="item active" data-tab="naive_broadcast">Step #1: Naive Broadcast</a>
@@ -536,9 +539,12 @@ platform file.
 </p>
 
 <p class="ui">
-  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile, but they are
-  provided for you just in case (download <a href="ring_100.xml">ring_100.xml</a> and
-  <a href="hostfile_100.txt">hostfile_100.txt</a>).
+  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile.
+  You can download a Python script <a href="./generate_xml_ring_and_hostfile.py">(generate_xml_ring_and_hostfile.py)</a>
+  that generates
+  these two files given a number of processors passed as a command-line argument. Just in case,
+  here are the files generated using this script for 100 processes: <a href="ring_100.xml">ring_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>.
 </p>
 
 <p class="ui">
@@ -546,36 +552,47 @@ platform file.
 </p>
 
 <div class="ui container raised segment">
-
-<figure class="highlight"><pre><code class="language-text" data-lang="text">smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
-        -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
-        ./bcast_skeleton &amp;lt; implementation name &amp;gt;</code></pre></figure>
+  
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
+  -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+  ./bcast_skeleton &lt;implementation name&gt;
+  </code></pre></figure>
 
 </div>
 
 <p class="ui">
-  The <code>--cfg=smpi/bcase:mpich</code> specifies that we simulate <code>MPI_Bcast</code> (for the
+  The <code>--cfg=smpi/bcase:mpich</code> flag above specifies that we simulate <code>MPI_Bcast</code> (for the
   default_bcast implementation) as implemented
   in MPICH. Other options are possible, but it's okay to stick with this implementation
 </p>
 
 <p class="ui">
-  Report the (simulated) wall-clock time of the three implementations on the 100-processor ring.
-  How far are your "by hand" implementations from the default
-  broadcast? You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising. What do you think the reason
-  is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
-  try to understand what's going on. Given that we're using simulation, you should take advantage of it and
-  experiment with all kinds of platform configurations to gain understanding of the performance behavior. For instance,
-  you can modify link latencies and bandwidths.
-  The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
-  function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 100-processor
+    ring.
+  </div>
+  <div class="ui item">How far are your "by hand" implementations from the default
+    broadcast?
+  </div>
+  <div class="ui item">You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising.
+    What do you think the reason
+    is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
+    try to understand what's going on. Given that we're using simulation, you should take advantage of it and
+    experiment with all kinds of platform configurations to gain understanding of the performance behavior. For
+    instance,
+    you can modify link latencies and bandwidths.
+    The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
+    function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+  </div>
+</div>
 </p>
 
 <p class="ui">
   <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
   protocol idiosyncrasies, MPI implementation idiosyncrasies).
   These effects will be seen in your experiments, just as they would with a real-world platform,
-  and they tend to make performance behavior more difficult to understand.  For instance, if you modify
+  and they tend to make performance behavior more difficult to understand. For instance, if you modify
   the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
   may not require twice as much time).
 </p>
@@ -585,9 +602,79 @@ platform file.
 </div>
 
 <div class="ui tab segment" data-tab="third">
-  <div class="ui container raised segment fluid">
+  <div class="ui container raised segment">In this activity we enhance the ring-based broadcast so that it 
+  uses <b>pipelining</b> to better
+utilize the network links.
+</div>
 
-  <h3 class="ui header">TBD</h3>
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="pipelined_broadcast">Step #1: Pipelined Broadcast</a>
+  <a class="item" data-tab="pipelined_broadcast_evaluation">Step #2: Evaluation</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="pipelined_broadcast">
+
+  <p class="ui">
+  One of the reasons why the default MPI broadcast is fast is likely that it does <i>pipelining</i>
+  of communication. Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  called <b>pipelined_ring_bcast</b>.
+</p>
+
+<p class="ui">This implementation uses the chunk size passed as the second command-line argument
+  to split the broadcast data buffer into multiple chunks. These chunks are communicated in sequence along
+  the ring. In the first step, process #0 sends chunk #0 to process #1; in the second step, process #1 sends chunk #0 to
+  process #2
+  and process #0 sends chunk #1 to process #1; and so on. As a result of this pipelining, provided the chunk size is
+  small
+  enough, all network links can be utilized simultaneously.  As in the previous activity,
+  use <code>MPI_Send</code> and <code>MPI_Recv</code> for
+  communications.
+</p>
+
+<p class="ui">
+  Note that the chunk size may not divide the message size, in which case the last chunk will be smaller.
+</p>
+
+
+
+
+</div>
+
+
+<div class="ui bottom attached tab segment" data-tab="pipelined_broadcast_evaluation">
+
+  <p class="ui">
+  Run pipelined_ring_bcast using chunk sizes of 10,000 bytes, 20,000 bytes, 50,000 bytes,
+  100,000 bytes, 200,000 bytes, 10,000,000 bytes (i.e., 1 chunk)
+  on a 25-processor ring, a 50-processor ring, and a 100-processor ring. Report the
+  simulated execution times. Remember that the <a href="./generate_xml_ring_and_hostfile.py">generate_xml_ring_and_hostfile.py
+  </a>Python script can be used to generate platform files and hostfiles.
+</p>
+
+<p class="ui">
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">
+    What is the best chunk size for each of the three platforms?
+  </div>
+  <div class="ui item">Does this chunk size depend on the platform size?</div>
+  <div class="ui item">You should observe that the wall-clock time is minimized for a chunk size that is neither the
+    smallest nor the largest.
+    Discuss why you think that is.
+  </div>
+  <div class="ui item">For a 100-processor ring, with the best chunk size determined above,
+    by how much does pipelining help when compared to using a single chunk?
+  </div>
+  <div class="ui item"> How does the performance compare to that of the default MPI broadcast for that platform as seen in
+    the previous question?
+  </div>
+  <div class="ui item">What do you conclude about the use of pipelined communications for the purpose
+    of a ring-based broadcast on a ring-shaped physical platform?</div>
+</div>
+</p>
+
+
 
 
 </div>
@@ -595,19 +682,89 @@ platform file.
 </div>
 
 <div class="ui tab segment" data-tab="fourth">
-  <div class="ui container raised segment fluid">
+  <div class="ui container segment raised">In this activity we enhance the ring-based pipelined broadcast 
+  so that it uses <b>asynchronous communication</b>,
+to use network links even better.
+</div>
 
-  <h3 class="ui header">TBD</h3>
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="asynchronous_broadcast">Step #1: Asynchronous Broadcast</a>
+  <a class="item" data-tab="asynchronous_broadcast_evaluation">Step #2: Evaluation</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="asynchronous_broadcast">
+
+  <p class="ui">
+  In our current implementation of the broadcast, we use <code>MPI_Send</code>  and
+  <code>MPI_Recv</code>. One drawback of this approach is that a process can only
+  send or receive data at a time. However, it would make sense for a process
+  to send chunk #i to its successor while receive chunk #i+1 from its predecessor. Intuitively,
+  it would seem that this would make it possible to hide network overheads better and
+  perhaps to achieve higher bandwidth.
+  Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  called <b>asynchronous_pipelined_ring_bcast</b>. This implementation builds on the
+  pipelined_ring_bcast implementation but uses the following MPI asynchronous communication primitives:
+  <code>MPI_Isend</code> and <code>MPI_Wait</code>.
+</p>
+
+<p class="ui">
+  Although in principle simple, adding asynchronous communication is often not done correctly
+  by beginner MPI programmers. Here are common mistakes to avoid when implementing asynchronous_pipelined_ring_bcast:
+  <div class="ui list bulleted">
+  <div class="ui item">Each call to <code>MPI_Isend</code> must have a matching <code>MPI_Wait</code> call.</div>
+
+  <div class="ui item">
+                        The call to <code>MPI_Isend</code> for chunk #i must be issued only after the
+                        call to <code>MPI_Recv</code> for chunk #i (since one must wait to have received a chunk to forward it
+                       to one's successor).</div>
+
+  <div class="ui item">Having a call to <code>MPI_Isend</code> immediately followed by its matching 
+                       <code>MPI_Wait</code> call is equivalent to a single <code>MPI_Send</code> call, i.e., it
+                       does not implement asynchronous communication! </div>
+
+  <div class="ui item">Given the above, and given that the intent is that one asynchronously sends chunk #i to one's
+                       successor while receiving chunk #i+1 from one's predecessor, you should be able to determine
+                       the sequence of communication operations at each process. Note that in all the above
+                        the root process is a special case because it only sends and never receives. </div>
+
+</div>
+</p>
+
 
 
 </div>
 
+
+<div class="ui bottom attached tab segment" data-tab="asynchronous_broadcast_evaluation">
+
+  <p class="ui">
+  Run asynchronous_pipelined_ring_bcast using chunk sizes of 10,000 bytes, 20,000 bytes, 50,000 bytes,
+  100,000 bytes, 200,000 bytes, 10,000,000 bytes (i.e., 1 chunk)
+  on a 100-processor ring. Report the
+  simulated execution times. Remember that the <a href="./generate_xml_ring_and_hostfile.py">generate_xml_ring_and_hostfile.py
+  </a>Python script can be used to generate platform files and hostfiles.
+</p>
+
+<p class="ui">
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">
+    Is the best chunk size the same as that for pipelined_ring_bcast?
+    </div>
+  <div class="ui item">
+  When using the best chunk size for each of the two
+    implementation (which may be the same if the answer to the previous question is "no"),
+    does the use of <code>MPI_Isend</code> help? By how much?</div>
+
+  <div class="ui item">Is asynchronous_pipelined_ring_bcast faster than default_bcast? By how much? </div>
+  <div class="ui item">What do you conclude about the use of asynchronous communications for the purpose
+        of a ring-based broadcast on a ring-shaped physical platform?</div>
+
 </div>
+</p>
 
-<div class="ui tab segment" data-tab="fourth">
-  <div class="ui container raised segment fluid">
 
-  <h3 class="ui header">TBD</h3>
 
 
 </div>
@@ -615,13 +772,207 @@ platform file.
 </div>
 
 <div class="ui tab segment" data-tab="fifth">
-  <div class="ui container raised segment fluid">
+  <div class="ui container segment raised">In this activity we shift gear completely and abandon the idea of a ring-based broadcast. Instead
+we organize the processes as a <b>logical binary tree</b>. The root of the broadcast is also at
+the root of the tree. In practice, many broadcast algorithms are tree-based.
+  And several real-world systems comprise tree-shaped network topologies.
+  We will
+evaluate this new broadcast implementation on both a ring-shaped physical platform
+and a tree-shaped physical platform.</div>
 
-  <h3 class="ui header">TBD</h3>
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="bintree_broadcast">Step #1: Binary Tree Broadcast</a>
+  <a class="item" data-tab="bintree_broadcast_evaluation">Step #2: Evaluation</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="bintree_broadcast">
+
+  <p class="ui">
+  Augment your code with an implementation called
+  <b>asynchronous_pipelined_bintree_bcast</b> that
+  implements the broadcast along a binary tree, splitting the message into chunks for
+  <b>pipelining</b> and using <b>asynchronous communication</b>. The root of the broadcast,
+  process of rank #0, is also the root of the binary tree. Note that the binary tree may
+  not be complete if the number of processors is not of the form 2<sup>n</sup> − 1.
+  </p>
+
+
+<p class="ui">
+  Use a <b>level order traversal numbering</b> of the nodes in your tree:
+  rank 0 has rank 1 as its left child and rank 2 as its right child,
+  rank 1 has rank 3 as its left child and rank 4 as its right child,
+  etc. The reason why we impose this order is that this is also the order used to number
+  processes in the platform description file used for experimental evaluations (see Step #2). The idea
+  is that the logical binary tree of processes is identical to the physical binary tree of processors
+  (process #i runs on processor #i).
+</p>
+
+
+
 
 
 </div>
 
+
+<div class="ui bottom attached tab segment" data-tab="bintree_broadcast_evaluation">
+
+  <p class="ui">
+  Report the (simulated) wall-clock time of
+  default_bcast,
+  asynchronous_pipelined_ring_bcast, and
+  asynchronous_pipelined_bintree_bcast, on
+  a 100-processor ring platform and a 100-processor binary tree platform.
+  For asynchronous_pipelined_ring_bcast and
+  asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
+  in Activity #2 for the 100-processor ring platform.
+  </p>
+
+<p class="ui">
+  You are provided with a Python script
+  (<a href="./generate_xml_bintree_and_hostfile.py">generate_xml_bintree_and_hostfile.py</a>)
+  that generates the XML file (and hostfile) for the binary tree platform. As for
+  the <a href="./generate_xml_bintree_and_hostfile.py">generate_xml_bintree_and_hostfile.py</a> script,
+  the number of processors is passed as a command-line
+  argument. Just in case,
+  here are the files generated using this script for 100 processes: <a href="bintree_100.xml">bintree_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>.
+</p>
+
+<p class="ui">
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">
+    On the 100-processor ring platform, how does asynchronous_pipelined_bintree_bcast compare
+    to asynchronous_pipelined_ring_bcast?  Is it unexpected?
+    </div>
+  <div class="ui item">
+    On the 100-processor binary tree platform, how do the three implementations compare?
+    Does it seem worth it to implement your own binary tree broadcast on a binary tree physical
+    platform?
+  </div>
+
+</div>
+</p>
+
+
+
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="sixth">
+  <div class="ui container segment raised">
+  Many high-performance computing platforms these days are build using crossbar switches. Although
+  the topology of these switches can itself be a ring, a tree, or anything else, on many cases
+  sizeable platforms are deployed with only a small number of swicthes. In this activity
+  we evaluate our broadcast  implementation on two commonplace cluster platform configurations.
+
+</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="cluster_evaluation">Step #1: On clusters?</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="cluster_evaluation">
+
+  <p class="ui">
+  Report the (simulated) wall-clock time of
+  default_bcast,
+  asynchronous_pipelined_ring_bcast, and
+  asynchronous_pipelined_bintree_bcast, on the following two
+  platforms:
+
+  <div class="ui list bulleted">
+
+  <div class="ui item">A 64-processor cluster based on a single crossbar switch:
+  <a href="./cluster_crossbar_64.xml">cluster_crossbar_64.xml</a>.
+  </div>
+
+  <div class="ui item">A 64-processor cluster with a shared backbone:
+    <a href="./cluster_backbone_64.xml">cluster_backbone_64.xml</a>.
+  </div>
+</div>
+
+  For asynchronous_pipelined_ring_bcast and
+  asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
+  in Activity #2 for the 100-processor ring platform.
+  </p>
+
+
+<p class="ui">
+  Answer the following question:
+<div class="ui list bulleted">
+  <div class="ui item">
+    Overall, does it seem like it's a good idea to use the default MPI broadcast on these more standard platforms,
+    or should one implement one's own?
+    Note that the default broadcast has to pick a particular chunk size while we are "cheating" by picking
+    a good chunk size for our implementations!
+  </div>
+
+</div>
+</p>
+
+
+
+
+</div>
+
+
+</div>
+
+<div class="ui tab segment" data-tab="seventh">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What have we learned?</h3>
+
+  <p class="ui">
+    Congratulations for completing this module. At this point you have learned how
+    to use point-to-point MPI communication, both synchronous and asynchronous;
+    you have learned about the most common collective communication primitive,
+    the broadcast; you have observed first hand the connection between communication
+    patterns and the underlying network topology; you have learned how pipelining
+    and asynchronous communication can boost communication performance.
+  </p>
+
+  <p class="ui">
+    As part of our experimental evaluations, you have observed the overall good
+    performance of the default <code>MPI_Bcast</code> implementation. It would be very
+    enlightening to look at open source MPI implementations and inspect the code
+    (although it is intricate) to understand how the broadcast is implemented. In general,
+    few developers implement broadcast by hand. However, in some cases (see upcoming modules),
+    it can be useful to use a by-hand implementation of a broadcast to achieve better
+    performance (in general, better overlap of communication and computation).
+  </p>
+
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What was difficult?</h3>
+
+  <p class="ui">
+    At the end of your report, write a brief "essay" explaining what you found
+    surprising/challenging, and what solutions you used to solve
+    your difficulties. Are you happy with your implementations? Do you
+    see room for improvement?
+  </p>
+
+
+</div>
+
+
+<div class="ui container raised segment fluid">
+
+<div class="ui horizontal divider">
+  The End
+</div>
+
+</div>
 </div>
 
 

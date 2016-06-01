@@ -1,0 +1,38 @@
+<p class="ui">
+  Report the (simulated) wall-clock time of
+  default_bcast,
+  asynchronous_pipelined_ring_bcast, and
+  asynchronous_pipelined_bintree_bcast, on the following two
+  platforms:
+
+  <div class="ui list bulleted">
+
+  <div class="ui item">A 64-processor cluster based on a single crossbar switch:
+  <a href="./cluster_crossbar_64.xml">cluster_crossbar_64.xml</a>.
+  </div>
+
+  <div class="ui item">A 64-processor cluster with a shared backbone:
+    <a href="./cluster_backbone_64.xml">cluster_backbone_64.xml</a>.
+  </div>
+</div>
+
+  For asynchronous_pipelined_ring_bcast and
+  asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
+  in Activity #2 for the 100-processor ring platform.
+  </p>
+
+
+<p class="ui">
+  Answer the following question:
+<div class="ui list bulleted">
+  <div class="ui item">
+    Overall, does it seem like it's a good idea to use the default MPI broadcast on these more standard platforms,
+    or should one implement one's own?
+    Note that the default broadcast has to pick a particular chunk size while we are "cheating" by picking
+    a good chunk size for our implementations!
+  </div>
+
+</div>
+</p>
+
+

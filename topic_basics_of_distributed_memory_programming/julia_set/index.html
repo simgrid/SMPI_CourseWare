@@ -19,7 +19,8 @@
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
   <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
@@ -318,7 +319,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
   you pass the (x,y) coordinates of a pixed, the (width, height) dimensions of the image, a "tint" float (pass 1.0
   for now), and a pointer to 3 contiguous bytes (<code>unsigned char</code>). These bytes are set to appropriate
   RGB values (Red Green Blue) for displaying the Julia set.
-  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/compute_julia_pixel.c">[Download
+  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/julia/compute_julia_pixel.c">[Download
     source of compute_julia_pixel()]</a>
 </p>
 
@@ -450,7 +451,7 @@ the image in the bmp format.  A bmp file consists of two parts:
 <p class="ui">
   To make the above easier you are provided with a helper C function, <code>write_bmp_header()</code>, which
   writes to a file the 40-byte header required for a bmp file.
-  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/write_bmp_header.c">[Download
+  <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/julia/write_bmp_header.c">[Download
     source of write_bmp_header()]</a>
 </p>
 

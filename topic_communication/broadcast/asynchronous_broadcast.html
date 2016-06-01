@@ -1,0 +1,36 @@
+<p class="ui">
+  In our current implementation of the broadcast, we use <code>MPI_Send</code>  and
+  <code>MPI_Recv</code>. One drawback of this approach is that a process can only
+  send or receive data at a time. However, it would make sense for a process
+  to send chunk #i to its successor while receive chunk #i+1 from its predecessor. Intuitively,
+  it would seem that this would make it possible to hide network overheads better and
+  perhaps to achieve higher bandwidth.
+  Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  called <b>asynchronous_pipelined_ring_bcast</b>. This implementation builds on the
+  pipelined_ring_bcast implementation but uses the following MPI asynchronous communication primitives:
+  <code>MPI_Isend</code> and <code>MPI_Wait</code>.
+</p>
+
+<p class="ui">
+  Although in principle simple, adding asynchronous communication is often not done correctly
+  by beginner MPI programmers. Here are common mistakes to avoid when implementing asynchronous_pipelined_ring_bcast:
+  <div class="ui list bulleted">
+  <div class="ui item">Each call to <code>MPI_Isend</code> must have a matching <code>MPI_Wait</code> call.</div>
+
+  <div class="ui item">
+                        The call to <code>MPI_Isend</code> for chunk #i must be issued only after the
+                        call to <code>MPI_Recv</code> for chunk #i (since one must wait to have received a chunk to forward it
+                       to one's successor).</div>
+
+  <div class="ui item">Having a call to <code>MPI_Isend</code> immediately followed by its matching 
+                       <code>MPI_Wait</code> call is equivalent to a single <code>MPI_Send</code> call, i.e., it
+                       does not implement asynchronous communication! </div>
+
+  <div class="ui item">Given the above, and given that the intent is that one asynchronously sends chunk #i to one's
+                       successor while receiving chunk #i+1 from one's predecessor, you should be able to determine
+                       the sequence of communication operations at each process. Note that in all the above
+                        the root process is a special case because it only sends and never receives. </div>
+
+</div>
+</p>
+

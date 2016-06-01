@@ -1,0 +1,26 @@
+<div class="ui container segment raised">In this activity we shift gear completely and abandon the idea of a ring-based broadcast. Instead
+we organize the processes as a <b>logical binary tree</b>. The root of the broadcast is also at
+the root of the tree. In practice, many broadcast algorithms are tree-based.
+  And several real-world systems comprise tree-shaped network topologies.
+  We will
+evaluate this new broadcast implementation on both a ring-shaped physical platform
+and a tree-shaped physical platform.</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="bintree_broadcast">Step #1: Binary Tree Broadcast</a>
+  <a class="item" data-tab="bintree_broadcast_evaluation">Step #2: Evaluation</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="bintree_broadcast">
+
+  {% include_relative bintree_broadcast.html %}
+
+</div>
+
+
+<div class="ui bottom attached tab segment" data-tab="bintree_broadcast_evaluation">
+
+  {% include_relative bintree_broadcast_evaluation.html %}
+
+</div>

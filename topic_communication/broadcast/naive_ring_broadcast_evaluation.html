@@ -18,9 +18,12 @@
 </p>
 
 <p class="ui">
-  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile, but they are
-  provided for you just in case (download <a href="ring_100.xml">ring_100.xml</a> and
-  <a href="hostfile_100.txt">hostfile_100.txt</a>).
+  It is pretty simple to generate a Simgrid platform file for a ring and the corresponding hostfile.
+  You can download a Python script <a href="./generate_xml_ring_and_hostfile.py">(generate_xml_ring_and_hostfile.py)</a>
+  that generates
+  these two files given a number of processors passed as a command-line argument. Just in case,
+  here are the files generated using this script for 100 processes: <a href="ring_100.xml">ring_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>.
 </p>
 
 <p class="ui">
@@ -28,36 +31,46 @@
 </p>
 
 <div class="ui container raised segment">
-{% highlight text %}
-smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
-        -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
-        ./bcast_skeleton &lt; implementation name &gt;
-{% endhighlight %}
+  {% highlight text %}
+  smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf
+  -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+  ./bcast_skeleton <implementation name>
+  {% endhighlight %}
 </div>
 
 <p class="ui">
-  The <code>--cfg=smpi/bcase:mpich</code> specifies that we simulate <code>MPI_Bcast</code> (for the
+  The <code>--cfg=smpi/bcase:mpich</code> flag above specifies that we simulate <code>MPI_Bcast</code> (for the
   default_bcast implementation) as implemented
   in MPICH. Other options are possible, but it's okay to stick with this implementation
 </p>
 
 <p class="ui">
-  Report the (simulated) wall-clock time of the three implementations on the 100-processor ring.
-  How far are your "by hand" implementations from the default
-  broadcast? You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising. What do you think the reason
-  is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
-  try to understand what's going on. Given that we're using simulation, you should take advantage of it and
-  experiment with all kinds of platform configurations to gain understanding of the performance behavior. For instance,
-  you can modify link latencies and bandwidths.
-  The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
-  function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 100-processor
+    ring.
+  </div>
+  <div class="ui item">How far are your "by hand" implementations from the default
+    broadcast?
+  </div>
+  <div class="ui item">You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising.
+    What do you think the reason
+    is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
+    try to understand what's going on. Given that we're using simulation, you should take advantage of it and
+    experiment with all kinds of platform configurations to gain understanding of the performance behavior. For
+    instance,
+    you can modify link latencies and bandwidths.
+    The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
+    function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+  </div>
+</div>
 </p>
 
 <p class="ui">
   <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
   protocol idiosyncrasies, MPI implementation idiosyncrasies).
   These effects will be seen in your experiments, just as they would with a real-world platform,
-  and they tend to make performance behavior more difficult to understand.  For instance, if you modify
+  and they tend to make performance behavior more difficult to understand. For instance, if you modify
   the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
   may not require twice as much time).
 </p>
