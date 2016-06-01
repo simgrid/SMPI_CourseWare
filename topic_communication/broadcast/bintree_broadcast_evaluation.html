@@ -1,0 +1,39 @@
+<p class="ui">
+  Report the (simulated) wall-clock time of
+  default_bcast,
+  asynchronous_pipelined_ring_bcast, and
+  asynchronous_pipelined_bintree_bcast, on
+  a 100-processor ring platform and a 100-processor binary tree platform.
+  For asynchronous_pipelined_ring_bcast and
+  asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
+  in Activity #2 for the 100-processor ring platform.
+  </p>
+
+<p class="ui">
+  You are provided with a Python script
+  (<a href="./generate_xml_bintree_and_hostfile.py">generate_xml_bintree_and_hostfile.py</a>)
+  that generates the XML file (and hostfile) for the binary tree platform. As for
+  the <a href="./generate_xml_bintree_and_hostfile.py">generate_xml_bintree_and_hostfile.py</a> script,
+  the number of processors is passed as a command-line
+  argument. Just in case,
+  here are the files generated using this script for 100 processes: <a href="bintree_100.xml">bintree_100.xml</a> and
+  <a href="hostfile_100.txt">hostfile_100.txt</a>.
+</p>
+
+<p class="ui">
+  Answer the following questions:
+<div class="ui list bulleted">
+  <div class="ui item">
+    On the 100-processor ring platform, how does asynchronous_pipelined_bintree_bcast compare
+    to asynchronous_pipelined_ring_bcast?  Is it unexpected?
+    </div>
+  <div class="ui item">
+    On the 100-processor binary tree platform, how do the three implementations compare?
+    Does it seem worth it to implement your own binary tree broadcast on a binary tree physical
+    platform?
+  </div>
+
+</div>
+</p>
+
+

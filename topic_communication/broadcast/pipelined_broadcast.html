@@ -10,7 +10,9 @@
   process #2
   and process #0 sends chunk #1 to process #1; and so on. As a result of this pipelining, provided the chunk size is
   small
-  enough, all network links can be utilized simultaneously.
+  enough, all network links can be utilized simultaneously.  As in the previous activity,
+  use <code>MPI_Send</code> and <code>MPI_Recv</code> for
+  communications.
 </p>
 
 <p class="ui">

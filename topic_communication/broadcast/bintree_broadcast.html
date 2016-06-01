@@ -1,0 +1,22 @@
+<p class="ui">
+  Augment your code with an implementation called
+  <b>asynchronous_pipelined_bintree_bcast</b> that
+  implements the broadcast along a binary tree, splitting the message into chunks for
+  <b>pipelining</b> and using <b>asynchronous communication</b>. The root of the broadcast,
+  process of rank #0, is also the root of the binary tree. Note that the binary tree may
+  not be complete if the number of processors is not of the form 2<sup>n</sup> − 1.
+  </p>
+
+
+<p class="ui">
+  Use a <b>level order traversal numbering</b> of the nodes in your tree:
+  rank 0 has rank 1 as its left child and rank 2 as its right child,
+  rank 1 has rank 3 as its left child and rank 4 as its right child,
+  etc. The reason why we impose this order is that this is also the order used to number
+  processes in the platform description file used for experimental evaluations (see Step #2). The idea
+  is that the logical binary tree of processes is identical to the physical binary tree of processors
+  (process #i runs on processor #i).
+</p>
+
+
+
