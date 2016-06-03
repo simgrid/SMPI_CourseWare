@@ -1,0 +1,75 @@
+<p class="ui">A "reduce" operation is essentially the inverse of a broadcast plus some computation:
+an associative/commutative operator is applied to data items located at each process,
+and a final combined results is eventually available at a root process (e.g., process
+of rank 0). </p>
+
+<p class="ui">An interesting module would consist
+in exploring efficient reduction algorithms, i.e., efficient orchestration of communications
+(the time to apply the operator can be ignored for simplicity).
+</p>
+
+<div class="ui divider"></div>
+
+<p class="ui">Here is a possible setting:
+<div class="ui list bulleted">
+  <div class="ui item">Processors are interconnected via a crossbar switch</div>
+  <div class="ui item">At a give time step a process (one per processor) can either send or receive, but not both</div>
+  <div class="ui">There are m data items at each process, and these can be split into chunks for pipelining</div>
+  <div class="ui item">
+    <div class="ui list bulleted">
+      <div class="ui item"> A seemingly simply, yet still interesting case, is to assume uniform chunks.
+      </div>
+      <div class="ui item"> Interesting effects may be achieved by allowing chunks of different sizes.
+      </div>
+    </div>
+  </div>
+</div>
+</p>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+Here are three approaches that could be considered:
+</p>
+
+<b>Binomial tree without chunking:</b>
+<div class="ui list bulleted">
+      <div class="ui item">Step 0: Each odd numbered process sends to its left neighbor</div>
+      <div class="ui item">Step 1: Each even-numbered process sends to its 2nd left neighbor</div>
+      <div class="ui item">...</div>
+</div>
+￼
+
+<b>Pipeline tree:</b>
+<div class="ui list bulleted">￼￼￼￼￼￼￼￼
+      <div class="ui item">Chunk the data</div>
+      <div class="ui item">Step 0: process n sends chunk 0 to process n − 1</div>
+      <div class="ui item">Step 1: process n − 1 sends chunk 0 to process n − 2, and process n sends chunk 1 to process
+        n − 1
+      </div>
+      <div class="ui item">...</div>
+</div>
+
+<b>Binary reduction tree:</b>
+<div class="ui list bulleted">￼￼￼￼￼￼￼￼
+      <div class="ui item">Chunk the data</div>
+      <div class="ui item">Step 0: processes n and n−1 send chunk 0 to process n−2 (two communications that happen in sequence),
+        processes n−3 and n−4 send chunk 0 to process n−5, ...</div>
+      <div class="ui item">Step 1: processes n and n−1 send chunk 1 to process n−2 (two communications that happen in sequence),
+        processes n−3 and n-4 send chunk 0 to process n−5, ...
+      </div>
+      <div class="ui item">...</div>
+</div>
+
+<div class="ui divider"></div>
+
+<p class="ui">There are many other options to explore and compare.
+The comparison could be both analytical (wall-clock time as of the number of processors, the number of messages, the chunk size,
+the communication latency, and the communication bandwidth) and in simulation with an MPI implementation.</p>
+
+<p class="ui">
+In his research, Brad Lowery (see
+<a href="http://perso.ens-lyon.fr/evelyne.blesle/pittsburgh/SLIDES/Brad_Lowery.pdf">these slides</a>),
+proposes another strategy he calls a Greedy Tree, which is optimal for uniform segmentation (based on previous work).
+A great activity option for this module would be to implement the Greedy Tree
+and to reproduce Lowery's findings.</p>

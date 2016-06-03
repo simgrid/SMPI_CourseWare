@@ -23,5 +23,16 @@
 </div>
 
 </div>
+</div>
 
+
+<div class="container ui raised segment">
+<h3 class="ui header">Modules under construction</h3>
+
+<div class="ui list bulleted">
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_communication/reduction/">Reduction operation</a></h4>
+</div>
+
+</div>
 </div>
