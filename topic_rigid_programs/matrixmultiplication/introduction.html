@@ -9,13 +9,99 @@
 
 </div>
 
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">2-D Data Distribution</h3>
+
+  <p class="ui">
+    We consider the standard outer-product parallel matrix multiplication, as described throughout this module,
+    for a <i>2-D block data distribution</i>. More precisely, we consider the C = A×B multiplication
+    where all three matrices are square of dimensions N×N, and contain double precision floating point numbers.
+    The execution takes place on p processors, <b>where p is a perfect square and √p
+    divides N</b>. Each processor thus holds a
+    N/√p × N/√p square block of each matrix. </p>
+
+  <p class="ui">
+    For instance, with N=6, consider example matrix A as shown below:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        10 20 30 40 50 60
+        11 21 31 41 51 61
+        12 22 32 42 52 62
+        13 23 33 43 53 63
+        14 24 34 44 54 64
+        15 25 35 45 55 65
+    </pre>
+  </p>
+
+  <p class="ui">
+    Now let's assume that p=4. The 4 processes are logically organized in a 2x2 grid (hence the name of the data
+    distribution) in row-major order as follows:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+
+  <table class="ui collapsing celled table">
+    <tbody>
+    <tr>
+      <td>process #0</td>
+      <td>process #1</td>
+    </tr>
+    <tr>
+      <td>process #2</td>
+      <td>process #3</td>
+    </tr>
+   </tbody>
+  </table>
+
+  </p>
+
+  <p class="ui">
+    In this setup, for instance, process #0 holds the following 3x3 block of matrix A:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        10 20 30
+        11 21 31
+        12 22 32
+    </pre>
+  </p>
+
+  <p class="ui">
+    and process #2 holds the following 3x3 block of matrix A:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        43 53 63
+        44 54 64
+        45 55 65
+    </pre>
+  </p>
+
+  <p>At process #2, element with value 54 has local indices (1,1), but its global indices are (5,5), assuming that
+      indices start at 0.
+  </p>
+
+
+
+</div>
+
+
 <div class="ui container segment raised fluid">
   <h3 class="ui header">Roadmap</h3>
-  <p class="ui">This module consists of <b>XXXX activities, each described in its own tab above, which should be done in
+  <p class="ui">This module consists of <b>2 activities, each described in its own tab above, which should be done in
     sequence:</b>
   </p>
   <ul class="ui list">
-    <li class="item"><b>Activity #1:</b> XXXX.
+    <li class="item"><b>Activity #1:</b> Have each MPI process allocate and initialize its own
+         block of particular matrices, using the 2-D distribution scheme.
+    </li>
+    <li class="item"><b>Activity #2:</b> Implement the outer product matrix multiplication algorithm.
     </li>
   </ul>
 </div>
@@ -28,7 +114,6 @@
     <div class="item">All source code</div>
     <div class="item">XML platform files (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
-    <div class="item">A README file with answers to the questions asked in the activities</div>
   </div>
   </p>
 </div>
