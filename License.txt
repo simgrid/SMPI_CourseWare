@@ -1,0 +1,6 @@
+This CourseWare is distributed under the CC-BY-SA license, which
+basically means that you can freely reuse and extend its content,
+provided that you don't reduce the rights of your readers. Check the 
+Full License online for the exact legal terms of this license.
+
+This license can be found at: https://creativecommons.org/licenses/by-sa/4.0/
