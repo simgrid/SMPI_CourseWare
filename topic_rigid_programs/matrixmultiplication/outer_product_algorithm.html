@@ -1,0 +1,40 @@
+<p class="ui">
+  Implement a program called <code>matmul</code>, which builds on your <code>matmul_init</code>
+  program from the previous activity and implements the outer-product matrix multiplication algorithm.
+</p>
+
+<p class="ui">
+The principle of the outer-product algorithm, as might be expected, is that a matrix multiplication
+  can be performed as a sequence of outer-products. You may have covered this algorithm in a course,
+  and it is of course well-document in various texts. You may expand below to get a bried description
+  of the algorithm.
+</p>
+
+{% include_relative outer_product_algorithm_accordion.html %}
+
+<br>
+
+<p class="ui">
+  <b>Implementing "broadcasts": </b> The algorithm involves broadcasts in process rows and process columns. In MPI, a broadcast
+  must involve all processes in a communicator. Thus, one option to implement the
+  algorithm is to create 2p communicators, one for each process row and one for each
+  process column. <code>MPI_Bcast</code> can then be used for these communicators. Communicators
+  can be easily created using the <code>MPI_Comm_split</code> function (see the MPI documentation). The alternative
+  is to rely on sequences of point-to-point communications, which isn't as pretty and likely not as efficient.
+</p>
+
+<p class="ui">
+  <b>Result validation</b>: Recall that we compute a particular matrix product. To validate the result once the outer-product algorithm
+  has finished, each process must compute the sum of all the elements in its block of C. These sums are then
+  all added up together (using <code>MPI_Reduce</code> is the way to go), and the process of rank 0 prints out
+  the sum. This process then computes the difference with the analytical formula:
+  <i>N<sup>3</sup> (N - 1)<sup>2</sup> / 2</i>. This process should print out an error message if the
+  two values don't match (beware of casts and round-off, you likely want to do everything in double precision
+  and check that the absolute value of the difference of the two values is below some small epsilon, instead
+  of testing for equality with the '==' operator).
+  <i></i>
+</p>
+
+<p>For debugging purposes, remember that it's a good idea to insert calls to <code>MPI_Barrier</code>
+  so that debugging output from the program can be structured step-by-step.
+</p>

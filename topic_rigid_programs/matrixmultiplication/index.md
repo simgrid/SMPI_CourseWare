@@ -25,13 +25,13 @@ topic: topic03
 
 
 <div class="ui tab segment" data-tab="outer_product">
-  {% include_relative tbd.html %}
+  {% include_relative outer_product.html %}
 </div>
 
 
 
 <div class="ui tab segment" data-tab="conclusion">
-  {% include_relative tbd.html %}
+  {% include_relative conclusion.html %}
 </div>
 
 
