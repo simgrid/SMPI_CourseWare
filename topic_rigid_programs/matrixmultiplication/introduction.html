@@ -15,10 +15,11 @@
   <h3 class="ui header">2-D Data Distribution</h3>
 
   <p class="ui">
-    As opposed to what was seen in previous topics, we now use a <i>2-D block data distribution</i>,
+    For this module, we use a <i>2-D block data distribution</i>,
     which complicates indexing a bit.
     More precisely, we consider the C = A×B multiplication
-    where all three matrices are square of dimensions N×N.
+    where all three matrices are square of dimensions N×N. All matrices
+    contain <b>single precision elements</b> (<code>float</code>).
     The execution takes place on p processors, <b>where p is a perfect square and √p
     divides N</b>. Each processor thus holds a
     N/√p × N/√p square block of each matrix. </p>

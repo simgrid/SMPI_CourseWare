@@ -17,10 +17,19 @@
 <h3 class="ui header">Available hands-on modules</h3>
 
 <div class="ui list bulleted">
+
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_rigid_programs/lufactorization/">LU Factorization</a></h4>
+</div>
+
 <div class="ui item">
 <h4 class="ui header"><a href="{{site.baseurl}}topic_rigid_programs/matrixmultiplication/">Matrix Multiplication</a></h4>
 </div>
 
+
 </div>
 
 </div>
+
+
+
