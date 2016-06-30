@@ -15,15 +15,16 @@
   <h3 class="ui header">2-D Data Distribution</h3>
 
   <p class="ui">
-    We consider the standard outer-product parallel matrix multiplication, as described throughout this module,
-    for a <i>2-D block data distribution</i>. More precisely, we consider the C = A×B multiplication
-    where all three matrices are square of dimensions N×N, and contain double precision floating point numbers.
+    As opposed to what was seen in previous topics, we now use a <i>2-D block data distribution</i>,
+    which complicates indexing a bit.
+    More precisely, we consider the C = A×B multiplication
+    where all three matrices are square of dimensions N×N.
     The execution takes place on p processors, <b>where p is a perfect square and √p
     divides N</b>. Each processor thus holds a
     N/√p × N/√p square block of each matrix. </p>
 
   <p class="ui">
-    For instance, with N=6, consider example matrix A as shown below:
+    For instance, with N=6, consider the example matrix A as shown below:
   </p>
 
   <p style="text-align:center;" class="ui">
@@ -83,7 +84,7 @@
     </pre>
   </p>
 
-  <p>At process #2, element with value 54 has local indices (1,1), but its global indices are (5,5), assuming that
+  <p>At process #2, element with value 54 has local indices (1,1), but its global indices are (4,4), assuming that
       indices start at 0.
   </p>
 
