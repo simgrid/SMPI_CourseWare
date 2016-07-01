@@ -78,3 +78,18 @@ This CourseWare uses
 <a href="http://simgrid.gforge.inria.fr/simgrid/latest/doc/group__SMPI__API.html">SMPI</a> (Simulated MPI),
 which is provided as part of the <a href="http://simgrid.gforge.inria.fr">SimGrid</a> project. SMPI simulates the execution of unmodified MPI applications.
 </div>
+
+
+<div class="ui container raised border segment">
+
+<h3 class="ui header">
+License
+</h3>
+
+This CourseWare is distributed under the CC-BY-SA license, which
+basically means that you can freely reuse and extend its content,
+provided that you don't reduce the rights of your readers. Check the 
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">full
+license</a> for the exact legal terms of this license.
+
+</div>
