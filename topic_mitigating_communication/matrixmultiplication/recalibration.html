@@ -1,0 +1,18 @@
+<p class="ui">
+  One problem with our CPU trick is that the simulated wall-clock time will no longer be coherent with our simulation platform, i.e., it
+  no longer has anything to do with our --cfg=smpi/running power command-line option since we use the
+  <code>SMPI_SAMPLE_FLOPS</code> macro. Instead, we need
+  to determine a reasonable value for <code>FLOP_CALIBRATION_FACTOR</code>.
+  </p>
+
+<p class="ui">
+  Run your original (i.e., without the "simulation tricks") program from the Matrix Multiplication module in Topic #3,
+ using
+  <a href=""><code>cluster_1600.xml</code></a> and
+  <a href=""><code>hostfile_1600.txt</code></a>, for a matrix of size 2000x2000, with <b>p=1 process</b> (i.e., no communication).
+  Then empirically determine a value of <code>FLOP_CALIBRATION_FACTOR</code>
+  that leads to the same (or close) simulated elapsed time for your program with the "simulation tricks".
+  Doing a binary search on <code>FLOP_CALIBRATION_FACTOR</code>, via a script, is great of course, but you
+  can probably just do a quick trial-and-error manual search. Once you've find this value, hard-code it into your
+  program, and voila.
+</p>
