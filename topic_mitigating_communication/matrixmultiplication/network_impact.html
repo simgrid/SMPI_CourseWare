@@ -1,0 +1,32 @@
+<p class="ui">
+  In this step we run experiments on a simulated 1600-host cluster with the
+  <a href=""><code>cluster_1600.xml</code></a> platform file and  accompanying
+  <a href=""><code>hostfile_1600.txt</code></a> hostfile.
+</p>
+
+<p class="ui">
+  First, augment your <code>matmul</code> program so that it prints out the wallclock time to perform the
+  matrix multiplication, in seconds (Using <code>MPI_Wtime</code> is of course a good idea).
+  </p>
+
+<p class="ui">
+  Run your program for N = 1600 on the above platform using p = 1, 4, 16, 64, 100, and 400 processes. For each
+  number of processes, record the simulated wallclock time, average over 5 trials.
+  </p>
+
+<p class="ui">
+  Now, modify the platform file to set the network latency to 0 and the bandwidth to a very large value,
+  so as to simulate an ideal platform in which the network is close to infinitely fast. Re-run the experiments above.
+  </p>
+
+<p class="ui">
+Plot speed-up curves (speedup vs. number of processors) for the two series of experiments above.
+What parallel efficiency can you achieve with p = 1600 processes on the ideal vs. the non-ideal platform?
+  What do you conclude about the application’s prospects for this matrix size on a real machine?
+</p>
+
+<p class="ui">
+  <i>Note:</i>
+The simulations takes time and memory. You can decrease the scale as needed in case you can’t run it on your machine.
+  Just for reference, these simulations runs well under 10 minutes minutes on the author's standard laptop.
+</p>

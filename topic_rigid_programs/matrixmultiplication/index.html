@@ -14,6 +14,8 @@
     
   </title>
 
+
+
   <!-- Semantic UI, JQuery, etc. -->
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
@@ -190,6 +192,18 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <div class="ui divider" style="margin-top:0em"></div>
 
 </div>
@@ -206,7 +220,8 @@
 
 	<div class="ui pointing secondary menu">
   <a class="item active" data-tab="intro">Introduction</a>
-  <a class="item " data-tab="activity1">Activity #1</a>
+  <a class="item " data-tab="2d_matrices">Activity #1</a>
+  <a class="item " data-tab="outer_product">Activity #2</a>
   <a class="item" data-tab="conclusion">Conclusion</a>
 </div>
 
@@ -222,13 +237,101 @@
 
 </div>
 
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">2-D Data Distribution</h3>
+
+  <p class="ui">
+    For this module, we use a <i>2-D block data distribution</i>,
+    which complicates indexing a bit.
+    More precisely, we consider the C = A×B multiplication
+    where all three matrices are square of dimensions N×N. All matrices
+    contain <b>single precision elements</b> (<code>float</code>).
+    The execution takes place on p processors, <b>where p is a perfect square and √p
+    divides N</b>. Each processor thus holds a
+    N/√p × N/√p square block of each matrix. </p>
+
+  <p class="ui">
+    For instance, with N=6, consider the example matrix A as shown below:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        10 20 30 40 50 60
+        11 21 31 41 51 61
+        12 22 32 42 52 62
+        13 23 33 43 53 63
+        14 24 34 44 54 64
+        15 25 35 45 55 65
+    </pre>
+  </p>
+
+  <p class="ui">
+    Now let's assume that p=4. The 4 processes are logically organized in a 2x2 grid (hence the name of the data
+    distribution) in row-major order as follows:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+
+  <table class="ui collapsing celled table">
+    <tbody>
+    <tr>
+      <td>process #0</td>
+      <td>process #1</td>
+    </tr>
+    <tr>
+      <td>process #2</td>
+      <td>process #3</td>
+    </tr>
+   </tbody>
+  </table>
+
+  </p>
+
+  <p class="ui">
+    In this setup, for instance, process #0 holds the following 3x3 block of matrix A:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        10 20 30
+        11 21 31
+        12 22 32
+    </pre>
+  </p>
+
+  <p class="ui">
+    and process #2 holds the following 3x3 block of matrix A:
+  </p>
+
+  <p style="text-align:center;" class="ui">
+    <pre>
+        43 53 63
+        44 54 64
+        45 55 65
+    </pre>
+  </p>
+
+  <p>At process #2, element with value 54 has local indices (1,1), but its global indices are (4,4), assuming that
+      indices start at 0.
+  </p>
+
+
+
+</div>
+
+
 <div class="ui container segment raised fluid">
   <h3 class="ui header">Roadmap</h3>
-  <p class="ui">This module consists of <b>XXXX activities, each described in its own tab above, which should be done in
+  <p class="ui">This module consists of <b>2 activities, each described in its own tab above, which should be done in
     sequence:</b>
   </p>
   <ul class="ui list">
-    <li class="item"><b>Activity #1:</b> XXXX.
+    <li class="item"><b>Activity #1:</b> Have each MPI process allocate and initialize its own
+         block of particular matrices, using the 2-D distribution scheme.
+    </li>
+    <li class="item"><b>Activity #2:</b> Implement the outer product matrix multiplication algorithm.
     </li>
   </ul>
 </div>
@@ -241,30 +344,293 @@
     <div class="item">All source code</div>
     <div class="item">XML platform files (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
-    <div class="item">A README file with answers to the questions asked in the activities</div>
   </div>
   </p>
 </div>
 </div>
 
-<div class="ui tab segment " data-tab="activity1">
-  <div class="ui container raised segment fluid">
+<div class="ui tab segment " data-tab="2d_matrices">
+  <div class="ui container segment raised">In this activity we distribute the matrices across the MPI processes, which
+  entails dealing with local vs. global indexing.  Recall that we consider 3 NxN matrices (A, B, and C). This
+  activity consists of a single step, as described below.
+</div>
 
-  <h3 class="ui header">TBD</h3>
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="data_distribution">Step #1: Data Distribution</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="data_distribution">
+
+  <p class="ui">
+  Implement an MPI program called <code>matmul_init</code> (<code>matmul_init.c</code>) that takes a
+  single command-line argument, <i>N</i>, which is a strictly positive integer. <i>N</i> is the
+  dimension of the square matrices that we multiply. Your program should check that the number of processes
+  is a perfect square, and that its square root divides N (printing an error message and exiting if this is
+  not the case).
+</p>
+
+<p class="ui">
+  The objective of the program is for each process to allocate and initialize its block of each matrix.
+  We multiply particular matrices, defined by:
+  </p>
+<p class="ui">
+  <i>A<sub>i,j</sub> = i</i> &nbsp; and  &nbsp; <i>B<sub>i,j</sub> = i + j</i>.
+</p>
+
+
+
+<p class="ui">
+  <b>The above is with global indices, which go from 0 to N-1.</b>
+</p>
+
+
+<p class="ui">
+Given the above definitions of A and B, there is a simple analytical solution
+  for C. There is thus a closed-form expression for the sum of the
+  elements of C: <b><i>N<sup>3</sup> (N - 1)<sup>2</sup> / 2</i></b>.
+  You will use this formula to check the validity of your matrix
+  multiplication implementation in Activity #2.
+</p>
+
+<p class="ui">
+  Have each process allocate its blocks of A, B, and C, initialize its blocks
+  of A and B to the appropriate values, and then print out the content of
+  these blocks.  Each process should print its MPI rank (the "linear rank")
+  as well as its
+  2-D rank, which is easy to determine based on the linear rank. Note that MPI
+  provides a set of functions for handling Cartesian coordinates, which you
+  can also use (see the documentation for <code>MPI_Cart_rank</code> and
+  related functions).
+  </p>
+
+<p class="ui">
+  For instance, here is an excerpt from the output (that generated by the process of rank 2)
+  for p=4 and N=8, using
+  <a href="./cluster_crossbar_64.xml">cluster_crossbar_64.xml</a> as a platform file
+  and <a href="./hostfile_64.txt">hostfile_64.txt</a> as a hostfile (since this module is
+  about correctness, you can use pretty much any such valid files).
+</p>
+
+<div class="ui container raised segment">
+  
+<figure class="highlight"><pre><code class="language-text" data-lang="text">% smpirun --cfg=smpi/running_power:1Gf -np 4 \
+          -platform cluster_crossbar_64.xml \
+          -hostfile hostfile_64.txt \
+          ./matmul_init 8
+[...]
+Process rank 2 (coordinates: 1,0), block of A:
+4.0 4.0 4.0 4.0
+5.0 5.0 5.0 5.0
+6.0 6.0 6.0 6.0
+7.0 7.0 7.0 7.0
+Process rank 2 (coordinates: 1,0), block of A:
+4.0 5.0 6.0 7.0
+5.0 6.0 7.0 8.0
+6.0 7.0 8.0 9.0
+7.0 8.0 9.0 10.0
+[...]</code></pre></figure>
+
+</div>
+
+
+
+<p class="ui">
+  Note that due to the convenience of simulation,
+  the output from one process will never be interleaved with the output of
+  another process. If you run this code "for real" with MPI instead of SMPI
+  output will be interleaved and additional synchronization will be needed
+  to make the output look nice.
+  The order in which the processes output their blocks is inconsequential.
+  You may want to use a barrier synchronization
+  to first see all blocks of A and then all blocks of B.
+
+  </p>
+
+<p class="ui">
+  Obviously, we won’t run this program for large N.
+  The goal is simply to make sure that matrix blocks are initialized
+  correctly on all processes. You can run this program on any XML
+  platform file.
+
+</p>
+
+
+
+
 
 
 </div>
+
+
+</div>
+
+<div class="ui tab segment" data-tab="outer_product">
+  <div class="ui container segment raised">In this activity implement the matrix multiplication algorithm.
+  Recall that we consider 3 NxN matrices (A, B, and C), and that we compute <i>C = AxB</i>. This
+  activity consists in a single step, as described below.
+</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="outer_product_algorithm">Step #1: Outer-product Algorithm</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="outer_product_algorithm">
+
+  <p class="ui">
+  Implement a program called <code>matmul</code>, which builds on your <code>matmul_init</code>
+  program from the previous activity and implements the outer-product matrix multiplication algorithm.
+</p>
+
+<p class="ui">
+The principle of the outer-product algorithm, as might be expected, is that a matrix multiplication
+  can be performed as a sequence of outer-products. You may have covered this algorithm in a course,
+  and it is of course well-document in various texts. You may expand below to get a brief description
+  of the algorithm.
+</p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    How does the outer-product algorithm work?
+  </div>
+  <div class=" content">
+    <div class="ui container message ">
+
+      <p class="ui">
+        Consider the execution with p<sup>2</sup> processes, and each process identified
+        by 2-D coordinates between 0 and p-1.  For the duration of the algorithm,
+        process p<sub>i,j</sub> holds a block of matrix A, a block of matrix B, and a block of
+        matrix C, which it computes. The algorithm proceeds in p steps, and at each step each process
+        updates its block of matrix C.
+      </p>
+
+      <p class="ui">
+        Let us refer to the block of matrices A, B, and C held by process p<sub>i,j</sub> as
+        A<sub>i,j</sub>, B<sub>i,j</sub>, and C<sub>i,j</sub>. The principle of the algorithm
+        is simply stated as:
+        <b>
+          At step k, each process p<sub>i,j</sub> computes:
+          C<sub>i,j</sub> += A<sub>i,k</sub> x B<sub>k,j</sub>.
+        </b>
+        You can easily verify that this makes sense, meaning that after p steps matrix C
+        is equal to AxB.
+      </p>
+
+      <p class="ui">
+        Because process p<sub>i,j</sub> only holds A<sub>i,j</sub> and B<sub>i,j</sub>, the above
+        implies communication. More specifically, at step k:
+      <div class="ui list bulleted">
+        <div class="ui item"> Each process p<sub>i,k</sub> must broadcast A<sub>i,k</sub> to all processes p<sub>i,*</sub></div>
+        <div class="ui item"> Each process p<sub>k,j</sub> must broadcast B<sub>k,j</sub> to all processes p<sub>*,j</sub></div>
+      </div>
+      </p>
+
+      <p class="ui">
+        As a result, at each iteration, each process is involved in 2 broadcasts (either as a sender or as a receiver). Blocks of A
+        are broadcast across rows of the process grid, and blocks of B are broadcast across columns of the process grid. This is
+        typically depicted in a figure as follows (recall that block indices are identical to the indices of the processes that hold them). This
+        figure is for the second step k=1:
+      </p>
+
+      <p style="text-align:center;" class="ui">
+        <img align="center" src="./outer_product.jpg" width="450" />
+      </p>
+
+      <p class="ui">
+        Given the above, the high-level pseudo-code of the algorithm is straightforward:
+
+      <div class="ui container raised segment">
+        <pre>
+        // For process p<sub>i,j</sub>
+        for k = 0 to p-1
+                participate in a broadcast in my process row for block A<sub>i,k</sub>
+                  // (I am the source if k==j)
+                participate in a broadcast in my process column for block B<sub>k,j</sub>
+                  // (I am the source if k==i)
+                C += A<sub>i,k</sub> * B<sub>k,j</sub>
+        </pre>
+      </div>
+      </p>
+      </div>
+    </div>
+  </div>
+
+
+<br />
+
+<p class="ui">
+  <b>Implementing "broadcasts": </b> The algorithm involves broadcasts in process rows and process columns. In MPI, a broadcast
+  must involve all processes in a communicator. Thus, one option to implement the
+  algorithm is to create 2p communicators, one for each process row and one for each
+  process column. <code>MPI_Bcast</code> can then be used for these communicators. Communicators
+  can be easily created using the <code>MPI_Comm_split</code> function (see the MPI documentation). The alternative
+  is to rely on sequences of point-to-point communications, which isn't as pretty and likely not as efficient.
+</p>
+
+<p class="ui">
+  <b>Result validation</b>: Recall that we compute a particular matrix product. To validate the result once the outer-product algorithm
+  has finished, each process must compute the sum of all the elements in its block of C. These sums are then
+  all added up together (using <code>MPI_Reduce</code> is the way to go), and the process of rank 0 prints out
+  the sum. This process then computes the difference with the analytical formula:
+  <i>N<sup>3</sup> (N - 1)<sup>2</sup> / 2</i>. This process should print out an error message if the
+  two values don't match (beware of casts and round-off, you likely want to do everything in double precision
+  and check that the absolute value of the difference of the two values is below some small epsilon, instead
+  of testing for equality with the '==' operator).
+  <i></i>
+</p>
+
+<p>For debugging purposes, remember that it's a good idea to insert calls to <code>MPI_Barrier</code>
+  so that debugging output from the program can be structured step-by-step.
+</p>
+
+
+</div>
+
 
 </div>
 
 <div class="ui tab segment" data-tab="conclusion">
   <div class="ui container raised segment fluid">
 
-  <h3 class="ui header">TBD</h3>
+  <h3 class="ui header">What have we learned?</h3>
+
+  <p class="ui">
+    Congratulations for making it this far. You have learned to implement
+    a moderately complex algorithm using 2-D data distribution and communication
+    patterns that involve subset of the processes. This algorithm and its implementation
+    are very typical of parallel numerical linear algebra implementations, and is
+    among the simplest. Topic #4 contains a module in which we use your implementation
+    as a starting point and explore performance issues, with the goal of reducing
+    the performance penalty of communications.
+  </p>
 
 
 </div>
 
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What was difficult?</h3>
+
+  <p class="ui">
+    In a README file write a brief "essay" explaining what you found
+    surprising/challenging, and what solutions you used to solve
+    your difficulties. Are you happy with your implementations? Do you
+    see room for improvement?
+  </p>
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+<div class="ui horizontal divider">
+  The End
+</div>
+
+</div>
 </div>
 
 

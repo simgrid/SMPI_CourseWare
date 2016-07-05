@@ -1,0 +1,74 @@
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Overview</h3>
+
+  <p class="ui">
+    <b>Objective: </b> To analyze (mostly experimentally) the performance and scalability of an implementation
+       of the outer-product algorithm for multiplying matrices, and to see how to reduce communication overhead.
+  </p>
+
+</div>
+
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Prerequisite </h3>
+
+  <p class="ui">
+<b>    This module uses the program developed in the Matrix Multiplication module in Topic #3. You must
+    have completed that module to do this one. </b>
+  </p>
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Simulation Calibration</h3>
+
+  <p class="ui">
+
+  To make the simulation results consistent regardless of your computer we first calibrate the simulation.
+  More specifically, we simulate a parallel platform in which each processor computes 32 times
+  faster than one core of the laptop that was used to develop this module. Calibration of simulated
+  compute times with SMPI is straightforward: just pass a particular floating point value to
+  <code>smpirun</code> using the <code>--cfg=smpi/running power:VALUE</code> command-line option.
+  In previous modules you may have passed a value of 1.0, meaning that you were simulating a platform in which each processor
+  was as fast as your own machine.
+
+  </p>
+
+  <p class="ui">
+    A python script called <a href="./clibrate_flops.py"><code>calibrate_flops.py</code></a> is provided, which you should run once
+    on your idle computer. This script performs a binary search to find the necessary calibration factor, which is printed
+    to the screen and should be passed to the <code>--cfg=smpi/running power</code> command-line option.
+    Of course, if you change computer, you'll have to re-run the script to find a new calibration factor.
+
+  </p>
+
+
+</div>
+
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">Roadmap</h3>
+  <p class="ui">This module consists of <b>4 activities, each described in its own tab above, which should be done in
+    sequence:</b>
+  </p>
+  <ul class="ui list">
+    <li class="item"><b>Activity #1:</b> Observe the impact of network performance on application performance.</li>
+    <li class="item"><b>Activity #2:</b> Quantify algorithm scalability.</li>
+    <li class="item"><b>Activity #3:</b> Use asynchronous communication to improve performance.</li>
+  </ul>
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">What to turn in</h3>
+  <p class="ui">You should turn in a single archive (or a github repo) with:
+  <div class="ui bulleted list">
+    <div class="item">All source code</div>
+    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
+  </div>
+  </p>
+</div>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Topic &#35;3 Module &middot; SMPI CourseWare
+    
+  </title>
+
+
+
+  <!-- Semantic UI, JQuery, etc. -->
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
+
+  <script language='javascript'>
+               $(document).ready(function(){
+               $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
+
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
+                     })
+                 ;
+
+               });
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+	
+
+<div class="ui vertical left fixed menu basic  ">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
+  <br>
+  <br>
+
+
+
+
+  <a class="ui item " href="/SMPI_CourseWare/">
+    <h3 class="ui header">Home</h3>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Curricular information" data-variation="inverted">
+      <h3 class="ui header fluid">About
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;0
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Basics of distributed memory programming" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;1
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//02_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;2
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//03_topic/"
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
+       data-content="Mitigating performance impact of communications" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;4
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;5
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ui divider" style="margin-top:0em"></div>
+
+</div>
+
+
+
+	<div class="contentpage container fluid">
+	<div class="page">
+  <br>
+	
+	<h1 class="ui header">Topic &#35;3 Module: LU Factorization</h1>
+	
+  <div class="ui divider"></div>
+
+	<div class="ui pointing secondary menu">
+  <a class="item active" data-tab="intro">Introduction</a>
+  <a class="item " data-tab="lu_factorization_algorithm">Activity #1</a>
+  <a class="item" data-tab="conclusion">Conclusion</a>
+</div>
+
+<div class="ui tab segment active" data-tab="intro">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Overview</h3>
+
+  <p class="ui">
+    <b>Objective: </b> To implement a Gaussian elimination algorithm (without pivoting) to perform a LU factorization
+    of a square matrix in a distributed
+    memory manner using message passing.
+  </p>
+
+</div>
+
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">1-D Data Distribution</h3>
+
+  <p class="ui">
+    Like the modules in the previous topic, we use a simple <i>1-D block data distribution</i>.
+    We consider a NxN matrix, A. This matrix
+    contains <b>single precision elements</b> (<code>float</code>).
+    The execution takes place on p processors, <b>where p
+    divides N</b>. Each processor thus holds a
+    N × N/p block column of the matrix. In other words,
+    The process with rank 0 holds columns 0 to N/p − 1, the process with
+    rank 1 holds columns N/p to 2N/p − 1, etc.
+  </p>
+
+
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">Roadmap</h3>
+  <p class="ui">This module consists of <b>1 activity:</b>
+  </p>
+  <ul class="ui list">
+    <li class="item"><b>Activity #1:</b> Have each MPI process allocate and initialize its own
+         block column of matrix A, and have the processes perform the LU factorization.
+    </li>
+  </ul>
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">What to turn in</h3>
+  <p class="ui">You should turn in a single archive (or a github repo) with:
+  <div class="ui bulleted list">
+    <div class="item">All source code</div>
+    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
+  </div>
+  </p>
+</div>
+</div>
+
+<div class="ui tab segment " data-tab="lu_factorization_algorithm">
+  <p class="ui">
+  Implement a program called <code>lu</code>, that implements the
+  Gaussian elimination (without pivoting) algorithm.   You may have covered this algorithm in a course,
+  and it is of course well-document in various texts.  Regardless, a sequential implementation,
+  <code><a href="./sequential_lu.c"></a></code>, is provided. So you can use it as a starting point
+  in a "let's parallelize an existing sequential implementation" scenario.
+</p>
+
+
+<p class="ui">
+  To make it easy to test your implementation, we compute the LU factorization of a particular
+  matrix defined as follows:
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./lu_matrix.jpg" width="180" />
+</p>
+(note that the indices start at 0).
+</p>
+
+<p class="ui">
+  The matrix, once the Gaussian Elimination is complete, will have all 1’s in its lower triangular portion, 
+  and i<sup>2</sup> values on its diagonal and in its upper triangular portion.
+  Run <code>lu_sequential.c</code> with a small value of N to see this structure. Your code should check
+  that these are the values computed by your implementation (each process can do its own check).
+</p>
+
+<p class="ui">
+  You can use any XML platform file and accompanying hostfile to run your MPI program,
+  since this module is solely about correctness and not performance. For instance,
+  you can use
+  <a href="./cluster_crossbar_64.xml">cluster_crossbar_64.xml</a> as a platform file
+  and <a href="./hostfile_64.txt">hostfile_64.txt</a> as a hostfile.
+</p>
+
+<p>For debugging purposes, remember that it's a good idea to insert calls to <code>MPI_Barrier</code>
+  so that debugging output from the program can be structured step-by-step.
+</p>
+
+</div>
+
+<div class="ui tab segment" data-tab="conclusion">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What have we learned?</h3>
+
+  <p class="ui">
+    Congratulations for making it this far. You have learned to implement
+    a moderately complex algorithm using a 1-D data distribution . This algorithm and its implementation
+    are very typical of parallel numerical linear algebra implementations, but it overly simplistic. In fact,
+    many optimization techniques are known to make the parallelization more efficient, in particular to
+    hide the communication latencies. Hiding these latencies is the theme of Topic #4.
+  </p>
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What was difficult?</h3>
+
+  <p class="ui">
+    In a README file write a brief "essay" explaining what you found
+    surprising/challenging, and what solutions you used to solve
+    your difficulties. Are you happy with your implementations? Do you
+    see room for improvement?
+  </p>
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+<div class="ui horizontal divider">
+  The End
+</div>
+
+</div>
+</div>
+
+
+
+  <br>
+
+</div>
+	</div>
+
+
+
+</body>
+</html>

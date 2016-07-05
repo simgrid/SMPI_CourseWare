@@ -1,0 +1,16 @@
+<p class="ui">
+  Now that your simulation is fully calibrated,
+  run simulations, using
+  <a href=""><code>cluster_1600.xml</code></a>  and
+  <a href=""><code>hostfile_1600.txt</code></a>, <b>with p=100 processors</b>,
+  using matrices of increasing sizes up to as large as you can run them on your machine (in terms of memory and time), with 5 trials
+  per matrix size.
+  It may be a good idea to do a quick back-of-the-envelope memory footprint calculation to make sure you don’t exceed your RAM.
+
+  </p>
+
+<p class="ui">
+  Plot an average efficiency vs. matrix size curve. To compute the efficiency, you can simply compute what
+  the (simulated) sequential time would be as: N<sup>3</sup> x FLOP CALIBRATION FACTOR / 10<sup>10</sup>.
+  What do you conclude in terms of the scalability of the application? Are we in good shape if matrices are large?
+</p>

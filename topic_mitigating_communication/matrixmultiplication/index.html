@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Topic &#35;4 Module &middot; SMPI CourseWare
+    
+  </title>
+
+
+
+  <!-- Semantic UI, JQuery, etc. -->
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
+
+  <script language='javascript'>
+               $(document).ready(function(){
+               $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
+
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
+                     })
+                 ;
+
+               });
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+	
+
+<div class="ui vertical left fixed menu basic  ">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
+  <br>
+  <br>
+
+
+
+
+  <a class="ui item " href="/SMPI_CourseWare/">
+    <h3 class="ui header">Home</h3>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Curricular information" data-variation="inverted">
+      <h3 class="ui header fluid">About
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;0
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Basics of distributed memory programming" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;1
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//02_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;2
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//04_topic/"
+       data-content="Mitigating performance impact of communications" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;4
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;5
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ui divider" style="margin-top:0em"></div>
+
+</div>
+
+
+
+	<div class="contentpage container fluid">
+	<div class="page">
+  <br>
+	
+	<h1 class="ui header">Topic &#35;4 Module: Matrix Multiplication</h1>
+	
+  <div class="ui divider"></div>
+
+	<div class="ui pointing secondary menu">
+  <a class="item active" data-tab="intro">Introduction</a>
+  <a class="item " data-tab="network_speed">Activity #1</a>
+  <a class="item " data-tab="scalability">Activity #2</a>
+  <a class="item " data-tab="asynchronous">Activity #3</a>
+  <a class="item" data-tab="conclusion">Conclusion</a>
+</div>
+
+<div class="ui tab segment active" data-tab="intro">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Overview</h3>
+
+  <p class="ui">
+    <b>Objective: </b> To analyze (mostly experimentally) the performance and scalability of an implementation
+       of the outer-product algorithm for multiplying matrices, and to see how to reduce communication overhead.
+  </p>
+
+</div>
+
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Prerequisite </h3>
+
+  <p class="ui">
+<b>    This module uses the program developed in the Matrix Multiplication module in Topic #3. You must
+    have completed that module to do this one. </b>
+  </p>
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">Simulation Calibration</h3>
+
+  <p class="ui">
+
+  To make the simulation results consistent regardless of your computer we first calibrate the simulation.
+  More specifically, we simulate a parallel platform in which each processor computes 32 times
+  faster than one core of the laptop that was used to develop this module. Calibration of simulated
+  compute times with SMPI is straightforward: just pass a particular floating point value to
+  <code>smpirun</code> using the <code>--cfg=smpi/running power:VALUE</code> command-line option.
+  In previous modules you may have passed a value of 1.0, meaning that you were simulating a platform in which each processor
+  was as fast as your own machine.
+
+  </p>
+
+  <p class="ui">
+    A python script called <a href="./clibrate_flops.py"><code>calibrate_flops.py</code></a> is provided, which you should run once
+    on your idle computer. This script performs a binary search to find the necessary calibration factor, which is printed
+    to the screen and should be passed to the <code>--cfg=smpi/running power</code> command-line option.
+    Of course, if you change computer, you'll have to re-run the script to find a new calibration factor.
+
+  </p>
+
+
+</div>
+
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">Roadmap</h3>
+  <p class="ui">This module consists of <b>4 activities, each described in its own tab above, which should be done in
+    sequence:</b>
+  </p>
+  <ul class="ui list">
+    <li class="item"><b>Activity #1:</b> Observe the impact of network performance on application performance.</li>
+    <li class="item"><b>Activity #2:</b> Quantify algorithm scalability.</li>
+    <li class="item"><b>Activity #3:</b> Use asynchronous communication to improve performance.</li>
+  </ul>
+</div>
+
+
+<div class="ui container segment raised fluid">
+  <h3 class="ui header">What to turn in</h3>
+  <p class="ui">You should turn in a single archive (or a github repo) with:
+  <div class="ui bulleted list">
+    <div class="item">All source code</div>
+    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
+  </div>
+  </p>
+</div>
+</div>
+
+<div class="ui tab segment " data-tab="network_speed">
+  <div class="ui container segment raised">In this activity we measure and understand the impact of network communication
+  on application performance. This activity consists of the two steps below.
+</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="network_impact">Step #1: Impact of the network</a>
+  <a class="item " data-tab="communication_share">Step #2: Communication overhead</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="network_impact">
+
+  <p class="ui">
+  In this step we run experiments on a simulated 1600-host cluster with the
+  <a href=""><code>cluster_1600.xml</code></a> platform file and  accompanying
+  <a href=""><code>hostfile_1600.txt</code></a> hostfile.
+</p>
+
+<p class="ui">
+  First, augment your <code>matmul</code> program so that it prints out the wallclock time to perform the
+  matrix multiplication, in seconds (Using <code>MPI_Wtime</code> is of course a good idea).
+  </p>
+
+<p class="ui">
+  Run your program for N = 1600 on the above platform using p = 1, 4, 16, 64, 100, and 400 processes. For each
+  number of processes, record the simulated wallclock time, average over 5 trials.
+  </p>
+
+<p class="ui">
+  Now, modify the platform file to set the network latency to 0 and the bandwidth to a very large value,
+  so as to simulate an ideal platform in which the network is close to infinitely fast. Re-run the experiments above.
+  </p>
+
+<p class="ui">
+Plot speed-up curves (speedup vs. number of processors) for the two series of experiments above.
+What parallel efficiency can you achieve with p = 1600 processes on the ideal vs. the non-ideal platform?
+  What do you conclude about the application’s prospects for this matrix size on a real machine?
+</p>
+
+<p class="ui">
+  <i>Note:</i>
+The simulations takes time and memory. You can decrease the scale as needed in case you can’t run it on your machine.
+  Just for reference, these simulations runs well under 10 minutes minutes on the author's standard laptop.
+</p>
+
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="communication_share">
+
+  <p class="ui">
+Instrument your code so that at the end of execution, in addition to wallclock time,
+  it also reports the time spent in communication (which you measure via additional calls
+  to <code>MPI_Wtime</code>). Using p=16 processes, run experiments with the original (i.e., with
+  the original network) platform file for N = 8X for X ∈ {100,110,120,...,400}, with 5 trials per experiment.
+  This runs in about 10 minutes on the author's.
+  </p>
+
+<p class="ui">
+On the same plot show the computation time and the communication time vs. the matrix size.
+  What do the trends look like? Do they make sense w.r.t. to some asymptotic models of
+  computation and communication volumes?
+  Is this good news or bad news for multiplying large matrices on our platform?
+</p>
+
+</div>
+
+
+</div>
+
+<div class="ui tab segment " data-tab="scalability">
+  <div class="ui container segment raised">In this activity we experiment with large matrices, to see if performance
+  can scale reasonably well with large number of processes. In steps #1 and #2 below we play "simulation tricks" to avoid
+  running too memory-intensive / cpu-intensive simulations. In step #3 we re-calibrate the simulation, and
+  in step #4 we re-run experiments to quantify application scalability.
+</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="simulation_tricks_cpu">Step #1: No computation</a>
+  <a class="item " data-tab="simulation_tricks_mem">Step #2: Less memory</a>
+  <a class="item " data-tab="recalibration">Step #3: Recalibration</a>
+  <a class="item " data-tab="scalability_runs">Step #4: Scalability</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="simulation_tricks_cpu">
+
+  <p class="ui">
+  Experiments with large matrices are necessary to study scalability, but unfortunately these experiments are cpu-intensive,
+  whether on a real platform or in simulation. One advantage of simulation is that one can play tricks to reduce cpu expenses, essentially
+  by not performing actual computation.
+  This is something researchers often do in simulation and in this module you're doing it too.
+</p>
+
+<p class="ui">
+  When SMPI encounters a basic block of computation in your program, it executes the block
+  and times it to then generate the correct delay in simulation. If this
+  code takes 1 hour to run on your machine, then the simulation will then take at least 1
+  hour. If you are simulating 100 processes each computing for 1
+  hour, then the simulation will take 100 hours! This is because SMPI runs on a single core, running
+  MPI processes in round-robin fashion. This sounds bad, but SMPI provides several ways
+  to mitigate this problem.  For instance, one can tell the simulator:
+  "Execute/time the code only the first time you encounter it".  A more radical
+  option is to  tell the simulator: "When you encounter this basic
+  block, don't run it at all. Instead, I am telling you how many flops it involves
+  and simply compute the delay by dividing this number of flops by the compute speed."
+  In both cases, <b>the code no longer computes correct results</b>. But the idea is that for
+  deterministic basic blocks, such as the computational part of matrix multiplication, the general performance behavior is preserved,
+  and a simple re-calibration will lead to sufficiently accurate simulation results (this has been shown in SMPI research papers and
+  by other researchers before SMPI even existed).
+</p>
+
+<p class="ui">
+In this step we use the second option above, i.e., avoiding computation altogether. Consider the sample
+  basic block below:
+</p>
+
+<div class="ui container segment raised">
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">*</span> <span class="mi">3</span><span class="p">.</span><span class="mi">0</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span></code></pre></figure>
+
+</div>
+
+This loop performs <i>O(N)</i> floating point operations, and in your SMPI code you can thus replace it by:
+
+<div class="ui container segment raised">
+  
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="kt">double</span> <span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">FLOP_CALIBRATION_FACTOR</span> <span class="p">;</span>
+  <span class="n">SMPI_SAMPLE_FLOPS</span><span class="p">(</span><span class="n">flops</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// for (i=0; i &lt; N; i++) {
+</span>    <span class="c1">//   sum = sum * 3.0 * x * y;
+</span>  <span class="p">}</span>
+  </code></pre></figure>
+
+</div>
+(note that the original code is simply commented-out without the <code>SMPI_SAMPLE_FLOPS</code> macro / basic block, which is
+likely a good idea instead of simply deleting it. The <code>FLOP_CALIBRATION_FACTOR</code> constant
+is the constant factor hidden in the <i>O(N)</i> asymptotic complexity. In step #3 we use calibration to determine
+and appropriate value. Typically, this constant is
+very low, so it's likely a good ideas to instead declare:
+<div class="ui container segment raised">
+  
+<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="kt">double</span> <span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">FLOP_CALIBRATION_FACTOR</span> <span class="o">/</span> <span class="mf">1.0E+10</span><span class="p">;</span>
+  </code></pre></figure>
+
+</div>
+
+<p class="ui">
+Modify your program to do the above, for the basic block that multiplies matrix blocks. At this point,
+since your code doesn't compute anything useful, you can also comment out the part of the code that
+initializes the matrices and checks the validity of the results (in fact you really want to comment out the latter
+to avoid "invalid results" messages). For now use an arbitrary value for <code>FLOP_CALIBRATION_FACTOR</code> so
+that you can compile and debug your program. Pay no attention to the simulated performance for now.
+</p>
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="simulation_tricks_mem">
+
+  <p class="ui">
+  Besides cpu time, another limiting factor for scalable simulation is memory space. If
+  I want to use SMPI to simulate 100 processes that each uses 1GiB of heap space,
+  then I need a single machine with 100GiB of RAM! Again, this sounds bad, which is why
+  SMPI allows simulated processes to use the same heap allocations!! This leads to
+  nonsensical computation since processes overwrite each other's updates in the same
+  allocated memory zones. But, for deterministic application such as matrix multiply,
+  overall performance behavior is sufficiently preserved to lead to sufficiently accurate
+  simulation results (again, see SMPI research papers and those referenced therein).
+</p>
+
+<p class="ui">
+  The above is straightforward with SMPI:
+  <div class="ui list">
+    <div class="ui item">Replace <code>malloc</code> by <code>SMPI_MALLOC</code>;</div>
+    <div class="ui item">Replace <code>free</code> by <code>SMPI_FREE</code>.</div>
+  </div>
+</p>
+
+<p class="ui">
+  Do the above in your program. You know have a program that computes
+  nothing useful at all, but still outputs a simulated wallclock time that research shows
+  is sufficiently accurate to draw meaningful conclusions for our purpose!
+  The point is that this program can be executed faster and for larger matrices.
+  We now have an interesting simulation performance trade-off. With a lot of processes, we can scale the memory up.
+  For instance, say the memory space needed for the (sequential) matrix multiplication is 100GiB.
+  You can’t run the simulation of this computation on your laptop. However, if you simulate a parallel
+  execution with 100 processes, the above memory trick makes it so that you only need 1GiB of RAM to run the simulation.
+  However, with a lot of processes, the time to simulate the broadcasts with large data sizes is large
+  (due to the sheer number of individual point-to-point messages).
+  So, some simulations will take too much space, and some simulations will take too much time.
+  Nevertheless, our CPU and memory simulation "tricks" significantly widens the range of simulation experiments
+  that can be done in practice.
+  </p>
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="recalibration">
+
+  <p class="ui">
+  One problem with our CPU trick is that the simulated wall-clock time will no longer be coherent with our simulation platform, i.e., it
+  no longer has anything to do with our --cfg=smpi/running power command-line option since we use the
+  <code>SMPI_SAMPLE_FLOPS</code> macro. Instead, we need
+  to determine a reasonable value for <code>FLOP_CALIBRATION_FACTOR</code>.
+  </p>
+
+<p class="ui">
+  Run your original (i.e., without the "simulation tricks") program from the Matrix Multiplication module in Topic #3,
+ using
+  <a href=""><code>cluster_1600.xml</code></a> and
+  <a href=""><code>hostfile_1600.txt</code></a>, for a matrix of size 2000x2000, with <b>p=1 process</b> (i.e., no communication).
+  Then empirically determine a value of <code>FLOP_CALIBRATION_FACTOR</code>
+  that leads to the same (or close) simulated elapsed time for your program with the "simulation tricks".
+  Doing a binary search on <code>FLOP_CALIBRATION_FACTOR</code>, via a script, is great of course, but you
+  can probably just do a quick trial-and-error manual search. Once you've find this value, hard-code it into your
+  program, and voila.
+</p>
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="scalability_runs">
+
+  <p class="ui">
+  Now that your simulation is fully calibrated,
+  run simulations, using
+  <a href=""><code>cluster_1600.xml</code></a>  and
+  <a href=""><code>hostfile_1600.txt</code></a>, <b>with p=100 processors</b>,
+  using matrices of increasing sizes up to as large as you can run them on your machine (in terms of memory and time), with 5 trials
+  per matrix size.
+  It may be a good idea to do a quick back-of-the-envelope memory footprint calculation to make sure you don’t exceed your RAM.
+
+  </p>
+
+<p class="ui">
+  Plot an average efficiency vs. matrix size curve. To compute the efficiency, you can simply compute what
+  the (simulated) sequential time would be as: N<sup>3</sup> x FLOP CALIBRATION FACTOR / 10<sup>10</sup>.
+  What do you conclude in terms of the scalability of the application? Are we in good shape if matrices are large?
+</p>
+
+</div>
+
+
+</div>
+
+<div class="ui tab segment " data-tab="asynchronous">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">TBD</h3>
+
+
+</div>
+
+</div>
+
+<div class="ui tab segment" data-tab="conclusion">
+  <div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What have we learned?</h3>
+
+  <p class="ui">
+    Congratulations for making it this far. You have learned to XXXXX
+  </p>
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+  <h3 class="ui header">What was difficult?</h3>
+
+  <p class="ui">
+    In a README file write a brief "essay" explaining what you found
+    surprising/challenging, and what solutions you used to solve
+    your difficulties. Are you happy with your implementations? Do you
+    see room for improvement?
+  </p>
+
+
+</div>
+
+<div class="ui container raised segment fluid">
+
+<div class="ui horizontal divider">
+  The End
+</div>
+
+</div>
+</div>
+
+
+
+  <br>
+
+</div>
+	</div>
+
+
+
+</body>
+</html>
