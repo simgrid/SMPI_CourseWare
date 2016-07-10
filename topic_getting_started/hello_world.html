@@ -1,0 +1,93 @@
+<p class="ui">
+We are now ready to simulate the execution of an MPI program using SMPI. Let us use the following simple
+  MPI program,
+  <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>, that simple has the processes pass around a message:
+  </p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the code of <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+      {% highlight C %}
+#include <stdio.h>
+#include <stdlib.h>
+#include <mpi.h>
+
+#define N (1024 * 1024 * 1)
+
+int main(int argc, char *argv[]) {
+  int size, rank;
+  struct timeval start, end;
+  char hostname[256];
+  int hostname_len;
+
+  MPI_Init(&argc, &argv);
+
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
+  MPI_Get_processor_name(hostname, &hostname_len);
+
+  // Allocate a 10MiB buffer
+  char *buffer = malloc(sizeof(char) * N);
+
+  // Communicate along the ring
+  if (rank == 0) {
+    gettimeofday(&start, NULL);
+    printf("Rank %d (running on '%s'): sending the message rank %d\n", rank, hostname,1);
+    MPI_Send(buffer, N, MPI_BYTE, 1, 1, MPI_COMM_WORLD);
+    MPI_Recv(buffer, N, MPI_BYTE, size-1, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    printf("Rank %d (running on '%s'): received the message from rank %d\n", rank, hostname, size-1);
+    gettimeofday(&end, NULL);
+    printf("%f\n",(end.tv_sec*1000000.0 + end.tv_usec - start.tv_sec*1000000.0 - start.tv_usec) / 1000000.0);
+  } else {
+    MPI_Recv(buffer, N, MPI_BYTE, rank-1, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    printf("Rank %d (running on '%s'): receive the message and sending it to rank %d\n",rank,hostname,(rank+1)%size);
+    MPI_Send(buffer, N, MPI_BYTE, (rank+1)%size, 1, MPI_COMM_WORLD);
+  }
+
+  // Terminate
+  MPI_Finalize();
+  return 0;
+}
+  {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  Say we want to simulate the execution of this program on a homogeneous cluster, such as the one we saw
+  in the "XML Platforms" tab: <a href="../topic_getting_started/cluster_crossbar.xml">cluster_crossbar.xml</a>.
+  We need an "MPI host file", that is a simple text file that lists all hosts on which we wish to
+  start an MPI process: <a href="../topic_getting_started/cluster_hostfile.txt">cluster_hostfile.txt</a>.
+</p>
+
+<p class="ui">Compiling the program is straightforward:</p>
+<div class="ui segment raised">
+{% highlight text %}
+  % smpicc -O4 roundtrip.c -o rountrip
+{% endhighlight %}
+</div>
+
+<p class="ui">Running (simulating) it using 16 hosts on the cluster is done as follows:</p>
+
+<div class="ui segment raised">
+{% highlight text %}
+  % smpirun --cfg=smpi/running_power:1 -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip
+{% endhighlight %}
+</div>
+
+<div class="ui list bulleted">
+
+<div class="ui item">The <code>--cfg=smpi/running_power:1</code> options above, which is not very useful for this program but avoids
+  a harmless warning message, is mentioned/explained in some of the pedagogic modules (and of course
+  in the <a href="http://simgrid.gforge.inria.fr/">SimGrid documentation</a>).</div>
+<div class="ui item">The <code>-np 16</code> option, just like in regular MPI, specifies the number of MPI processes to use. </div>
+<div class="ui item">The <code>-hostfile ./cluster_hostfile.txt</code> option, just like in regular MPI, specifies the host file. </div>
+<div class="ui item">The <code>-platform ./cluster_crossbar.xml</code> option, <b>which doesn't exist in regular MPI</b>, specifies the platform configuration to be simulated. </div>
+<div class="ui item">At the end of the command, one finds the executable name and command-line arguments (in this case there are none).</div>
+
+</div>

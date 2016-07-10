@@ -1,0 +1,36 @@
+<p class="ui">
+
+  The <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a>
+  of the <a href="http://simgrid.gforge.inria.fr/">SimGrid</a> should have all the information you need to
+  install SimGrid. But just to be sure, here is a typical way to proceed on a <b>Linux (virtual) box</b>:
+</p>
+
+<div class="ui list bulleted">
+  <div class="ui item">In case Boost isn't installed already: <code>sudo apt-get install libboost-all-dev</code></div>
+  <div class="ui item">In case g++ isn't installed already: <code>sudo apt-get install g++</code></div>
+  <div class="ui item">Download the .tar.gz of the latest stable version from the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a></div>
+  <div class="ui item">Extract the archive: <code>tar -xvf simgrid-x.x.x.tar.gz</code></div>
+  <div class="ui item">Go to the extracted directory:<code>cd simgrid</code></div>
+  <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br> (Assuming you want to install in <code>/usr/local/</code>)</div>
+  <div class="ui item">Build: <code>make</code></div>
+  <div class="ui item">Run some tests: <code>make check</code></div>
+  <div class="ui item">Run all tests (for the paranoid): <code>ctest</code></div>
+  <div class="ui item">Install libraries and executables: <code>sudo make install</code></div>
+</div>
+
+<p class="ui">
+  Assuming your path includes <code>/usr/local/bin</code> (which it should), you now can invoke two new
+  commands: <b><code>smpicc</code></b> and <b><code>smpirun</code></b>.
+
+
+</p>
+<p class="ui">
+
+  If you are not superuser on your system, then you have to install SimGrid in your home directory, say in a directory
+  called <code>local</code>,
+  with the modified <code>cmake</code> invocation :
+  </p>
+
+<div class="ui list">
+  <div class="ui item"><code>cmake -DCMAKE_INSTALL_PREFIX=$HOME/local/ -Denable_smpi=on -Denable_documentation=off</code></div>
+</div>
