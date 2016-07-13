@@ -5,7 +5,7 @@
 <h3 class="ui header">Overview</h3>
 
   <p class="ui">This topic focuses on getting you started with SMPI (Simulated MPI)
-  so that you are ready for the modules in the next topics. Simply reads through the
+  so that you are ready for the modules in the next topics. Simply read through the
   4 tabs below:
   </p>
 </div>

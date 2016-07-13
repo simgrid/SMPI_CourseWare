@@ -51,7 +51,7 @@ programs that run on distributed-memory architectures, using the MPI standard.</
 Specific learning objectives include:
 <div class="ui list bulleted">
 <div class="ui item"> Learn the fundamentals of the MPI API</div>
-<div class="ui item"> Understand general distributed-memory programming and learn standard solutions</div>
+<div class="ui item"> Understand general distributed-memory programming techniques and learn standard solutions to common problems</div>
 <div class="ui item"> Learn how to implement distributed-memory programs, going from traditional "rigid" programs to more "dynamic" programs</div>
 <div class="ui item"> Understand and experience performance trade-offs when implementing and executing distributed-memory programs on ranges of distributed-memory platforms</div>
 </div>
@@ -65,7 +65,7 @@ Approach
 </h3>
 
 While many curricular materials have been developed for teaching message-passing, MPI, and distributed-memory programming,
-this CourseWare relies on the use of <b>simulation</b>, which has the following advantages:
+SMPI CourseWare relies on the use of <b>simulation</b>, which has the following advantages:
 
 
 <div class="ui list bulleted">
@@ -74,7 +74,7 @@ this CourseWare relies on the use of <b>simulation</b>, which has the following 
 <div class="ui item"> Ability to explore arbitrary "what if?" scenarios, in particular to experience performance trade-offs first-hand</div>
 </div>
 
-This CourseWare uses
+The above is accomplished using
 <a href="http://simgrid.gforge.inria.fr/simgrid/latest/doc/group__SMPI__API.html">SMPI</a> (Simulated MPI),
 which is provided as part of the <a href="http://simgrid.gforge.inria.fr">SimGrid</a> project. SMPI simulates the execution of unmodified MPI applications.
 </div>
@@ -86,7 +86,7 @@ which is provided as part of the <a href="http://simgrid.gforge.inria.fr">SimGri
 License
 </h3>
 
-This CourseWare is distributed under the CC-BY-SA license, which
+SMPI CourseWare is distributed under the CC-BY-SA license, which
 basically means that you can freely reuse and extend its content,
 provided that you don't reduce the rights of your readers. Check the 
 <a href="https://creativecommons.org/licenses/by-sa/4.0/">full

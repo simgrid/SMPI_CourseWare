@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Topic &#35;4
-description: Mitigating performance impact of communications
+description: Understanding the performance impact of communications
 top_level: true
 topic: topic04
 ---
