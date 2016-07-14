@@ -138,7 +138,7 @@
   
   
   <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
-       data-content="Mitigating performance impact of communications" data-variation="inverted">
+       data-content="Understanding the performance impact of communications" data-variation="inverted">
       <h3 class="ui header fluid">Topic &#35;4
       </h3>
   </a>
@@ -223,7 +223,7 @@
 <h3 class="ui header">Overview</h3>
 
   <p class="ui">This topic focuses on getting you started with SMPI (Simulated MPI)
-  so that you are ready for the modules in the next topics. Simply reads through the
+  so that you are ready for the modules in the next topics. Simply read through the
   4 tabs below:
   </p>
 </div>
@@ -248,7 +248,7 @@
   <div class="ui item">In case g++ isn't installed already: <code>sudo apt-get install g++</code></div>
   <div class="ui item">Download the .tar.gz of the latest stable version from the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a></div>
   <div class="ui item">Extract the archive: <code>tar -xvf simgrid-x.x.x.tar.gz</code></div>
-  <div class="ui item">Go to the extracted directory:<code>cd simgrid</code></div>
+  <div class="ui item">Go to the extracted directory: <code>cd simgrid</code></div>
   <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br /> (Assuming you want to install in <code>/usr/local/</code>)</div>
   <div class="ui item">Build: <code>make</code></div>
   <div class="ui item">Run some tests: <code>make check</code></div>
@@ -264,7 +264,7 @@
 </p>
 <p class="ui">
 
-  If you are not superuser on your system, then you have to install SimGrid in your home directory, say in a directory
+  If you are not a superuser on your system, then you have to install SimGrid in your home directory, say in a directory
   called <code>local</code>,
   with the modified <code>cmake</code> invocation :
   </p>
@@ -277,10 +277,10 @@
 <div class="ui tab segment " data-tab="second">
   <p class="ui">
 SMPI simulates the execution of MPI applications by relying on the fast and accurate simulation
-core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. Consequently, the SMPI
-  user (you!) must describe as simulated platforms (i.e., a set of hosts and network links, with
+core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
+  user (you!) must describe simulated platforms (i.e., sets of simulated hosts and network links, with
   some performance characteristics).  The SimGrid documentation provides ample information
-  on platform descriptions, which are done in XML.  Below we simply show a series of examples,
+  on platform descriptions, which are written in XML.  Below we simply show a series of examples,
   which should be sufficient for our purpose. Note that platform files are typically provided
   in each pedagogic module, but you may have to modify them.
 </p>
@@ -305,8 +305,7 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. Consequen
   <div class=" content">
     <div class="ui container segment">
     
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">    <span class="cp">&lt;?xml version=’1.0’?&gt;</span>
-    <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">    <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
     <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host0"</span> <span class="na">power=</span><span class="s">"1Gf"</span><span class="nt">/&gt;</span>
@@ -357,8 +356,7 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;?xml version=’1.0’?&gt;</span>
-      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
       <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"225MBps"</span> <span class="na">lat=</span><span class="s">"5us"</span><span class="nt">/&gt;</span>
@@ -400,8 +398,7 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;?xml version=’1.0’?&gt;</span>
-      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
       <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125MBps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25GBps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span><span class="nt">/&gt;</span>
@@ -426,8 +423,8 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
 
 
 <p class="ui">
-  <b>Two interconnecter clusters:</b> One can connect clusters together and in fact build simulated platform
-  hierarchically in an arbitrary fachion. For instance:
+  <b>Two interconnected clusters:</b> One can connect clusters together and in fact build simulated platforms
+  hierarchically in arbitrary fashions. For instance:
 </p>
 
 <p style="text-align:center;" class="ui">
@@ -443,8 +440,7 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;?xml version=’1.0’?&gt;</span>
-      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
       <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
       <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
         <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_1"</span> <span class="na">prefix=</span><span class="s">"C1−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−15"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125MBps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25GBps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span> <span class="nt">/&gt;</span>
@@ -476,7 +472,8 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <p class="ui">
 We are now ready to simulate the execution of an MPI program using SMPI. Let us use the following simple
   MPI program,
-  <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>, that simple has the processes pass around a message:
+  <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>, in which the processes pass around a message and
+  print the elpased time:
   </p>
 
 
@@ -544,7 +541,7 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 <p class="ui">Compiling the program is straightforward:</p>
 <div class="ui segment raised">
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpicc -O4 roundtrip.c -o rountrip</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpicc -O4 roundtrip.c -o roundtrip</code></pre></figure>
 
 </div>
 
@@ -552,13 +549,13 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 
 <div class="ui segment raised">
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpirun --cfg=smpi/running_power:1 -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpirun --cfg=smpi/running_power:1Gf -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip</code></pre></figure>
 
 </div>
 
 <div class="ui list bulleted">
 
-<div class="ui item">The <code>--cfg=smpi/running_power:1</code> options above, which is not very useful for this program but avoids
+<div class="ui item">The <code>--cfg=smpi/running_power:1Gf</code> options above, which is not very useful for this program but avoids
   a harmless warning message, is mentioned/explained in some of the pedagogic modules (and of course
   in the <a href="http://simgrid.gforge.inria.fr/">SimGrid documentation</a>).</div>
 <div class="ui item">The <code>-np 16</code> option, just like in regular MPI, specifies the number of MPI processes to use. </div>
@@ -567,6 +564,13 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 <div class="ui item">At the end of the command, one finds the executable name and command-line arguments (in this case there are none).</div>
 
 </div>
+
+<p class="ui">
+  Feel free to tweak the content of the XML platform file and the prorgam to see the effect on the simulated execution time.  Note that
+  the simulation accounts for realistic network protocol effects and MPI implementation effects. As a result, you may see
+  "unexpected behavior" like in the real world (e.g., sending a message 1 byte larger may lead to significant higher
+  execution time).
+</p>
 </div>
 
 <div class="ui tab segment" data-tab="fourth">

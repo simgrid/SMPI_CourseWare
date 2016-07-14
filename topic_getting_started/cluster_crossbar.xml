@@ -1,8 +1,6 @@
-<?xml version=’1.0’?>
 <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
 <platform version="3">
     <AS id="AS0" routing="Full">
-        <cluster id="my_cluster" prefix="host−" suffix=".hawaii.edu" radical="0−255" power="1Gf" bw="225MBps"
-                 lat="5us"/>
+        <cluster id="my_cluster" prefix="host-" suffix=".hawaii.edu" radical="0-255" power="1Gf" bw="225Mbps" lat="5us"/>
     </AS>
 </platform>

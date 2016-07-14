@@ -1,9 +1,9 @@
 <p class="ui">
 SMPI simulates the execution of MPI applications by relying on the fast and accurate simulation
-core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. Consequently, the SMPI
-  user (you!) must describe as simulated platforms (i.e., a set of hosts and network links, with
+core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
+  user (you!) must describe simulated platforms (i.e., sets of simulated hosts and network links, with
   some performance characteristics).  The SimGrid documentation provides ample information
-  on platform descriptions, which are done in XML.  Below we simply show a series of examples,
+  on platform descriptions, which are written in XML.  Below we simply show a series of examples,
   which should be sufficient for our purpose. Note that platform files are typically provided
   in each pedagogic module, but you may have to modify them.
 </p>
@@ -28,7 +28,6 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. Consequen
   <div class=" content">
     <div class="ui container segment">
     {% highlight XML %}
-    <?xml version=’1.0’?>
     <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
     <platform version="3">
     <AS id="AS0" routing="Full">
@@ -79,7 +78,6 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       {% highlight XML %}
-      <?xml version=’1.0’?>
       <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
       <platform version="3">
       <AS id="AS0" routing="Full">
@@ -121,7 +119,6 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       {% highlight XML %}
-      <?xml version=’1.0’?>
       <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
       <platform version="3">
       <AS id="AS0" routing="Full">
@@ -146,8 +143,8 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
 
 
 <p class="ui">
-  <b>Two interconnecter clusters:</b> One can connect clusters together and in fact build simulated platform
-  hierarchically in an arbitrary fachion. For instance:
+  <b>Two interconnected clusters:</b> One can connect clusters together and in fact build simulated platforms
+  hierarchically in arbitrary fashions. For instance:
 </p>
 
 <p style="text-align:center;" class="ui">
@@ -163,7 +160,6 @@ In the above XML, note the way in which hosts, links, and routes are defined. No
   <div class=" content">
     <div class="ui container segment">
       {% highlight XML %}
-      <?xml version=’1.0’?>
       <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
       <platform version="3">
       <AS id="AS0" routing="Full">
