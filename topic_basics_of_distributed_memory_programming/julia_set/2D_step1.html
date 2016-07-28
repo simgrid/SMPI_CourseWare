@@ -19,7 +19,7 @@
 <p class="ui">
   This 2-D data distribution complicates the global vs. local indexing issue that was
   discussed in Activity #2. The first thing to do is to figure out which process is responsible
-  for each tile. A common approach is to use a row-major view of the processes. In other words,
+  for which tile. A common approach is to use a row-major view of the processes. In other words,
   we think of a logical topology in which the processes are organized in a square grid (because
   our number of processes is a perfect square).  By default, MPI gives us only a linear (i.e., 1-D) rank.
   We "transform" this rank into a 2-D rank where each process has a "row" and a "column", using a row-major

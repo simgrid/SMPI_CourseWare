@@ -23,18 +23,21 @@
 
 <div class="ui list bulleted">
   <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
-  <div class="item">Have each process print out its rank (out of how many processes in total), and
+  <div class="item">Has each process print out its rank (out of how many processes in total), and
           which rows of the image (as a range) it should compute (but actually do nothing for now). See the sample
-           executions below to see what kind of output is expected.</div>
+           executions below to see what kind of output is expected.
+  <div class="ui list bulleted">
   <div class="item">The intended data distribution should be in as many "slabs" as there are processes, where
     each process is in charge of a set of contiguous rows.</div>
   <div class="item">The distribution should be <b>as balanced as possible</b> (at most
     a difference of one row between two processes)</div>
+  </div>
+  </div>
 </div>
 
 <p class="ui">
   <i>Hint: </i> Computing the data distribution  (i.e., for each process finding out which rows it should
-  process) can be done using discrete math so that everything is computing as some large formula.  But many find it simpler to compute
+  process) can be done using discrete math so that everything is computed by a single formula.  But many find it simpler to compute
   it programmatically with a loop (i.e., "counting by hand").
 </p>
 

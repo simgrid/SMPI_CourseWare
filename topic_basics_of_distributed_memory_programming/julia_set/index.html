@@ -264,7 +264,7 @@
         <li class="item">z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</li>
       </ul>
       where c = -0.79 + i * 0.15. Different
-      values of c lead to different images, we know many values that produce "pretty" images.
+      values of c lead to different images, and we know many values that produce "pretty" images.
       </p>
       <p class="ui">
         The color of a pixel corresponding to point z is determined based on the number of iterations
@@ -292,10 +292,10 @@
       and
       outputs it to a bmp file.
     </li>
-    <li class="item"><b>Activity #2:</b> Realize a parallel implementation the program using MPI, using a 1-D data
+    <li class="item"><b>Activity #2:</b> Realize a parallel implementation the program with MPI, using a 1-D data
       distribution.
     </li>
-    <li class="item"><b>Activity #3:</b> Realize a parallel implementation the program using MPI, using a 2-D data
+    <li class="item"><b>Activity #3:</b> Realize a parallel implementation the program with MPI, using a 2-D data
       distribution.
     </li>
   </ul>
@@ -308,7 +308,7 @@
   <p class="ui">You should turn in a single archive (or a github repo) with:
   <div class="ui bulleted list">
     <div class="item">All source code</div>
-    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">XML platform files  and host files (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
     <div class="item">A README file with answers to the questions asked in the activities</div>
   </div>
@@ -317,7 +317,7 @@
 </div>
 
 <div class="ui tab segment " data-tab="second">
-  In this activity we develop a simple sequential (i.e., non-parallel) programs that computes a
+  In this activity we develop a simple sequential (i.e., non-parallel) program that computes a
 Julia set and saves it to a bitmap file. We break it down into the two steps below:
 <br />
 
@@ -332,7 +332,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
 
 <div class="ui list bulleted">
   <div class="item">Takes a single command-line argument, n, an <code>integer</code> that's strictly positive.</div>
-  <div class="item">Allocates an 1-D <code>unsigned char</code> n * (2 * n) *3 elements. This array is used to
+  <div class="item">Allocates an 1-D <code>unsigned char</code> array of  n*(2*n)*3 elements. This array is used to store
     the pixels of an image with height (in pixels) of n width (in pixels) of 2n, where each pixel is encoded using 3 bytes (RGB
     values).
   </div>
@@ -342,7 +342,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
 <p class="ui">
   To make the above easier you are provided with one helper C function, <code>compute_julia_pixel()</code>, to which
   you pass the (x,y) coordinates of a pixed, the (width, height) dimensions of the image, a "tint" float (pass 1.0
-  for now), and a pointer to 3 contiguous bytes (<code>unsigned char</code>). These bytes are set to appropriate
+  for now), and a pointer to 3 contiguous bytes (<code>unsigned char *</code>). These bytes are set to appropriate
   RGB values (Red Green Blue) for displaying the Julia set.
   <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/julia/compute_julia_pixel.c">[Download
     source of compute_julia_pixel()]</a>
@@ -419,7 +419,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
 <br />
 
 <p class="ui">
-  The program must store the pixels of the 2-D image into a <b>1-D array using a <i>row-major scheme</i></b>.
+  The program must store the pixels of the 2-D image into the <b>1-D array using a <i>row-major scheme</i></b>.
 </p>
 
 
@@ -436,7 +436,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
         You may find the use of a 1-D array to store the pixels surprising, since after all the image is 2-D. However, it is
         common to use 1-D arrays, especially when they are dynamically allocated. One option would be to allocate an array
         of pointers to
-        1-D arrays, making it possible to access elements with the convenient syntax <code>Array[i][j]</code>.
+        1-D arrays, where each 1-D array represents a pixel row. This would make it possible to access elements with the convenient syntax <code>Array[i][j]</code>.
         But this is typically a bad idea as it reduces locality (i.e., the efficient use of the cache), which in turns harms
         performance.
       </p>
@@ -451,7 +451,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
 
 
 Now that the program computes the Julia set pixels as a 1-D array of 3-byte elements, it would be nice to see them (if only to check
-that they're set correctly). So move on to Step #2 (next tab)...
+that they're set correctly). So let's move on to Step #2...
 
 
 
@@ -548,7 +548,7 @@ the image in the bmp format.  A bmp file consists of two parts:
 </div>
 
 <p class="ui">
-  <b>Warning: </b> If the number of width of the image in number of pixels, 2n, is not a multiple of 4 (i.e., in our case
+  <b>Warning: </b> If the width of the image in number of pixels, 2n, is not a multiple of 4 (i.e., in our case
   if n is odd), then the bmp file format requires that each row of pixel be <i>padded</i>. This means that
   extra bytes must be written to the file to make the number of bytes in each pixel row a multiple of 4 in case it
   is not.  <b>For
@@ -561,7 +561,7 @@ the image in the bmp format.  A bmp file consists of two parts:
 <p class="ui">
   Verify that your program outputs the expected Julia set, by opening the bmp file with your favorite
   image viewer. Try different values of n and check that
-  your obtain images with the expected resolutions.
+  your obtain images with the expected resolutions/dimensions.
 </p>
 
 
@@ -612,18 +612,21 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
 
 <div class="ui list bulleted">
   <div class="item">Takes a single command-line argument, n, an integer that's strictly positive.</div>
-  <div class="item">Have each process print out its rank (out of how many processes in total), and
+  <div class="item">Has each process print out its rank (out of how many processes in total), and
           which rows of the image (as a range) it should compute (but actually do nothing for now). See the sample
-           executions below to see what kind of output is expected.</div>
+           executions below to see what kind of output is expected.
+  <div class="ui list bulleted">
   <div class="item">The intended data distribution should be in as many "slabs" as there are processes, where
     each process is in charge of a set of contiguous rows.</div>
   <div class="item">The distribution should be <b>as balanced as possible</b> (at most
     a difference of one row between two processes)</div>
+  </div>
+  </div>
 </div>
 
 <p class="ui">
   <i>Hint: </i> Computing the data distribution  (i.e., for each process finding out which rows it should
-  process) can be done using discrete math so that everything is computing as some large formula.  But many find it simpler to compute
+  process) can be done using discrete math so that everything is computed by a single formula.  But many find it simpler to compute
   it programmatically with a loop (i.e., "counting by hand").
 </p>
 
@@ -741,16 +744,16 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
 <div class="ui bottom attached tab segment" data-tab="1D_compute_julia">
 
   <p class="ui">
-  Augment your program that that each process allocates space to store the pixels it needs to compute, and
+  Augment your program so that each process allocates space to store the pixels it needs to compute, and
   then computes them. <b>A process must only allocate space for the pixels it needs to compute</b>.  In practice,
   each process runs on a different hosts, and one wishes to compute a large image that does not fit in the
   memory of a single host (which is one of the main motivations for going the "distributed-memory computing" route).
 </p>
 
 <p class="ui">
-  The main difficulty here is keeping local vs. global indexing straight. That is, although as a programmer
-  with think of the image as an array of, say, N pixels, no N-pixel array is ever allocated in the program (only
-  smaller arrays allocated on each process).
+  The main difficulty here is keeping local vs. global indexing straight. That is, although as programmers
+  we think of the image as an array of, say, N pixels, no N-pixel array is ever allocated in the program (only
+  smaller arrays allocated by each process).
 </p>
 
 <div class="ui accordion fluid">
@@ -783,7 +786,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
       <p class="ui">
       The answer to the above depends on the data distribution!  Say that process 0 (i.e., process with
         rank 0) holds items 0 to 99 (global indices), process 1 holds items 100 to 199 (global indices), etc.
-        So, for a given i between 0 and 1999, which this data distribution, I have:
+        So, for a given i between 0 and 1999, with this data distribution, I have:
       </p>
       <div class="ui list bulleted">
         <div class="ui item">Item #i is held by process with rank i/100</div>
@@ -794,7 +797,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
       in the array declared locally in the process), as opposed to i which is the <i>global index</i>.</p>
 
       <p>The more complicated the distribution, the more intricate the global-to-local or local-to-global
-      conversion. 1-D data distributions are the simplest. In an upcoming activity we'll deal with a 2-D
+      conversion. 1-D data distributions, like the one above, are the simplest. In the next activity we'll deal with a 2-D
       data distribution.</p>
 
     </div>
@@ -810,7 +813,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
 <div class="ui bottom attached tab segment" data-tab="1D_save_to_file">
 
   <p class="ui">
-  Augment your program that that the Julia set is saved to a bmp file. This requires some coordination between the
+  Augment your program so that the Julia set is saved to a bmp file. This requires some coordination between the
   processes:
 <div class="ui list bulleted">
   <div class="ui item">Only one process must create the file and write the header</div>
@@ -822,7 +825,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
 <p class="ui">
   First you must pick one process to create the file and write the header to it
   (it is typical to pick process of rank 0).  Second, each process, after its done computing
-  its pixels, waits for a "go ahead!" message from its predecessor, and then sends a "go ahead!"
+  its pixels, waits for a "go ahead!" message from its predecessor, writes to the file, and then sends a "go ahead!"
   message to its successor.  The exceptions are the process with rank 0, which does not need to wait for
   a message, and the last process, which does not need to send a message. It doesn't really matter
   what these messages contain (e.g., they can be a single byte, or even zero-byte messages),
@@ -831,7 +834,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
 </p>
 
 <p class="ui">
-  <b>Warning:</b> Make sure that your processes compute in parallel. That is, all processes compute, and then
+  <b>Warning:</b> Make sure that your processes compute in parallel. That is, all processes compute together, and then
   they take turn writing what they have computed to the file.
 </p>
 
@@ -855,13 +858,13 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
   <div class="content">
     <p class="ui message">
       Although the above scheme is pretty simple, what we are really doing is creating a <i>logical topology</i>. That is,
-      based on ranks, we impose structure on our set of processes. In this case, a "linear chain" in which process #i communicates
+      based on process rank, we impose structure on our set of processes. In this case, a "linear chain" in which process #i communicates
       with process #i+1. Probably the simplest structure. We will see examples of more complex logical topologies.
       Different applications lend themselves naturally to different logical topologies (rings, grids, trees, etc.).
       One interesting question, which is outside
       the score of this topic, is how well the logical topology matches the physical topology of the actual
       parallel platform in use (a good match typically boosts performance).  Ideally, one can define a logical topology
-      that makes writing the application intuitive, and that is also well-matched to the physical platform.
+      that makes writing the application easy, and that is also well-matched to the physical platform.
     </p>
   </div>
 </div>
@@ -907,7 +910,7 @@ we break it down into the three steps below:
 <p class="ui">
   This 2-D data distribution complicates the global vs. local indexing issue that was
   discussed in Activity #2. The first thing to do is to figure out which process is responsible
-  for each tile. A common approach is to use a row-major view of the processes. In other words,
+  for which tile. A common approach is to use a row-major view of the processes. In other words,
   we think of a logical topology in which the processes are organized in a square grid (because
   our number of processes is a perfect square).  By default, MPI gives us only a linear (i.e., 1-D) rank.
   We "transform" this rank into a 2-D rank where each process has a "row" and a "column", using a row-major
@@ -1080,15 +1083,15 @@ we break it down into the three steps below:
 <div class="ui bottom attached tab segment" data-tab="2D_compute_julia">
 
   <p class="ui">
-  Augment your program that that each process allocates space to store the pixels it needs to compute, and
+  Augment your program so that each process allocates space to store the pixels it needs to compute, and
   then computes them. As in the previous activity, the main difficulty here is
-  keeping local vs. global indexing straight. It is in fact a bit more complex
-  than for Activity #2 due to the use of a 2-D date distribution.
+  keeping local vs. global indexing straight. It is a bit more complex
+  than for Activity #2 due to the use of a 2-D data distribution.
 </p>
 
 <p class="ui">
   Have each process apply a <i>tint</i> to the pixels it handles, by passing
-  value <code>rank<sup>2</sup></code> as the 5th argument to
+  value <code>rank<sup>2</sup></code> (i.e., the square of the rank) as the 5th argument to
   function <code>compute_julia_pixel()</code> (instead of passing the default
   1.0 value).
 </p>
@@ -1103,9 +1106,9 @@ we break it down into the three steps below:
 <div class="ui bottom attached tab segment" data-tab="2D_save_to_file">
 
   <p class="ui">
-  Augment your program that that the Julia set is saved to a bmp file.
+  Augment your program so that the Julia set is saved to a bmp file.
   The difference with Activity #2 is that now each process holds a tile, and
-  yet the file must contains the pixels in row major order. So each process
+  yet the file must contain the pixels in row major order. So each process
   will have to append many times to the file, writing one piece of a row at a time.
   As a result, more complex coordination is required compared to
   Activity #2.
@@ -1127,7 +1130,7 @@ we break it down into the three steps below:
           </p>
         </div>
         <div class="ui row">
-      The figure above show an example with 9 processes (2-D rank coordinates are shown
+      The figure above shows an example with 9 processes (2-D rank coordinates are shown
       in red), where each process holds a 4x8 tile (4 row segments).  The numbers on
       each segment indicate the sequence in which the pixels must be written to the
       file. In this example, there are 36 row segments. First process (0,0)
