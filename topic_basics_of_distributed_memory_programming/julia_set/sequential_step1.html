@@ -2,7 +2,7 @@ Implement a C (or C++) program called <code>sequential_julia</code> (source file
 
 <div class="ui list bulleted">
   <div class="item">Takes a single command-line argument, n, an <code>integer</code> that's strictly positive.</div>
-  <div class="item">Allocates an 1-D <code>unsigned char</code> n * (2 * n) *3 elements. This array is used to
+  <div class="item">Allocates an 1-D <code>unsigned char</code> array of  n*(2*n)*3 elements. This array is used to store
     the pixels of an image with height (in pixels) of n width (in pixels) of 2n, where each pixel is encoded using 3 bytes (RGB
     values).
   </div>
@@ -12,7 +12,7 @@ Implement a C (or C++) program called <code>sequential_julia</code> (source file
 <p class="ui">
   To make the above easier you are provided with one helper C function, <code>compute_julia_pixel()</code>, to which
   you pass the (x,y) coordinates of a pixed, the (width, height) dimensions of the image, a "tint" float (pass 1.0
-  for now), and a pointer to 3 contiguous bytes (<code>unsigned char</code>). These bytes are set to appropriate
+  for now), and a pointer to 3 contiguous bytes (<code>unsigned char *</code>). These bytes are set to appropriate
   RGB values (Red Green Blue) for displaying the Julia set.
   <a target="_blank" href="{{site.baseurl}}topic_basics_of_distributed_memory_programming/julia/compute_julia_pixel.c">[Download
     source of compute_julia_pixel()]</a>
@@ -35,7 +35,7 @@ Implement a C (or C++) program called <code>sequential_julia</code> (source file
 <br>
 
 <p class="ui">
-  The program must store the pixels of the 2-D image into a <b>1-D array using a <i>row-major scheme</i></b>.
+  The program must store the pixels of the 2-D image into the <b>1-D array using a <i>row-major scheme</i></b>.
 </p>
 
 
@@ -52,7 +52,7 @@ Implement a C (or C++) program called <code>sequential_julia</code> (source file
         You may find the use of a 1-D array to store the pixels surprising, since after all the image is 2-D. However, it is
         common to use 1-D arrays, especially when they are dynamically allocated. One option would be to allocate an array
         of pointers to
-        1-D arrays, making it possible to access elements with the convenient syntax <code>Array[i][j]</code>.
+        1-D arrays, where each 1-D array represents a pixel row. This would make it possible to access elements with the convenient syntax <code>Array[i][j]</code>.
         But this is typically a bad idea as it reduces locality (i.e., the efficient use of the cache), which in turns harms
         performance.
       </p>
@@ -67,7 +67,7 @@ Implement a C (or C++) program called <code>sequential_julia</code> (source file
 
 
 Now that the program computes the Julia set pixels as a 1-D array of 3-byte elements, it would be nice to see them (if only to check
-that they're set correctly). So move on to Step #2 (next tab)...
+that they're set correctly). So let's move on to Step #2...
 
 
 

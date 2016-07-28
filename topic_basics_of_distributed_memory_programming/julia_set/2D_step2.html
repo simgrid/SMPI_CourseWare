@@ -1,13 +1,13 @@
 <p class="ui">
-  Augment your program that that each process allocates space to store the pixels it needs to compute, and
+  Augment your program so that each process allocates space to store the pixels it needs to compute, and
   then computes them. As in the previous activity, the main difficulty here is
-  keeping local vs. global indexing straight. It is in fact a bit more complex
-  than for Activity #2 due to the use of a 2-D date distribution.
+  keeping local vs. global indexing straight. It is a bit more complex
+  than for Activity #2 due to the use of a 2-D data distribution.
 </p>
 
 <p class="ui">
   Have each process apply a <i>tint</i> to the pixels it handles, by passing
-  value <code>rank<sup>2</sup></code> as the 5th argument to
+  value <code>rank<sup>2</sup></code> (i.e., the square of the rank) as the 5th argument to
   function <code>compute_julia_pixel()</code> (instead of passing the default
   1.0 value).
 </p>

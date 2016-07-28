@@ -1,5 +1,5 @@
 <p class="ui">
-  Augment your program that that the Julia set is saved to a bmp file. This requires some coordination between the
+  Augment your program so that the Julia set is saved to a bmp file. This requires some coordination between the
   processes:
 <div class="ui list bulleted">
   <div class="ui item">Only one process must create the file and write the header</div>
@@ -11,7 +11,7 @@
 <p class="ui">
   First you must pick one process to create the file and write the header to it
   (it is typical to pick process of rank 0).  Second, each process, after its done computing
-  its pixels, waits for a "go ahead!" message from its predecessor, and then sends a "go ahead!"
+  its pixels, waits for a "go ahead!" message from its predecessor, writes to the file, and then sends a "go ahead!"
   message to its successor.  The exceptions are the process with rank 0, which does not need to wait for
   a message, and the last process, which does not need to send a message. It doesn't really matter
   what these messages contain (e.g., they can be a single byte, or even zero-byte messages),
@@ -20,7 +20,7 @@
 </p>
 
 <p class="ui">
-  <b>Warning:</b> Make sure that your processes compute in parallel. That is, all processes compute, and then
+  <b>Warning:</b> Make sure that your processes compute in parallel. That is, all processes compute together, and then
   they take turn writing what they have computed to the file.
 </p>
 
@@ -44,13 +44,13 @@
   <div class="content">
     <p class="ui message">
       Although the above scheme is pretty simple, what we are really doing is creating a <i>logical topology</i>. That is,
-      based on ranks, we impose structure on our set of processes. In this case, a "linear chain" in which process #i communicates
+      based on process rank, we impose structure on our set of processes. In this case, a "linear chain" in which process #i communicates
       with process #i+1. Probably the simplest structure. We will see examples of more complex logical topologies.
       Different applications lend themselves naturally to different logical topologies (rings, grids, trees, etc.).
       One interesting question, which is outside
       the score of this topic, is how well the logical topology matches the physical topology of the actual
       parallel platform in use (a good match typically boosts performance).  Ideally, one can define a logical topology
-      that makes writing the application intuitive, and that is also well-matched to the physical platform.
+      that makes writing the application easy, and that is also well-matched to the physical platform.
     </p>
   </div>
 </div>

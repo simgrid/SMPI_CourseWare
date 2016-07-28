@@ -1,7 +1,7 @@
 <p class="ui">
-  Augment your program that that the Julia set is saved to a bmp file.
+  Augment your program so that the Julia set is saved to a bmp file.
   The difference with Activity #2 is that now each process holds a tile, and
-  yet the file must contains the pixels in row major order. So each process
+  yet the file must contain the pixels in row major order. So each process
   will have to append many times to the file, writing one piece of a row at a time.
   As a result, more complex coordination is required compared to
   Activity #2.
@@ -23,7 +23,7 @@
           </p>
         </div>
         <div class="ui row">
-      The figure above show an example with 9 processes (2-D rank coordinates are shown
+      The figure above shows an example with 9 processes (2-D rank coordinates are shown
       in red), where each process holds a 4x8 tile (4 row segments).  The numbers on
       each segment indicate the sequence in which the pixels must be written to the
       file. In this example, there are 36 row segments. First process (0,0)
