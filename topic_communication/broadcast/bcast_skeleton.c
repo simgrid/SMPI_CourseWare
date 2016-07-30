@@ -81,6 +81,18 @@ int main(int argc, char *argv[])
     bcast_implementation_name = argv[1];
   }
 
+  // Check that the implementation name is valid
+  if (strcmp(bcast_implementation_name, "naive_bcast") &&
+      strcmp(bcast_implementation_name, "default_bcast") &&
+      strcmp(bcast_implementation_name, "ring_bcast") &&
+      strcmp(bcast_implementation_name, "pipelined_ring_bcast") &&
+      strcmp(bcast_implementation_name, "asynchronous_pipelined_ring_bcast") &&
+      strcmp(bcast_implementation_name, "asynchronous_pipelined_bintree_bcast")) {
+    char message[256];
+    sprintf(message, "Unknown bcast implementation name '%s'\n",bcast_implementation_name);
+    program_abort(NULL,message);
+  }
+
   // Chunk size optional argument
   for (i=1; i < argc; i++) {
     if (!strcmp(argv[i],"-c")) {
@@ -132,6 +144,8 @@ int main(int argc, char *argv[])
 
   // Process rank 0 should be  the source of the broadcast
 
+#include "bcast_solution.c"
+
   /////////////////////////////////////////////////////////////////////////////
   ///////////////////////////// TO IMPLEMENT: END /////////////////////////////
   /////////////////////////////////////////////////////////////////////////////
@@ -162,7 +176,10 @@ int main(int argc, char *argv[])
   // Print out bcast implementation name and wall-clock time, only if the bcast was successful
   MPI_Barrier(MPI_COMM_WORLD);
   if ((0 == rank) && (all_ok)) {
-    fprintf(stdout,"%s %.3lf\n",bcast_implementation_name, MPI_Wtime() - start_time);
+    fprintf(stdout,"implementation: %s | chunksize: %d |  time: %.3lf seconds\n",
+		    bcast_implementation_name, 
+		    chunk_size,
+		    MPI_Wtime() - start_time);
   }
 
   // Clean-up

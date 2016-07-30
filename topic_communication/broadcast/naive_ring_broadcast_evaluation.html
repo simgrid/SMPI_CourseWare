@@ -1,5 +1,5 @@
 <p class="ui">
-  Before you proceed with the evaluation of your two implementation, augment <code>bcast_skeleton.c</code>
+  Before you proceed with the evaluation of your two implementations, augment <code>bcast_skeleton.c</code>
   with a third broadcast implementation named <b>default_bcast</b> that simply has all processes
   call <code>MPI_Bcast</code>. This is the MPI implementation of the broadcast collective communication,
   which in this module we implement "by hand" using point-to-point communications.
@@ -22,7 +22,7 @@
   You can download a Python script <a href="./generate_xml_ring_and_hostfile.py">(generate_xml_ring_and_hostfile.py)</a>
   that generates
   these two files given a number of processors passed as a command-line argument. Just in case,
-  here are the files generated using this script for 100 processes: <a href="ring_100.xml">ring_100.xml</a> and
+  here are the files generated using this script for 100 processors: <a href="ring_100.xml">ring_100.xml</a> and
   <a href="hostfile_100.txt">hostfile_100.txt</a>.
 </p>
 
@@ -48,12 +48,13 @@
   Answer the following questions:
 <div class="ui list bulleted">
   <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 100-processor
-    ring.
+    ring?
   </div>
   <div class="ui item">How far are your "by hand" implementations from the default
     broadcast?
   </div>
-  <div class="ui item">You may observe that ring_bcast does not improve a lot over naive_bcast, which is surprising.
+  <div class="ui item">You may observe that ring_bcast does not improve a lot over naive_bcast, which should
+    be surprising to you. After all, naive_bcast sends long-haul messages while ring_bcast doesn't
     What do you think the reason
     is? To answer this question, you can instrument your code and run it on smaller rings to see when events happen and
     try to understand what's going on. Given that we're using simulation, you should take advantage of it and
@@ -61,7 +62,7 @@
     instance,
     you can modify link latencies and bandwidths.
     The <code>MPI_Wtime</code> function is convenient to determine the current (simulated) date. This
-    function returns the date as a double precision elements, and is already used in <code>bcast_skeleton.c</code>.
+    function returns the date as a double precision number (and is in fact already used in <code>bcast_skeleton.c</code>).
   </div>
 </div>
 </p>
@@ -69,8 +70,8 @@
 <p class="ui">
   <i>Warning:</i> SMPI implements sophisticated simulation models that capture many real-world effects (network
   protocol idiosyncrasies, MPI implementation idiosyncrasies).
-  These effects will be seen in your experiments, just as they would with a real-world platform,
+  These effects will be seen in your experiments, just as they would on a real-world platform,
   and they tend to make performance behavior more difficult to understand. For instance, if you modify
-  the buffer size, you will see non-linear effects on performance (i.e., broadcasting a buffer twice as large
-  may not require twice as much time).
+  the buffer size, you will see non-linear effects on performance (e.g., broadcasting a buffer twice as large
+  will not require exactly twice as much time, broadcasting a buffer 1 byte larger may increase broadcast time significantly).
 </p>

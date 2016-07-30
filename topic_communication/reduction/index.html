@@ -226,7 +226,7 @@
 <div class="ui tab segment active" data-tab="first">
   <p class="ui">A "reduce" operation is essentially the inverse of a broadcast plus some computation:
 an associative/commutative operator is applied to data items located at each process,
-and a final combined results is eventually available at a root process (e.g., process
+and a final combined result is eventually available at a root process (e.g., process
 of rank 0). </p>
 
 <p class="ui">An interesting module would consist
@@ -240,8 +240,7 @@ in exploring efficient reduction algorithms, i.e., efficient orchestration of co
 <div class="ui list bulleted">
   <div class="ui item">Processors are interconnected via a crossbar switch</div>
   <div class="ui item">At a give time step a process (one per processor) can either send or receive, but not both</div>
-  <div class="ui">There are m data items at each process, and these can be split into chunks for pipelining</div>
-  <div class="ui item">
+  <div class="ui item">There are m data items at each process, and these can be split into chunks for pipelining
     <div class="ui list bulleted">
       <div class="ui item"> A seemingly simply, yet still interesting case, is to assume uniform chunks.
       </div>
