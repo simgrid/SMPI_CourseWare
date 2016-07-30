@@ -1,6 +1,12 @@
 <p class="ui">
-  Run pipelined_ring_bcast using chunk sizes of 10,000 bytes, 20,000 bytes, 50,000 bytes,
-  100,000 bytes, 200,000 bytes, 10,000,000 bytes (i.e., 1 chunk)
+  Run pipelined_ring_bcast using chunk sizes of
+  100,000 bytes,
+  500,000 bytes,
+  100,0000 bytes,
+  500,0000 bytes,
+  10,000,000 bytes,
+  50,000,000 bytes, and
+  100,000,000 (i.e., 1 chunk),
   on a 25-processor ring, a 50-processor ring, and a 100-processor ring. Report the
   simulated execution times. Remember that the <a href="./generate_xml_ring_and_hostfile.py">generate_xml_ring_and_hostfile.py
   </a>Python script can be used to generate platform files and hostfiles.
@@ -26,6 +32,17 @@
   <div class="ui item">What do you conclude about the use of pipelined communications for the purpose
     of a ring-based broadcast on a ring-shaped physical platform?</div>
 </div>
+</p>
+
+<p class="ui">
+  <b>Warning: </b>  You will likely see some "odd" behavior. For instance, as the chunk size increases you may
+  see the broadcast time decrease, increase, and then decrease again.  Or, if ou try very small chunk sizes,
+  smaller than the ones above, you could see that for some particular chunk sizes the broadcast time is
+  pretty low, if perhaps not the lowest across the board. These effects are because our simulated MPI captures
+  many effects of network protocols and  MPI implementations. These effects take us away from simple analytical models of communication
+  performance, in which there is no weirdness, but that simply don't match the reality of communication
+  behavior in real-world parallel platforms. As a result, experimental results are often confusing and it is difficult
+  to draw valid conclusions without looking at a lot of results.
 </p>
 
 

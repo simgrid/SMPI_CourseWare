@@ -4,7 +4,7 @@ import os
 import math
 
 # Link parameters
-link_latency = "20us"
+link_latency = "10us"
 link_bandwidth = 10
 link_bandwidth_unit = "Gbps"
 
