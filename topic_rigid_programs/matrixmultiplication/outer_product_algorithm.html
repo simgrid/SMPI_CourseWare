@@ -1,5 +1,5 @@
 <p class="ui">
-  Implement a program called <code>matmul</code>, which builds on your <code>matmul_init</code>
+  Implement a program called <code>matmul</code> (<code>matmul.c</code>), which builds on your <code>matmul_init</code>
   program from the previous activity and implements the outer-product matrix multiplication algorithm.
 </p>
 
@@ -7,7 +7,8 @@
 The principle of the outer-product algorithm, as might be expected, is that a matrix multiplication
   can be performed as a sequence of outer-products. You may have covered this algorithm in a course,
   and it is of course well-document in various texts. You may expand below to get a brief description
-  of the algorithm.
+  of the algorithm, which should be sufficient for you do do this step even if you've never seen
+  the outer-product algorithm before.
 </p>
 
 {% include_relative outer_product_algorithm_accordion.html %}
@@ -29,7 +30,7 @@ The principle of the outer-product algorithm, as might be expected, is that a ma
   all added up together (using <code>MPI_Reduce</code> is the way to go), and the process of rank 0 prints out
   the sum. This process then computes the difference with the analytical formula:
   <i>N<sup>3</sup> (N - 1)<sup>2</sup> / 2</i>. This process should print out an error message if the
-  two values don't match (beware of casts and round-off, you likely want to do everything in double precision
+  two values don't match (beware of casts and round-off; you likely want to do everything in double precision
   and check that the absolute value of the difference of the two values is below some small epsilon, instead
   of testing for equality with the '==' operator).
   <i></i>
