@@ -243,13 +243,13 @@
   <h3 class="ui header">1-D Data Distribution</h3>
 
   <p class="ui">
-    Like the modules in the previous topic, we use a simple <i>1-D block data distribution</i>.
+    For this algorithm we use a simple <i>1-D block data distribution</i>.
     We consider a NxN matrix, A. This matrix
     contains <b>single precision elements</b> (<code>float</code>).
-    The execution takes place on p processors, <b>where p
-    divides N</b>. Each processor thus holds a
+    The execution takes place on p processes, <b>where p
+    divides N</b>. Each process thus holds a
     N × N/p block column of the matrix. In other words,
-    The process with rank 0 holds columns 0 to N/p − 1, the process with
+    the process with rank 0 holds columns 0 to N/p − 1, the process with
     rank 1 holds columns N/p to 2N/p − 1, etc.
   </p>
 
@@ -274,7 +274,7 @@
   <p class="ui">You should turn in a single archive (or a github repo) with:
   <div class="ui bulleted list">
     <div class="item">All source code</div>
-    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">XML platform files and hostfiles (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
   </div>
   </p>
@@ -283,10 +283,10 @@
 
 <div class="ui tab segment " data-tab="lu_factorization_algorithm">
   <p class="ui">
-  Implement a program called <code>lu</code>, that implements the
+  Implement a program called <code>lu</code> (<code>lu.c</code>), that implements the
   Gaussian elimination (without pivoting) algorithm.   You may have covered this algorithm in a course,
   and it is of course well-document in various texts.  Regardless, a sequential implementation,
-  <code><a href="./sequential_lu.c"></a></code>, is provided. So you can use it as a starting point
+  <code><a href="./sequential_lu.c">sequential_lu.c</a></code>, is provided. So you can use it as a starting point
   in a "let's parallelize an existing sequential implementation" scenario.
 </p>
 
@@ -330,9 +330,9 @@
   <p class="ui">
     Congratulations for making it this far. You have learned to implement
     a moderately complex algorithm using a 1-D data distribution . This algorithm and its implementation
-    are very typical of parallel numerical linear algebra implementations, but it overly simplistic. In fact,
-    many optimization techniques are known to make the parallelization more efficient, in particular to
-    hide the communication latencies. Hiding these latencies is the theme of Topic #4.
+    are very typical of parallel numerical linear algebra implementations, but it's a bit simplistic. In fact,
+    many optimization techniques are known to make the parallelization of LU factorization more efficient, in particular to
+    hide the communication latencies. Hiding these latencies one of the themes of Topic #4.
   </p>
 
 

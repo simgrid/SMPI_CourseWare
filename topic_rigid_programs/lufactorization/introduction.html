@@ -16,13 +16,13 @@
   <h3 class="ui header">1-D Data Distribution</h3>
 
   <p class="ui">
-    Like the modules in the previous topic, we use a simple <i>1-D block data distribution</i>.
+    For this algorithm we use a simple <i>1-D block data distribution</i>.
     We consider a NxN matrix, A. This matrix
     contains <b>single precision elements</b> (<code>float</code>).
-    The execution takes place on p processors, <b>where p
-    divides N</b>. Each processor thus holds a
+    The execution takes place on p processes, <b>where p
+    divides N</b>. Each process thus holds a
     N × N/p block column of the matrix. In other words,
-    The process with rank 0 holds columns 0 to N/p − 1, the process with
+    the process with rank 0 holds columns 0 to N/p − 1, the process with
     rank 1 holds columns N/p to 2N/p − 1, etc.
   </p>
 
@@ -47,7 +47,7 @@
   <p class="ui">You should turn in a single archive (or a github repo) with:
   <div class="ui bulleted list">
     <div class="item">All source code</div>
-    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">XML platform files and hostfiles (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
   </div>
   </p>

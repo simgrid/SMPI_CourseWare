@@ -8,7 +8,7 @@
     <div class="ui container message ">
 
       <p class="ui">
-        Consider the execution with p<sup>2</sup> processes, and each process identified
+        Consider the execution with p<sup>2</sup> processes, where each process is identified
         by 2-D coordinates between 0 and p-1.  For the duration of the algorithm,
         process p<sub>i,j</sub> holds a block of matrix A, a block of matrix B, and a block of
         matrix C, which it computes. The algorithm proceeds in p steps, and at each step each process
@@ -37,8 +37,9 @@
       </p>
 
       <p class="ui">
-        As a result, at each iteration, each process is involved in 2 broadcasts (either as a sender or as a receiver). Blocks of A
-        are broadcast across rows of the process grid, and blocks of B are broadcast across columns of the process grid. This is
+        As a result, at each iteration, each process is involved in 2 broadcasts (either as a sender or as a receiver).
+        Blocks of A
+        are broadcasted along rows of the process grid, and blocks of B are broadcasted along columns of the process grid. This is
         typically depicted in a figure as follows (recall that block indices are identical to the indices of the processes that hold them). This
         figure is for the second step k=1:
       </p>

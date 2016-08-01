@@ -243,8 +243,7 @@
   <h3 class="ui header">2-D Data Distribution</h3>
 
   <p class="ui">
-    For this module, we use a <i>2-D block data distribution</i>,
-    which complicates indexing a bit.
+    For this module, we use a <i>2-D block data distribution</i>.
     More precisely, we consider the C = A×B multiplication
     where all three matrices are square of dimensions N×N. All matrices
     contain <b>single precision elements</b> (<code>float</code>).
@@ -302,7 +301,7 @@
   </p>
 
   <p class="ui">
-    and process #2 holds the following 3x3 block of matrix A:
+    and process #3 holds the following 3x3 block of matrix A:
   </p>
 
   <p style="text-align:center;" class="ui">
@@ -342,7 +341,7 @@
   <p class="ui">You should turn in a single archive (or a github repo) with:
   <div class="ui bulleted list">
     <div class="item">All source code</div>
-    <div class="item">XML platform files (see details in the activities)</div>
+    <div class="item">XML platform files and hostfiles (see details in the activities)</div>
     <div class="item">A Makefile that compiles all executables (and has a 'clean' target!)</div>
   </div>
   </p>
@@ -424,7 +423,7 @@ Process rank 2 (coordinates: 1,0), block of A:
 5.0 5.0 5.0 5.0
 6.0 6.0 6.0 6.0
 7.0 7.0 7.0 7.0
-Process rank 2 (coordinates: 1,0), block of A:
+Process rank 2 (coordinates: 1,0), block of B:
 4.0 5.0 6.0 7.0
 5.0 6.0 7.0 8.0
 6.0 7.0 8.0 9.0
@@ -438,20 +437,19 @@ Process rank 2 (coordinates: 1,0), block of A:
 <p class="ui">
   Note that due to the convenience of simulation,
   the output from one process will never be interleaved with the output of
-  another process. If you run this code "for real" with MPI instead of SMPI
+  another process. If you run this code "for real" with MPI, instead of SMPI,
   output will be interleaved and additional synchronization will be needed
   to make the output look nice.
   The order in which the processes output their blocks is inconsequential.
   You may want to use a barrier synchronization
-  to first see all blocks of A and then all blocks of B.
+  to first see all blocks of A and then all blocks of B though.
 
   </p>
 
 <p class="ui">
   Obviously, we won’t run this program for large N.
   The goal is simply to make sure that matrix blocks are initialized
-  correctly on all processes. You can run this program on any XML
-  platform file.
+  correctly on all processes.
 
 </p>
 
@@ -466,7 +464,7 @@ Process rank 2 (coordinates: 1,0), block of A:
 </div>
 
 <div class="ui tab segment" data-tab="outer_product">
-  <div class="ui container segment raised">In this activity implement the matrix multiplication algorithm.
+  <div class="ui container segment raised">In this activity we implement the matrix multiplication algorithm.
   Recall that we consider 3 NxN matrices (A, B, and C), and that we compute <i>C = AxB</i>. This
   activity consists in a single step, as described below.
 </div>
@@ -479,7 +477,7 @@ Process rank 2 (coordinates: 1,0), block of A:
 <div class="ui bottom attached tab segment active" data-tab="outer_product_algorithm">
 
   <p class="ui">
-  Implement a program called <code>matmul</code>, which builds on your <code>matmul_init</code>
+  Implement a program called <code>matmul</code> (<code>matmul.c</code>), which builds on your <code>matmul_init</code>
   program from the previous activity and implements the outer-product matrix multiplication algorithm.
 </p>
 
@@ -487,7 +485,8 @@ Process rank 2 (coordinates: 1,0), block of A:
 The principle of the outer-product algorithm, as might be expected, is that a matrix multiplication
   can be performed as a sequence of outer-products. You may have covered this algorithm in a course,
   and it is of course well-document in various texts. You may expand below to get a brief description
-  of the algorithm.
+  of the algorithm, which should be sufficient for you do do this step even if you've never seen
+  the outer-product algorithm before.
 </p>
 
 
@@ -500,7 +499,7 @@ The principle of the outer-product algorithm, as might be expected, is that a ma
     <div class="ui container message ">
 
       <p class="ui">
-        Consider the execution with p<sup>2</sup> processes, and each process identified
+        Consider the execution with p<sup>2</sup> processes, where each process is identified
         by 2-D coordinates between 0 and p-1.  For the duration of the algorithm,
         process p<sub>i,j</sub> holds a block of matrix A, a block of matrix B, and a block of
         matrix C, which it computes. The algorithm proceeds in p steps, and at each step each process
@@ -529,8 +528,9 @@ The principle of the outer-product algorithm, as might be expected, is that a ma
       </p>
 
       <p class="ui">
-        As a result, at each iteration, each process is involved in 2 broadcasts (either as a sender or as a receiver). Blocks of A
-        are broadcast across rows of the process grid, and blocks of B are broadcast across columns of the process grid. This is
+        As a result, at each iteration, each process is involved in 2 broadcasts (either as a sender or as a receiver).
+        Blocks of A
+        are broadcasted along rows of the process grid, and blocks of B are broadcasted along columns of the process grid. This is
         typically depicted in a figure as follows (recall that block indices are identical to the indices of the processes that hold them). This
         figure is for the second step k=1:
       </p>
@@ -576,7 +576,7 @@ The principle of the outer-product algorithm, as might be expected, is that a ma
   all added up together (using <code>MPI_Reduce</code> is the way to go), and the process of rank 0 prints out
   the sum. This process then computes the difference with the analytical formula:
   <i>N<sup>3</sup> (N - 1)<sup>2</sup> / 2</i>. This process should print out an error message if the
-  two values don't match (beware of casts and round-off, you likely want to do everything in double precision
+  two values don't match (beware of casts and round-off; you likely want to do everything in double precision
   and check that the absolute value of the difference of the two values is below some small epsilon, instead
   of testing for equality with the '==' operator).
   <i></i>
