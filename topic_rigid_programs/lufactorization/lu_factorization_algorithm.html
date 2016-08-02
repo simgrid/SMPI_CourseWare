@@ -3,8 +3,15 @@
   Gaussian elimination (without pivoting) algorithm.   You may have covered this algorithm in a course,
   and it is of course well-document in various texts.  Regardless, a sequential implementation,
   <code><a href="./sequential_lu.c">sequential_lu.c</a></code>, is provided. So you can use it as a starting point
-  in a "let's parallelize an existing sequential implementation" scenario.
+  in a "let's parallelize an existing sequential implementation" scenario. The overall algorithm for iteration
+  <i>k</i> is:
+  <div class="ui bulleted list">
+  <div class="ui item"> If I hold column k (global) of the matrix,
+    update the column and broadcast it to all other processes.</div>
+  <div class="ui item">For all the columns I hold that are after column k, update their lower portion.</div>
+</div>
 </p>
+
 
 
 <p class="ui">
@@ -21,7 +28,8 @@
   The matrix, once the Gaussian Elimination is complete, will have all 1’s in its lower triangular portion, 
   and i<sup>2</sup> values on its diagonal and in its upper triangular portion.
   Run <code>lu_sequential.c</code> with a small value of N to see this structure. Your code should check
-  that these are the values computed by your implementation (each process can do its own check).
+  that these are the values computed by your implementation (each process can do its own check, and the number of
+  errors can be "MPI_Reduced" as the process of rank 0 to print and overall "success" or "failure" message).
 </p>
 
 <p class="ui">
@@ -34,4 +42,16 @@
 
 <p>For debugging purposes, remember that it's a good idea to insert calls to <code>MPI_Barrier</code>
   so that debugging output from the program can be structured step-by-step.
+</p>
+
+<p><b>Hints:</b>
+<div class="ui list bulleted">
+  <div class="ui item"> Use the standard <code>MPI_Bcast()</code> function to perform the broadcasts</div>
+  <div class="ui item"> It's a very good idea to implement <code>local2global()</code> and <code>global2local()</code>
+    functions that do the translations between local and global indices.</div>
+  <div class="ui item"> Recall that sending a column is not very convenient because matrices are traditionally stored
+    in row-major fashion in C, thus requiring either the use of an additional buffer or of an MPI data type. Or you
+    store your matrix in column-major fashion and do the necessary mental gymnastic to parallelize the row-major
+     sequential program... </div>
+</div>
 </p>

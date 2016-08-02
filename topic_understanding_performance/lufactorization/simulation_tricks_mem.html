@@ -1,0 +1,34 @@
+<p class="ui">
+  Besides cpu time, another limiting factor for scalable simulation is memory space. If
+  I want to use SMPI to simulate 100 processes that each uses 1GiB of heap space,
+  then I need a single machine with 100GiB of RAM! Again, this sounds bad, which is why
+  SMPI allows simulated processes to use the same heap allocations!! This leads to
+  nonsensical computation since processes overwrite each other's updates in the same
+  allocated memory zones. But, for deterministic application such as matrix multiply,
+  overall performance behavior is sufficiently preserved to lead to sufficiently accurate
+  simulation results (again, see SMPI research papers and those referenced therein).
+</p>
+
+<p class="ui">
+  The above is straightforward with SMPI:
+  <div class="ui bulleted list">
+    <div class="ui item">Replace <code>malloc</code> by <code>SMPI_MALLOC</code>;</div>
+    <div class="ui item">Replace <code>free</code> by <code>SMPI_FREE</code>.</div>
+  </div>
+</p>
+
+<p class="ui">
+  Do the above in your program. You now have a program that computes
+  nothing useful at all, but still outputs a simulated wallclock time that research shows
+  is sufficiently accurate to draw meaningful conclusions for our purpose!
+  The point is that this program can be executed faster and for larger matrices.
+  We now have an interesting simulation performance trade-off. With a lot of processes, we can scale the memory up.
+  For instance, say the memory space needed for the (sequential) matrix multiplication is 100GiB.
+  You can’t run the simulation of this computation on your laptop. However, if you simulate a parallel
+  execution with 100 processes, the above memory trick makes it so that you only need 1GiB of RAM to run the simulation.
+  However, with a lot of processes, the time to simulate the broadcasts with large data sizes is large
+  (due to the sheer number of individual point-to-point messages).
+  So, some simulations will take too much space, and some simulations will take too much time.
+  Nevertheless, our CPU and memory simulation "tricks" significantly widens the range of simulation experiments
+  that can be done in practice.
+  </p>

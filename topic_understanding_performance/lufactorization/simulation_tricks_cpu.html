@@ -1,0 +1,67 @@
+<p class="ui">
+  Experiments with large matrices are necessary to study scalability, but unfortunately these experiments are cpu-intensive,
+  whether on a real platform or in simulation. One advantage of simulation is that one can play tricks to reduce cpu expenses, essentially
+  by not performing actual computation.
+  This is something researchers often do in simulation and in this module you're doing it too.
+</p>
+
+<p class="ui">
+  When SMPI encounters a basic block of computation in your program, it executes the block
+  and times it to  generate the correct delay in simulation. If this
+  code takes 1 hour to run on your machine, then the simulation will then take at least 1
+  hour. If you are simulating 100 processes each computing for 1
+  hour, then the simulation will take 100 hours! This is because SMPI runs on a single core, running
+  MPI processes in round-robin fashion. This sounds bad, but SMPI provides several ways
+  to mitigate this problem.  For instance, one can tell the simulator:
+  "Execute/time the code only the first time you encounter it".  A more radical
+  option is to  tell the simulator: "When you encounter this basic
+  block, don't run it at all. Instead, I am telling you how many flops it involves
+  and simply compute the delay by dividing this number of flops by the compute speed."
+  In both cases, <b>the code no longer computes correct results</b>. But the idea is that for
+  deterministic basic blocks, such as the computational part of matrix multiplication, the general performance behavior is preserved,
+  and a simple re-calibration will lead to sufficiently accurate simulation results (this has been shown in SMPI research papers and
+  by other researchers before SMPI even existed).
+</p>
+
+<p class="ui">
+In this step we use the second option above, i.e., avoiding computation altogether. Consider the sample
+  basic block below:
+</p>
+
+<div class="ui container segment raised">
+{% highlight C %}
+for (i=0; i < N; i++) {
+  sum = sum * 3.0 * x * y;
+}
+{% endhighlight %}
+</div>
+
+This loop performs <i>O(N)</i> floating point operations, and in your SMPI code you can replace it by:
+
+<div class="ui container segment raised">
+  {% highlight C %}
+  double flops = (double)N * (double)FLOP_CALIBRATION_FACTOR ;
+  SMPI_SAMPLE_FLOPS(flops) {
+    // for (i=0; i < N; i++) {
+    //   sum = sum * 3.0 * x * y;
+  }
+  {% endhighlight %}
+</div>
+(note that the original code is simply commented-out without the <code>SMPI_SAMPLE_FLOPS</code> macro / basic block, which is
+likely a good idea instead of simply deleting it. The <code>FLOP_CALIBRATION_FACTOR</code> constant
+is the constant factor hidden in the <i>O(N)</i> asymptotic complexity. In step #3 we use calibration to determine
+and appropriate value. Typically, this constant is
+very low, so it's a good idea to instead declare:
+<div class="ui container segment raised">
+  {% highlight C %}
+  double flops = (double)N * (double)FLOP_CALIBRATION_FACTOR / 1.0E+10;
+  {% endhighlight %}
+</div>
+
+<p class="ui">
+Modify your program to do the above, for the basic block that multiplies matrix blocks. At this point,
+since your code doesn't compute anything useful, you can also comment out the part of the code that
+initializes the matrices and checks the validity of the results (in fact you really want to comment out the latter
+to avoid "invalid results" messages). For now use an arbitrary value for <code>FLOP_CALIBRATION_FACTOR</code> so
+that you can compile and debug your program, and pay no attention to the simulated performance.
+</p>

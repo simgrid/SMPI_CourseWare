@@ -23,6 +23,12 @@
  (uses module from Topic #3 as a starting point)</h4>
 </div>
 
+
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_understanding_performance/lufactorization/">LU Factorization</a>
+ (uses module from Topic #3 as a starting point)</h4>
+</div>
+
 </div>
 
 </div>
