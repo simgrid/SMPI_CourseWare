@@ -1,0 +1,6 @@
+Topic #4 (Performance):
+    - Add asynchronous broadcast to the MM application (once SMPI supports it? or
+      have the students implement it by hand?? likely the former option is better)
+
+
+Topic #5: come up with ideas

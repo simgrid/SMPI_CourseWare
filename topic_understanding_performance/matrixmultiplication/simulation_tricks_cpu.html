@@ -7,7 +7,7 @@
 
 <p class="ui">
   When SMPI encounters a basic block of computation in your program, it executes the block
-  and times it to then generate the correct delay in simulation. If this
+  and times it to  generate the correct delay in simulation. If this
   code takes 1 hour to run on your machine, then the simulation will then take at least 1
   hour. If you are simulating 100 processes each computing for 1
   hour, then the simulation will take 100 hours! This is because SMPI runs on a single core, running
@@ -36,7 +36,7 @@ for (i=0; i < N; i++) {
 {% endhighlight %}
 </div>
 
-This loop performs <i>O(N)</i> floating point operations, and in your SMPI code you can thus replace it by:
+This loop performs <i>O(N)</i> floating point operations, and in your SMPI code you can replace it by:
 
 <div class="ui container segment raised">
   {% highlight C %}
@@ -51,7 +51,7 @@ This loop performs <i>O(N)</i> floating point operations, and in your SMPI code 
 likely a good idea instead of simply deleting it. The <code>FLOP_CALIBRATION_FACTOR</code> constant
 is the constant factor hidden in the <i>O(N)</i> asymptotic complexity. In step #3 we use calibration to determine
 and appropriate value. Typically, this constant is
-very low, so it's likely a good ideas to instead declare:
+very low, so it's a good idea to instead declare:
 <div class="ui container segment raised">
   {% highlight C %}
   double flops = (double)N * (double)FLOP_CALIBRATION_FACTOR / 1.0E+10;
@@ -63,5 +63,5 @@ Modify your program to do the above, for the basic block that multiplies matrix 
 since your code doesn't compute anything useful, you can also comment out the part of the code that
 initializes the matrices and checks the validity of the results (in fact you really want to comment out the latter
 to avoid "invalid results" messages). For now use an arbitrary value for <code>FLOP_CALIBRATION_FACTOR</code> so
-that you can compile and debug your program. Pay no attention to the simulated performance for now.
+that you can compile and debug your program, and pay no attention to the simulated performance.
 </p>
