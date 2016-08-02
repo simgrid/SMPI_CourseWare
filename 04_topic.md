@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Topic &#35;4
-description: Understanding the performance impact of communications
+description: Understanding performance
 top_level: true
 topic: topic04
 ---
 
-{% include_relative topic_mitigating_communication/index.md %}
+{% include_relative topic_understanding_performance/index.md %}
 
