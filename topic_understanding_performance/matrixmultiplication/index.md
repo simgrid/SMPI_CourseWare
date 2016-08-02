@@ -11,7 +11,7 @@ topic: topic04
   <a class="item active" data-tab="intro">Introduction</a>
   <a class="item " data-tab="network_speed">Activity #1</a>
   <a class="item " data-tab="scalability">Activity #2</a>
-  <a class="item " data-tab="asynchronous">Activity #3</a>
+  <!--<a class="item " data-tab="asynchronous">Activity #3</a>-->
   <a class="item" data-tab="conclusion">Conclusion</a>
 </div>
 
@@ -29,11 +29,13 @@ topic: topic04
   {% include_relative scalability.html %}
 </div>
 
+<!--
 
 <div class="ui tab segment " data-tab="asynchronous">
   {% include_relative tbd.html %}
 </div>
 
+-->
 
 <div class="ui tab segment" data-tab="conclusion">
   {% include_relative conclusion.html %}
