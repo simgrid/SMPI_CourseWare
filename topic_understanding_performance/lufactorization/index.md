@@ -9,8 +9,9 @@ topic: topic04
 
 <div class="ui pointing secondary menu">
   <a class="item active" data-tab="intro">Introduction</a>
-  <a class="item " data-tab="scalability">Activity #1</a>
+  <a class="item " data-tab="load_imbalance">Activity #1</a>
   <a class="item " data-tab="roundrobin">Activity #2</a>
+  <a class="item " data-tab="scalability">Activity #3</a>
   <a class="item" data-tab="conclusion">Conclusion</a>
 </div>
 
@@ -19,13 +20,17 @@ topic: topic04
 </div>
 
 
-<div class="ui tab segment " data-tab="scalability">
-  {% include_relative scalability.html %}
+<div class="ui tab segment " data-tab="load_imbalance">
+  {% include_relative load_imbalance.html %}
 </div>
 
 
 <div class="ui tab segment " data-tab="roundrobin">
-  {% include_relative tbd.html %}
+  {% include_relative roundrobin.html %}
+</div>
+
+<div class="ui tab segment " data-tab="scalability">
+  {% include_relative scalability.html %}
 </div>
 
 

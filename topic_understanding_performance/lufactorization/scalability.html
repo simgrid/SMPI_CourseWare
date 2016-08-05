@@ -1,40 +1,17 @@
-<div class="ui container segment raised">In this activity we experiment with large matrices. In steps #1 and #2 below we play "simulation tricks" to avoid
-  running too memory-intensive / cpu-intensive simulations. In step #3 we re-calibrate the simulation, and
-  in step #4 we run experiments to quantify application performance.
+<div class="ui container segment raised">In this activity we see the effect of communication
+  on overall application performance.
 </div>
 
 <div class="ui top attached tabular menu">
-  <a class="item active" data-tab="simulation_tricks_cpu">Step #1: No computation</a>
-  <a class="item " data-tab="simulation_tricks_mem">Step #2: Less memory</a>
-  <a class="item " data-tab="recalibration">Step #3: Recalibration</a>
-  <a class="item " data-tab="scalability_runs">Step #4: Performance</a>
+  <a class="item active" data-tab="network_performance">Step #1: Effect of network performance</a>
 </div>
 
 
-<div class="ui bottom attached tab segment active" data-tab="simulation_tricks_cpu">
+<div class="ui bottom attached tab segment active" data-tab="network_performance">
 
-  {% include_relative simulation_tricks_cpu.html %}
-
-</div>
-
-
-<div class="ui bottom attached tab segment " data-tab="simulation_tricks_mem">
-
-  {% include_relative simulation_tricks_mem.html %}
+  {% include_relative network_performance.html %}
 
 </div>
 
 
-<div class="ui bottom attached tab segment " data-tab="recalibration">
-
-  {% include_relative recalibration.html %}
-
-</div>
-
-
-<div class="ui bottom attached tab segment " data-tab="scalability_runs">
-
-  {% include_relative scalability_runs.html %}
-
-</div>
 

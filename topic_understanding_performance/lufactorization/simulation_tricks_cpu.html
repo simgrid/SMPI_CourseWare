@@ -18,7 +18,8 @@
   block, don't run it at all. Instead, I am telling you how many flops it involves
   and simply compute the delay by dividing this number of flops by the compute speed."
   In both cases, <b>the code no longer computes correct results</b>. But the idea is that for
-  deterministic basic blocks, such as the computational part of matrix multiplication, the general performance behavior is preserved,
+  deterministic basic blocks, such as the computation and updates in columns in the LU factorization
+  implementation, the general performance behavior is preserved,
   and a simple re-calibration will lead to sufficiently accurate simulation results (this has been shown in SMPI research papers and
   by other researchers before SMPI even existed).
 </p>
@@ -59,7 +60,10 @@ very low, so it's a good idea to instead declare:
 </div>
 
 <p class="ui">
-Modify your program to do the above, for the basic block that multiplies matrix blocks. At this point,
+Modify your program to do the above, for the basic block that computes the k-th column and
+  the basic block that updated the lower-right part of the matrix (i.e., the two computational
+  for loops in the sequential version of the code, which you have parallelized when completing
+  the LU Factorization module in Topic #3). At this point,
 since your code doesn't compute anything useful, you can also comment out the part of the code that
 initializes the matrices and checks the validity of the results (in fact you really want to comment out the latter
 to avoid "invalid results" messages). For now use an arbitrary value for <code>FLOP_CALIBRATION_FACTOR</code> so
