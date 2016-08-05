@@ -1,0 +1,27 @@
+<p class="ui">
+  Now that your simulation is fully calibrated, augment your implementation (in <code>lu.c</code>) so that at the
+  end of the execution the program prints out <i>the elapsed time</i> as well as the <i>percentage idle time</i>.
+   The idle time corresponds to the column updates phase
+  (i.e., at a given iteration some processors will have fewer columns to update than others, and will thus remain idle
+  until all processors are ready to move on). As usual, it's a good idea to use <code>MPI_Wtime</code> to measure
+  time, and it's ok to add calls to <code>MPI_Barrier</code> to make it easier to measure idle time at
+  each process.  The percentage idle time is computed as the sum of all the individual idle times (which you can
+  compute using <code>MPI_Reduce</code>), divided by the product of the number of processes and the elapsed time.
+</p>
+
+<p class="ui">
+  Run your code using
+  <a href="./cluster_1600.xml"><code>cluster_1600.xml</code></a>  and
+  <a href="./hostfile_1600.txt"><code>hostfile_1600.txt</code></a>, <b>but</b>
+  edit <code>cluster_1600.xml</code> to make the network very fast (zero latency, huge bandwidth). This
+  will allow us to take the network out of the equation for now.  Run your code for a
+  32000x32000 matrix with p = 1, 4, 8, 16, 32, 64, and 128 processes. On the same graph plot
+  the elapsed time and the percentage idle time (using two different left and right vertical axes).
+
+  </p>
+
+<p class="ui">
+   In your <code>README</code> file describe what you observe. Is the idle time significant? Does the
+   performance scale well as the number of processors increase? Can you explain why that is given
+   what the implementation is doing?
+</p>

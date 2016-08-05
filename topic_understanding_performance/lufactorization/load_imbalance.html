@@ -1,0 +1,43 @@
+<div class="ui container segment raised">In this activity we investigate whether the original implementation
+  achieves good load balance, i.e., do the processes have close to the same amounts of work to do. We wish
+  to do this investigation for large matrices, to better observe load balancing behaviors.
+   In steps #1 and #2 below we play "simulation tricks" to avoid
+  running too memory-intensive / cpu-intensive simulations. In step #3 we re-calibrate the simulation, and
+  in step #4 we run experiments to quantify load imbalance.
+</div>
+
+<div class="ui top attached tabular menu">
+  <a class="item active" data-tab="simulation_tricks_cpu">Step #1: No computation</a>
+  <a class="item " data-tab="simulation_tricks_mem">Step #2: Less memory</a>
+  <a class="item " data-tab="recalibration">Step #3: Recalibration</a>
+  <a class="item " data-tab="load_imbalance_runs">Step #4: Load Imbalance</a>
+</div>
+
+
+<div class="ui bottom attached tab segment active" data-tab="simulation_tricks_cpu">
+
+  {% include_relative simulation_tricks_cpu.html %}
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="simulation_tricks_mem">
+
+  {% include_relative simulation_tricks_mem.html %}
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="recalibration">
+
+  {% include_relative recalibration.html %}
+
+</div>
+
+
+<div class="ui bottom attached tab segment " data-tab="load_imbalance_runs">
+
+  {% include_relative load_imbalance_runs.html %}
+
+</div>
+
