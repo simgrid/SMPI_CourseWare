@@ -6,7 +6,7 @@
   until all processors are ready to move on). As usual, it's a good idea to use <code>MPI_Wtime</code> to measure
   time, and it's ok to add calls to <code>MPI_Barrier</code> to make it easier to measure idle time at
   each process.  The percentage idle time is computed as the sum of all the individual idle times (which you can
-  compute using <code>MPI_Reduce</code>), divided by the product of the number of processes and the elapsed time.
+  obtain using <code>MPI_Reduce</code>), divided by the product of the number of processes and the elapsed time.
 </p>
 
 <p class="ui">
