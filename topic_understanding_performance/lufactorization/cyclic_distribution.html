@@ -1,9 +1,10 @@
 <p class="ui">
  The reason for poor load balance in the original implementation is that after some point, a process runs out of
-  work to do (because the application proceeds from left to right along the columns of the matrix).  A solution
+  work to do (because the application proceeds from left to right along the columns of the matrix).  This is an
+  artifact of our data distribution. A solution
   is to use a <i>cyclic distribution</i>. More precisely, modify your program, calling it <code>lu_roundrobin.c</code>,
   so that the columns of the matrix are assigned to the processors in Round-Robin fashion
   (rank 0 processes columns 0, p, 2p, 3p,..., rank 1 processes columns 1, p + 1, 2p + 1, 3p + 1,...).
-  Of course your code must still check that the computed results are correct before moving one to the
+  Of course you must still check that the computed results are correct before moving on to the
   experiments in the next step (i.e., disable the "simulation tricks" for testing correctness).
 </p>
