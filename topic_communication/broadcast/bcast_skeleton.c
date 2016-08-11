@@ -42,7 +42,7 @@ static void print_usage(char *exec_name) {
   MPI_Comm_rank(MPI_COMM_WORLD,&my_rank);
 
   if (my_rank == 0) {
-    fprintf(stderr,"Usage: mpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf -np <num processes>\n");
+    fprintf(stderr,"Usage: smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running_power:1Gf -np <num processes>\n");
     fprintf(stderr,"              -platform <XML platform file> -hostfile <host file>\n");
     fprintf(stderr,"              %s <bcast implementation name> [-c <chunk size>]\n",exec_name);
     fprintf(stderr,"MPIRUN arguments:\n");
