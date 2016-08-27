@@ -7,12 +7,14 @@
 #   - pushes the changes to the gh-pages branch
 #   - the gh-branch content is magically seen at: https://simgrid.github.io/SMPI_CourseWare/
 
-( set -x ; /bin/rm -rf /tmp/gh-pages )
+TARGETDIR=/tmp/SMPI_CourseWare
+
+( set -x ; /bin/rm -rf $TARGETDIR )
 ( set -x ;\
   cd /tmp;\
-  git clone --depth 1 --branch gh-pages git@github.com:simgrid/SMPI_CourseWare.git SMPI_CourseWare;\
-  cd SMPI_CourseWare;\
+  git clone --depth 1 --branch gh-pages git@github.com:simgrid/SMPI_CourseWare.git $TARGETDIR;\
+  cd $TARGETDIR;\
   git branch -u origin/gh-pages; )
-( set -x ; jekyll build --source . --destination /tmp/SMPI_CourseWare; )
-( set -x; cd /tmp/SMPI_CourseWare; git add --all .; git commit -a -m "Re-generating HTML"; git push; )
-( set -x; /bin/rm -rf /tmp/gh-pages; )
+( set -x ; jekyll build --source . --destination $TARGETDIR; )
+( set -x; cd $TARGETDIR; git add --all .; git commit -a -m "Re-generating HTML"; git push; )
+( set -x; /bin/rm -rf $TARGETDIR; )

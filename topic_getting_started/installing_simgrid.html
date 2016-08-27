@@ -1,10 +1,15 @@
 <p class="ui">
   This CourseWare was tested with <a href="http://simgrid.gforge.inria.fr/">SimGrid</a>
-  v3.12, but should be usable with any other versions with very small changes.
+  version 3.12 (small changes <i>may</i> be needed with other versions).
+</p>
 
+<p class="ui">
   On a <b>Debian/Ubuntu (virtual) machine</b>, you can retrieve SimGrid directly from the
   package manager: <code>sudo apt-get install simgrid</code>
+</p>
 
+<hr/>
+<p class="ui">
   For other systems, please refer to the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a>
   that have all the information you need. But just to be sure, here is
   a typical way to compile the version you want on a Linux (virtual) box:
@@ -13,8 +18,8 @@
 <div class="ui list bulleted">
   <div class="ui item">Install the dependencies: <code>sudo apt-get install g++ libboost-all-dev</code></div>
   <div class="ui item">Download the .tar.gz of the latest stable version from the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a></div>
-  <div class="ui item">Extract the archive: <code>tar -xvf simgrid-x.x.x.tar.gz</code></div>
-  <div class="ui item">Go to the extracted directory: <code>cd simgrid</code></div>
+  <div class="ui item">Extract the archive: <code>tar -xvf SimGrid-x.x.x.tar.gz</code></div>
+  <div class="ui item">Go to the extracted directory: <code>cd SimGrid-x.x.x</code></div>
   <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br> (Assuming you want to install in <code>/usr/local/</code>)</div>
   <div class="ui item">Build: <code>make</code></div>
   <div class="ui item">Run the tests (for the paranoid): <code>make check</code></div>
@@ -26,6 +31,7 @@
   commands: <b><code>smpicc</code></b> and <b><code>smpirun</code></b>.
 </p>
 
+<hr/>
 <p class="ui">
   If you are not a superuser on your system, then you have to install SimGrid in your home directory, say in a directory
   called <code>local</code>, with the modified <code>cmake</code>
@@ -37,6 +43,7 @@
   <div class="ui item"><code>cmake -DCMAKE_INSTALL_PREFIX=$HOME/local/ -Denable_smpi=on -Denable_documentation=off</code></div>
 </div>
 
+<hr/>
 <p class="ui">
   To use this CourseWare with SimGrid v3.13 or higer, you need to
   update all provided platform files. The
