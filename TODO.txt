@@ -1,17 +1,6 @@
-New assignment: Predator/Prey simulation.
-    - Topic #3: Make it work
-    - Topic #4: Make it fast by adapting the world size, and maybe
-      using shadow borders and other technics that I'm not sure about
-    - Topic #5: Dynamic Workload Adaptation
-      Bibliography:
-        - www.sdsc.edu/~allans/cs260/lectures/demmel1.ppt <- progressive presentation
-        - http://www.cs.mcgill.ca/~carl/fishnsharks.html <- Dynamic parts
-	- http://courses.washington.edu/css534/prog/prog2_2015.pdf <- with other ideas
-
-New assignment: Something could maybe be built around mass-spring simulations
-
 Topic #4 (Performance):
     - Add asynchronous broadcast to the MM application (once SMPI supports it? or
       have the students implement it by hand?? likely the former option is better)
 
-Topic #5: come up with ideas. Or maybe propose something around Star-PU?
+
+Topic #5: come up with ideas
