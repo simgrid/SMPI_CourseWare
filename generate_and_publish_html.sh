@@ -8,7 +8,11 @@
 #   - the gh-branch content is magically seen at: https://simgrid.github.io/SMPI_CourseWare/
 
 ( set -x ; /bin/rm -rf /tmp/gh-pages )
-( set -x ; cd /tmp; git clone git@github.com:simgrid/SMPI_CourseWare.git gh-pages; cd gh-pages; git checkout gh-pages; git branch -u origin/gh-pages; )
-( set -x ; jekyll build --source . --destination /tmp/gh-pages; )
-( set -x; cd /tmp/gh-pages; git add --all .; git commit -a -m "Re-generating HTML"; git push; )
+( set -x ;\
+  cd /tmp;\
+  git clone --depth 1 --branch gh-pages git@github.com:simgrid/SMPI_CourseWare.git SMPI_CourseWare;\
+  cd SMPI_CourseWare;\
+  git branch -u origin/gh-pages; )
+( set -x ; jekyll build --source . --destination /tmp/SMPI_CourseWare; )
+( set -x; cd /tmp/SMPI_CourseWare; git add --all .; git commit -a -m "Re-generating HTML"; git push; )
 ( set -x; /bin/rm -rf /tmp/gh-pages; )
