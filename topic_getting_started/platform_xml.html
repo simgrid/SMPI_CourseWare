@@ -48,13 +48,22 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 </div>
 
 <p class="ui">
-In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
+  In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
   with a <code>power</code> (i.e., compute speed in Gflops), and links with a <code>latency</code> (in us)
   and <code>bandwidth</code> (in MBytes per second). Other units are possible and written as expected.
   By default, routes are symmetrical. See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
-
 </p>
+
+<p class="ui">
+  Note that this XML file is intended for SimGrid v3.12 or earlier. To
+  use it with SimGrid v3.13 or above, you have to convert it using the
+  <code>simgrid_update_xml</code> program, as follows:
+</p>
+<div class="ui list">
+  <div class="ui item"><code>simgrid_update_xml 3_hosts.xml</code></div>
+</div>
+
 
 <div class="ui divider"></div>
 
