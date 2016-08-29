@@ -663,7 +663,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
       <h5 class="ui">As expected, each process process should process 200 rows:</h5>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 5 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 1000
+% smpirun -np 5 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 1000
 [Process 0 out of 5]: I should compute pixel rows 0 to 199, for a total of 200 rows
 [Process 1 out of 5]: I should compute pixel rows 200 to 399, for a total of 200 rows
 [Process 2 out of 5]: I should compute pixel rows 400 to 599, for a total of 200 rows
@@ -685,7 +685,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
       process 0 could compute only 6 rows, while process 15 could compute 7 rows).</h5>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+% smpirun -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
 [Process 0 out of 16]: I should compute pixel rows 0 to 6, for a total of 7 rows
 [Process 1 out of 16]: I should compute pixel rows 7 to 13, for a total of 7 rows
 [Process 2 out of 16]: I should compute pixel rows 14 to 20, for a total of 7 rows
@@ -718,7 +718,7 @@ a simple <b>1-D data distribution</b>. We break it down into the three steps bel
       these processes print as their range of rows).</h5>
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">% smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+% smpirun -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
 [Process 1 out of 16]: I should compute pixel rows 1 to 1, for a total of 1 rows
 [Process 2 out of 16]: I should compute pixel rows 2 to 2, for a total of 1 rows
 [Process 3 out of 16]: I should compute pixel rows 3 to 3, for a total of 1 rows
@@ -1033,7 +1033,7 @@ we break it down into the three steps below:
     <div class="ui container raised segment">
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">% smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 9 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 30
+% smpirun -np 9 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 30
 [Process rank 0]: my 2-D rank is (0, 0), my tile is [0:9, 0:19]
 [Process rank 1]: my 2-D rank is (0, 1), my tile is [0:9, 20:39]
 [Process rank 2]: my 2-D rank is (0, 2), my tile is [0:9, 40:59]
@@ -1056,7 +1056,7 @@ we break it down into the three steps below:
     <div class="ui container segment raised">
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">% smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./2D_parallel_julia 200
+% smpirun -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./2D_parallel_julia 200
 [Process rank 0]: my 2-D rank is (0, 0), my tile is [0:49, 0:99]
 [Process rank 1]: my 2-D rank is (0, 1), my tile is [0:49, 100:199]
 [Process rank 2]: my 2-D rank is (0, 2), my tile is [0:49, 200:299]

@@ -68,7 +68,7 @@
       <h5 class="ui">As expected, each process process should process 200 rows:</h5>
 {% highlight text %}
 % smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 5 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 1000
+% smpirun -np 5 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 1000
 [Process 0 out of 5]: I should compute pixel rows 0 to 199, for a total of 200 rows
 [Process 1 out of 5]: I should compute pixel rows 200 to 399, for a total of 200 rows
 [Process 2 out of 5]: I should compute pixel rows 400 to 599, for a total of 200 rows
@@ -90,7 +90,7 @@
       process 0 could compute only 6 rows, while process 15 could compute 7 rows).</h5>
 {% highlight text %}
 % smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+% smpirun -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
 [Process 0 out of 16]: I should compute pixel rows 0 to 6, for a total of 7 rows
 [Process 1 out of 16]: I should compute pixel rows 7 to 13, for a total of 7 rows
 [Process 2 out of 16]: I should compute pixel rows 14 to 20, for a total of 7 rows
@@ -123,7 +123,7 @@
       these processes print as their range of rows).</h5>
 {% highlight text %}
 % smpicc -O3 1D_parallel_julia.c -o 1D_parallel_julia
-% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
+% smpirun -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 100
 [Process 1 out of 16]: I should compute pixel rows 1 to 1, for a total of 1 rows
 [Process 2 out of 16]: I should compute pixel rows 2 to 2, for a total of 1 rows
 [Process 3 out of 16]: I should compute pixel rows 3 to 3, for a total of 1 rows
