@@ -101,8 +101,8 @@ print >> sys.stderr, "Callibrating code compiled"
 ###########################################
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
-fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid.dtd\">\n<platform version=\"3\">\n<AS id=\"AS0\" routing=\"Full\">\n")
-fh.write("  <host id=\"host-0\" power=\"1\"/>\n")
+fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
+fh.write("  <host id=\"host-0\" speed=\"1f\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
 print >> sys.stderr, "One-host XML platform file generated"
@@ -137,7 +137,7 @@ while (True):
 
 	# Run the code
 	FNULL = open(os.devnull, 'w')
-	output = subprocess.check_output(["smpirun","--cfg=smpi/running_power:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
+	output = subprocess.check_output(["smpirun","--cfg=smpi/running-power:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
 	FNULL.close()
 
 	# Get the wall-clock time
@@ -153,6 +153,6 @@ while (True):
 	if (abs(high - low) < 0.001):
 		break
 
-print "Run smpirun with --cfg=smpi/running_power:"+str(("%.3f" % attempt))+"\n"
+print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
 print "  (and run smpicc with -O4)\n"
 
