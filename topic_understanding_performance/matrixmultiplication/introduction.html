@@ -32,16 +32,20 @@
   To make the simulation results consistent regardless of your computer we first calibrate the simulation.
   More specifically, we simulate a parallel platform in which each processor computes 32 times
   faster than one core of the laptop of the author of this module in 2016.  Calibration of simulated
-  compute times with SMPI is straightforward: just pass a particular floating point value to
+  compute times with SMPI is done by passing a particular floating point value to
   <code>smpirun</code> using the <code>--cfg=smpi/running-power:VALUE</code> command-line option.
 
   </p>
 
   <p class="ui">
-    A python script called <a href="./calibrate_flops.py"><code>calibrate_flops.py</code></a> is provided, which you should run once
-    on your idle computer. This script performs a binary search to find the necessary calibration factor, which is printed
-    to the screen and should be passed to the <code>--cfg=smpi/running-power</code> command-line option.
-    Of course, if you change computer, you'll have to re-run the script to find a new calibration factor.
+    A python script called <a
+    href="./calibrate_flops.py"><code>calibrate_flops.py</code></a> is
+    provided, which you should run once on your idle computer. This script
+    performs a binary search to find the necessary calibration factor,
+    which is printed to the screen and should be passed to the
+    <code>--cfg=smpi/running-power</code> command-line option.  Of course,
+    if you change computer, you'll have to re-run the script to find a new
+    calibration factor.
 
   </p>
 

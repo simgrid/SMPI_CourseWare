@@ -102,7 +102,7 @@ print >> sys.stderr, "Callibrating code compiled"
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
 fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
-fh.write("  <host id=\"host-0\" speed=\"1f\"/>\n")
+fh.write("  <host id=\"host-0\" speed=\"10Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
 print >> sys.stderr, "One-host XML platform file generated"
@@ -128,8 +128,8 @@ print >> sys.stderr, "Initiating binary search..."
 target = 4.11/32
 
 # Initial bounds for the binary search
-low = 0.0001
-high = 1000.0
+low = 1
+high = 10000000000.0
 
 while (True):
 
