@@ -128,7 +128,7 @@ print >> sys.stderr, "Initiating binary search..."
 target = 4.11/32
 
 # Initial bounds for the binary search
-low = 1
+low = 0
 high = 10000000000.0
 
 while (True):
@@ -150,7 +150,7 @@ while (True):
 	else:
 		high = attempt
 	
-	if (abs(high - low) < 0.001):
+	if (abs(high - low) < 100):
 		break
 
 print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
