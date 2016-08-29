@@ -34,7 +34,7 @@ def issueLink3(x,y,bw):
 	return "  <link id=\"link-"+str(x)+"-"+str(y)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(bw)+link_bandwidth_unit+"\"/>\n"
 
 def issueHost(index):
-	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"1Gf\"/>\n"
+	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"10Gf\"/>\n"
 
 def issueRouteHead(index1, index2):
 	return "  <route src=\"host-"+str(index1)+".hawaii.edu\" dst=\"host-"+str(index2)+".hawaii.edu\">\n"

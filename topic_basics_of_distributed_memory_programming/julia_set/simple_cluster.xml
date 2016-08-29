@@ -3,6 +3,6 @@
 <platform version="4">
 <AS id="AS0" routing="Full">
   <cluster id="simple_cluster" prefix="host-" suffix=".me.org"
-           radical="0-1023" speed="1Gf" bw="500MBps" lat="5us"/>
+           radical="0-1023" speed="10Gf" bw="500MBps" lat="5us"/>
 </AS>
 </platform>

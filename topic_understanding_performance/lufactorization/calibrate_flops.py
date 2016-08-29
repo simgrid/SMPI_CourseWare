@@ -16,7 +16,7 @@ callibrating_C_code = """
 #include <mpi.h>
 #include <math.h>
 
-#define SIZE 1400
+#define SIZE 2000
 
 static void matmult(double *A, double *B, double *C, int n) {
   int i,j,k;
@@ -42,9 +42,7 @@ int main(int argc, char *argv[])
   // Only process of rank 0 does something
   double sum;
   double start;
-  if (my_rank == 0) {
-    start = MPI_Wtime();
-  }
+  double elapsed;
 
   if (my_rank == 0) {
     
@@ -62,6 +60,7 @@ int main(int argc, char *argv[])
     }
   
     // Multiply matrices
+    start = MPI_Wtime();
     matmult(A,B,C,SIZE);
   
     // Compute the sum (to avoid compiler optimization)
@@ -69,13 +68,14 @@ int main(int argc, char *argv[])
     for (i=0; i < SIZE*SIZE; i++) {
       sum += C[i];
     }
+    elapsed = MPI_Wtime() - start;
 
   }
   MPI_Barrier(MPI_COMM_WORLD);
 
   if (my_rank == 0) {
     // Print the wall-clock time and the sum
-    printf("%.5lf\\t%0.2lf\\n",MPI_Wtime() - start, sum);
+    printf("%.5lf\\t%0.2lf\\n", elapsed, sum);
   }
 
   // Clean-up
@@ -89,7 +89,7 @@ callibrating_code_filename = "/tmp/callibrating_code.c"
 fh = open(callibrating_code_filename, 'w')
 fh.write(callibrating_C_code)
 fh.close()
-error_code = os.system("smpicc -O4 "+callibrating_code_filename+" -o /tmp/callibration_code")
+error_code = os.system("smpicc -Ofast "+callibrating_code_filename+" -o /tmp/callibration_code")
 if (error_code != 0):
 	print >> sys.stderr, "Can't compile '"+callibrating_code_filename+"'... aborting\n"
 	exit(1)
@@ -102,7 +102,7 @@ print >> sys.stderr, "Callibrating code compiled"
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
 fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
-fh.write("  <host id=\"host-0\" speed=\"1f\"/>\n")
+fh.write("  <host id=\"host-0\" speed=\"10Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
 print >> sys.stderr, "One-host XML platform file generated"
@@ -125,11 +125,11 @@ print >> sys.stderr, "Initiating binary search..."
 # Target time based on a machine with 32 cores
 # where each core is the same as a core of Henri's laptop
 # (assuming a perfect multi-core speedup)
-target = 2.10 / 32
+target = 4.11/32
 
 # Initial bounds for the binary search
-low = 0.0001
-high = 1000.0
+low = 0
+high = 10000000000.0
 
 while (True):
 
@@ -150,9 +150,9 @@ while (True):
 	else:
 		high = attempt
 	
-	if (abs(high - low) < 0.001):
+	if (abs(high - low) < 100):
 		break
 
 print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
-print "  (and run smpicc with -O4)\n"
+print "  (and run smpicc with -Ofast)\n"
 
