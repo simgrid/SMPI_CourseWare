@@ -1,206 +1,206 @@
 <?xml version='1.0'?>
-<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-<platform version="3">
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4">
 <AS id="AS0" routing="Full">
-  <host id="host-0.hawaii.edu" power="1"/>
-  <link id="link-0-1" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-0-2" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-1.hawaii.edu" power="1"/>
-  <link id="link-1-3" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-1-4" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-2.hawaii.edu" power="1"/>
-  <link id="link-2-5" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-2-6" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-3.hawaii.edu" power="1"/>
-  <link id="link-3-7" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-3-8" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-4.hawaii.edu" power="1"/>
-  <link id="link-4-9" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-4-10" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-5.hawaii.edu" power="1"/>
-  <link id="link-5-11" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-5-12" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-6.hawaii.edu" power="1"/>
-  <link id="link-6-13" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-6-14" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-7.hawaii.edu" power="1"/>
-  <link id="link-7-15" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-7-16" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-8.hawaii.edu" power="1"/>
-  <link id="link-8-17" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-8-18" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-9.hawaii.edu" power="1"/>
-  <link id="link-9-19" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-9-20" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-10.hawaii.edu" power="1"/>
-  <link id="link-10-21" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-10-22" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-11.hawaii.edu" power="1"/>
-  <link id="link-11-23" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-11-24" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-12.hawaii.edu" power="1"/>
-  <link id="link-12-25" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-12-26" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-13.hawaii.edu" power="1"/>
-  <link id="link-13-27" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-13-28" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-14.hawaii.edu" power="1"/>
-  <link id="link-14-29" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-14-30" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-15.hawaii.edu" power="1"/>
-  <link id="link-15-31" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-15-32" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-16.hawaii.edu" power="1"/>
-  <link id="link-16-33" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-16-34" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-17.hawaii.edu" power="1"/>
-  <link id="link-17-35" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-17-36" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-18.hawaii.edu" power="1"/>
-  <link id="link-18-37" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-18-38" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-19.hawaii.edu" power="1"/>
-  <link id="link-19-39" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-19-40" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-20.hawaii.edu" power="1"/>
-  <link id="link-20-41" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-20-42" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-21.hawaii.edu" power="1"/>
-  <link id="link-21-43" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-21-44" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-22.hawaii.edu" power="1"/>
-  <link id="link-22-45" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-22-46" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-23.hawaii.edu" power="1"/>
-  <link id="link-23-47" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-23-48" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-24.hawaii.edu" power="1"/>
-  <link id="link-24-49" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-24-50" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-25.hawaii.edu" power="1"/>
-  <link id="link-25-51" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-25-52" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-26.hawaii.edu" power="1"/>
-  <link id="link-26-53" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-26-54" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-27.hawaii.edu" power="1"/>
-  <link id="link-27-55" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-27-56" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-28.hawaii.edu" power="1"/>
-  <link id="link-28-57" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-28-58" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-29.hawaii.edu" power="1"/>
-  <link id="link-29-59" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-29-60" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-30.hawaii.edu" power="1"/>
-  <link id="link-30-61" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-30-62" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-31.hawaii.edu" power="1"/>
-  <link id="link-31-63" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-31-64" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-32.hawaii.edu" power="1"/>
-  <link id="link-32-65" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-32-66" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-33.hawaii.edu" power="1"/>
-  <link id="link-33-67" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-33-68" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-34.hawaii.edu" power="1"/>
-  <link id="link-34-69" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-34-70" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-35.hawaii.edu" power="1"/>
-  <link id="link-35-71" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-35-72" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-36.hawaii.edu" power="1"/>
-  <link id="link-36-73" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-36-74" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-37.hawaii.edu" power="1"/>
-  <link id="link-37-75" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-37-76" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-38.hawaii.edu" power="1"/>
-  <link id="link-38-77" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-38-78" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-39.hawaii.edu" power="1"/>
-  <link id="link-39-79" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-39-80" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-40.hawaii.edu" power="1"/>
-  <link id="link-40-81" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-40-82" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-41.hawaii.edu" power="1"/>
-  <link id="link-41-83" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-41-84" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-42.hawaii.edu" power="1"/>
-  <link id="link-42-85" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-42-86" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-43.hawaii.edu" power="1"/>
-  <link id="link-43-87" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-43-88" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-44.hawaii.edu" power="1"/>
-  <link id="link-44-89" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-44-90" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-45.hawaii.edu" power="1"/>
-  <link id="link-45-91" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-45-92" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-46.hawaii.edu" power="1"/>
-  <link id="link-46-93" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-46-94" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-47.hawaii.edu" power="1"/>
-  <link id="link-47-95" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-47-96" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-48.hawaii.edu" power="1"/>
-  <link id="link-48-97" latency="20us" bandwidth="10Gbps"/>
-  <link id="link-48-98" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-49.hawaii.edu" power="1"/>
-  <link id="link-49-99" latency="20us" bandwidth="10Gbps"/>
-  <host id="host-50.hawaii.edu" power="1"/>
-  <host id="host-51.hawaii.edu" power="1"/>
-  <host id="host-52.hawaii.edu" power="1"/>
-  <host id="host-53.hawaii.edu" power="1"/>
-  <host id="host-54.hawaii.edu" power="1"/>
-  <host id="host-55.hawaii.edu" power="1"/>
-  <host id="host-56.hawaii.edu" power="1"/>
-  <host id="host-57.hawaii.edu" power="1"/>
-  <host id="host-58.hawaii.edu" power="1"/>
-  <host id="host-59.hawaii.edu" power="1"/>
-  <host id="host-60.hawaii.edu" power="1"/>
-  <host id="host-61.hawaii.edu" power="1"/>
-  <host id="host-62.hawaii.edu" power="1"/>
-  <host id="host-63.hawaii.edu" power="1"/>
-  <host id="host-64.hawaii.edu" power="1"/>
-  <host id="host-65.hawaii.edu" power="1"/>
-  <host id="host-66.hawaii.edu" power="1"/>
-  <host id="host-67.hawaii.edu" power="1"/>
-  <host id="host-68.hawaii.edu" power="1"/>
-  <host id="host-69.hawaii.edu" power="1"/>
-  <host id="host-70.hawaii.edu" power="1"/>
-  <host id="host-71.hawaii.edu" power="1"/>
-  <host id="host-72.hawaii.edu" power="1"/>
-  <host id="host-73.hawaii.edu" power="1"/>
-  <host id="host-74.hawaii.edu" power="1"/>
-  <host id="host-75.hawaii.edu" power="1"/>
-  <host id="host-76.hawaii.edu" power="1"/>
-  <host id="host-77.hawaii.edu" power="1"/>
-  <host id="host-78.hawaii.edu" power="1"/>
-  <host id="host-79.hawaii.edu" power="1"/>
-  <host id="host-80.hawaii.edu" power="1"/>
-  <host id="host-81.hawaii.edu" power="1"/>
-  <host id="host-82.hawaii.edu" power="1"/>
-  <host id="host-83.hawaii.edu" power="1"/>
-  <host id="host-84.hawaii.edu" power="1"/>
-  <host id="host-85.hawaii.edu" power="1"/>
-  <host id="host-86.hawaii.edu" power="1"/>
-  <host id="host-87.hawaii.edu" power="1"/>
-  <host id="host-88.hawaii.edu" power="1"/>
-  <host id="host-89.hawaii.edu" power="1"/>
-  <host id="host-90.hawaii.edu" power="1"/>
-  <host id="host-91.hawaii.edu" power="1"/>
-  <host id="host-92.hawaii.edu" power="1"/>
-  <host id="host-93.hawaii.edu" power="1"/>
-  <host id="host-94.hawaii.edu" power="1"/>
-  <host id="host-95.hawaii.edu" power="1"/>
-  <host id="host-96.hawaii.edu" power="1"/>
-  <host id="host-97.hawaii.edu" power="1"/>
-  <host id="host-98.hawaii.edu" power="1"/>
-  <host id="host-99.hawaii.edu" power="1"/>
+  <host id="host-0.hawaii.edu" speed="1Gf"/>
+  <link id="link-0-1" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-0-2" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-1.hawaii.edu" speed="1Gf"/>
+  <link id="link-1-3" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-1-4" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-2.hawaii.edu" speed="1Gf"/>
+  <link id="link-2-5" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-2-6" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-3.hawaii.edu" speed="1Gf"/>
+  <link id="link-3-7" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-3-8" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-4.hawaii.edu" speed="1Gf"/>
+  <link id="link-4-9" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-4-10" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-5.hawaii.edu" speed="1Gf"/>
+  <link id="link-5-11" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-5-12" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-6.hawaii.edu" speed="1Gf"/>
+  <link id="link-6-13" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-6-14" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-7.hawaii.edu" speed="1Gf"/>
+  <link id="link-7-15" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-7-16" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-8.hawaii.edu" speed="1Gf"/>
+  <link id="link-8-17" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-8-18" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-9.hawaii.edu" speed="1Gf"/>
+  <link id="link-9-19" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-9-20" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-10.hawaii.edu" speed="1Gf"/>
+  <link id="link-10-21" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-10-22" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-11.hawaii.edu" speed="1Gf"/>
+  <link id="link-11-23" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-11-24" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-12.hawaii.edu" speed="1Gf"/>
+  <link id="link-12-25" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-12-26" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-13.hawaii.edu" speed="1Gf"/>
+  <link id="link-13-27" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-13-28" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-14.hawaii.edu" speed="1Gf"/>
+  <link id="link-14-29" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-14-30" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-15.hawaii.edu" speed="1Gf"/>
+  <link id="link-15-31" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-15-32" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-16.hawaii.edu" speed="1Gf"/>
+  <link id="link-16-33" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-16-34" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-17.hawaii.edu" speed="1Gf"/>
+  <link id="link-17-35" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-17-36" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-18.hawaii.edu" speed="1Gf"/>
+  <link id="link-18-37" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-18-38" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-19.hawaii.edu" speed="1Gf"/>
+  <link id="link-19-39" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-19-40" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-20.hawaii.edu" speed="1Gf"/>
+  <link id="link-20-41" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-20-42" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-21.hawaii.edu" speed="1Gf"/>
+  <link id="link-21-43" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-21-44" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-22.hawaii.edu" speed="1Gf"/>
+  <link id="link-22-45" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-22-46" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-23.hawaii.edu" speed="1Gf"/>
+  <link id="link-23-47" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-23-48" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-24.hawaii.edu" speed="1Gf"/>
+  <link id="link-24-49" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-24-50" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-25.hawaii.edu" speed="1Gf"/>
+  <link id="link-25-51" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-25-52" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-26.hawaii.edu" speed="1Gf"/>
+  <link id="link-26-53" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-26-54" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-27.hawaii.edu" speed="1Gf"/>
+  <link id="link-27-55" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-27-56" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-28.hawaii.edu" speed="1Gf"/>
+  <link id="link-28-57" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-28-58" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-29.hawaii.edu" speed="1Gf"/>
+  <link id="link-29-59" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-29-60" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-30.hawaii.edu" speed="1Gf"/>
+  <link id="link-30-61" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-30-62" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-31.hawaii.edu" speed="1Gf"/>
+  <link id="link-31-63" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-31-64" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-32.hawaii.edu" speed="1Gf"/>
+  <link id="link-32-65" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-32-66" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-33.hawaii.edu" speed="1Gf"/>
+  <link id="link-33-67" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-33-68" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-34.hawaii.edu" speed="1Gf"/>
+  <link id="link-34-69" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-34-70" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-35.hawaii.edu" speed="1Gf"/>
+  <link id="link-35-71" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-35-72" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-36.hawaii.edu" speed="1Gf"/>
+  <link id="link-36-73" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-36-74" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-37.hawaii.edu" speed="1Gf"/>
+  <link id="link-37-75" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-37-76" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-38.hawaii.edu" speed="1Gf"/>
+  <link id="link-38-77" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-38-78" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-39.hawaii.edu" speed="1Gf"/>
+  <link id="link-39-79" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-39-80" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-40.hawaii.edu" speed="1Gf"/>
+  <link id="link-40-81" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-40-82" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-41.hawaii.edu" speed="1Gf"/>
+  <link id="link-41-83" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-41-84" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-42.hawaii.edu" speed="1Gf"/>
+  <link id="link-42-85" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-42-86" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-43.hawaii.edu" speed="1Gf"/>
+  <link id="link-43-87" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-43-88" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-44.hawaii.edu" speed="1Gf"/>
+  <link id="link-44-89" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-44-90" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-45.hawaii.edu" speed="1Gf"/>
+  <link id="link-45-91" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-45-92" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-46.hawaii.edu" speed="1Gf"/>
+  <link id="link-46-93" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-46-94" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-47.hawaii.edu" speed="1Gf"/>
+  <link id="link-47-95" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-47-96" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-48.hawaii.edu" speed="1Gf"/>
+  <link id="link-48-97" latency="10us" bandwidth="10Gbps"/>
+  <link id="link-48-98" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-49.hawaii.edu" speed="1Gf"/>
+  <link id="link-49-99" latency="10us" bandwidth="10Gbps"/>
+  <host id="host-50.hawaii.edu" speed="1Gf"/>
+  <host id="host-51.hawaii.edu" speed="1Gf"/>
+  <host id="host-52.hawaii.edu" speed="1Gf"/>
+  <host id="host-53.hawaii.edu" speed="1Gf"/>
+  <host id="host-54.hawaii.edu" speed="1Gf"/>
+  <host id="host-55.hawaii.edu" speed="1Gf"/>
+  <host id="host-56.hawaii.edu" speed="1Gf"/>
+  <host id="host-57.hawaii.edu" speed="1Gf"/>
+  <host id="host-58.hawaii.edu" speed="1Gf"/>
+  <host id="host-59.hawaii.edu" speed="1Gf"/>
+  <host id="host-60.hawaii.edu" speed="1Gf"/>
+  <host id="host-61.hawaii.edu" speed="1Gf"/>
+  <host id="host-62.hawaii.edu" speed="1Gf"/>
+  <host id="host-63.hawaii.edu" speed="1Gf"/>
+  <host id="host-64.hawaii.edu" speed="1Gf"/>
+  <host id="host-65.hawaii.edu" speed="1Gf"/>
+  <host id="host-66.hawaii.edu" speed="1Gf"/>
+  <host id="host-67.hawaii.edu" speed="1Gf"/>
+  <host id="host-68.hawaii.edu" speed="1Gf"/>
+  <host id="host-69.hawaii.edu" speed="1Gf"/>
+  <host id="host-70.hawaii.edu" speed="1Gf"/>
+  <host id="host-71.hawaii.edu" speed="1Gf"/>
+  <host id="host-72.hawaii.edu" speed="1Gf"/>
+  <host id="host-73.hawaii.edu" speed="1Gf"/>
+  <host id="host-74.hawaii.edu" speed="1Gf"/>
+  <host id="host-75.hawaii.edu" speed="1Gf"/>
+  <host id="host-76.hawaii.edu" speed="1Gf"/>
+  <host id="host-77.hawaii.edu" speed="1Gf"/>
+  <host id="host-78.hawaii.edu" speed="1Gf"/>
+  <host id="host-79.hawaii.edu" speed="1Gf"/>
+  <host id="host-80.hawaii.edu" speed="1Gf"/>
+  <host id="host-81.hawaii.edu" speed="1Gf"/>
+  <host id="host-82.hawaii.edu" speed="1Gf"/>
+  <host id="host-83.hawaii.edu" speed="1Gf"/>
+  <host id="host-84.hawaii.edu" speed="1Gf"/>
+  <host id="host-85.hawaii.edu" speed="1Gf"/>
+  <host id="host-86.hawaii.edu" speed="1Gf"/>
+  <host id="host-87.hawaii.edu" speed="1Gf"/>
+  <host id="host-88.hawaii.edu" speed="1Gf"/>
+  <host id="host-89.hawaii.edu" speed="1Gf"/>
+  <host id="host-90.hawaii.edu" speed="1Gf"/>
+  <host id="host-91.hawaii.edu" speed="1Gf"/>
+  <host id="host-92.hawaii.edu" speed="1Gf"/>
+  <host id="host-93.hawaii.edu" speed="1Gf"/>
+  <host id="host-94.hawaii.edu" speed="1Gf"/>
+  <host id="host-95.hawaii.edu" speed="1Gf"/>
+  <host id="host-96.hawaii.edu" speed="1Gf"/>
+  <host id="host-97.hawaii.edu" speed="1Gf"/>
+  <host id="host-98.hawaii.edu" speed="1Gf"/>
+  <host id="host-99.hawaii.edu" speed="1Gf"/>
   <route src="host-1.hawaii.edu" dst="host-0.hawaii.edu">
 	<link_ctn id="link-0-1"/>
   </route>

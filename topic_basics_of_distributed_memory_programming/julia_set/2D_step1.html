@@ -136,7 +136,7 @@
     <div class="ui container raised segment">
 {% highlight text %}
 % smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
-% smpirun --cfg=smpi/running_power:1Gf -np 9 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 30
+% smpirun --cfg=smpi/running-power:1Gf -np 9 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./1D_parallel_julia 30
 [Process rank 0]: my 2-D rank is (0, 0), my tile is [0:9, 0:19]
 [Process rank 1]: my 2-D rank is (0, 1), my tile is [0:9, 20:39]
 [Process rank 2]: my 2-D rank is (0, 2), my tile is [0:9, 40:59]
@@ -159,7 +159,7 @@
     <div class="ui container segment raised">
 {% highlight text %}
 % smpicc -O3 2D_parallel_julia.c -o 2D_parallel_julia
-% smpirun --cfg=smpi/running_power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./2D_parallel_julia 200
+% smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./simple_cluster_hostfile.txt -platform ./simple_cluster.xml ./2D_parallel_julia 200
 [Process rank 0]: my 2-D rank is (0, 0), my tile is [0:49, 0:99]
 [Process rank 1]: my 2-D rank is (0, 1), my tile is [0:49, 100:199]
 [Process rank 2]: my 2-D rank is (0, 2), my tile is [0:49, 200:299]

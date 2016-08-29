@@ -419,7 +419,7 @@ Given the above definitions of A and B, there is a simple analytical solution
 
 <div class="ui container raised segment">
   
-<figure class="highlight"><pre><code class="language-text" data-lang="text">% smpirun --cfg=smpi/running_power:1Gf -np 4 \
+<figure class="highlight"><pre><code class="language-text" data-lang="text">% smpirun --cfg=smpi/running-power:1Gf -np 4 \
           -platform cluster_crossbar_64.xml \
           -hostfile hostfile_64.txt \
           ./matmul_init 8
