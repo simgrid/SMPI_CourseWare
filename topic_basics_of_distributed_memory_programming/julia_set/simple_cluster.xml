@@ -1,6 +1,17 @@
 <?xml version='1.0'?>
 <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
 <platform version="4">
+
+<!--  WARNING:  This <config></config> clause below
+specifies a bogus running-power value, which is ok because
+for this module we don't measure execution times. And this way,
+no warning is generated when running smpirun.
+-->
+<config>
+<prop id="smpi/running-power" value="1"></prop>
+</config>
+
+
 <AS id="AS0" routing="Full">
   <cluster id="simple_cluster" prefix="host-" suffix=".me.org"
            radical="0-1023" speed="10Gf" bw="500MBps" lat="5us"/>
