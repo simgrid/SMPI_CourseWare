@@ -1,6 +1,20 @@
 <?xml version='1.0'?>
 <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
 <platform version="4">
+
+<!--  WARNING:  This <config></config> clause below
+makes it so that NO COMPUTATION TIME is simulated. This is because
+in this module, for pedagogic purposes, we don't want to muddy the
+(simulation) waters with computational times. As a results, this
+XML platform file may not be suitable for running other
+simulations, unless you remove the <config></config> clause.
+-->
+<config>
+<prop id="smpi/simulate-computation" value="0"></prop>
+<prop id="smpi/running-power" value="1"></prop>
+</config>
+
+
 <AS id="AS0" routing="Full">
 <cluster id="cluster" prefix="host-" suffix=".hawaii.edu" radical="0-63" speed="10Gf" bw="10Gbps" lat="20us"/>
 </AS>
