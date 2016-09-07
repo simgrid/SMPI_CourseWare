@@ -19,7 +19,26 @@ def pow2(x):
 
 # XML generation functions
 def issueHead():
-	return "<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n"
+        head = ("<?xml version='1.0'?>\n"
+                "<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n"
+                "<platform version=\"4\">\n\n")
+
+        config_clause = ("<!--  WARNING:  This <config></config> clause below\n"
+                       "makes it so that NO COMPUTATION TIME is simulated. This is because\n"
+                       "in this module, for pedagogic purposes, we don't want to muddy the\n"
+                       "(simulation) waters with computational times. As a results, this\n"
+                       "XML platform file may not be suitable for running other\n"
+                       "simulations, unless you remove the <config></config> clause.\n"
+                       "-->\n"
+                       "<config>\n"
+                       "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
+                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
+                       "</config>\n\n")
+
+        AS_head = "<AS id=\"AS0\" routing=\"Full\">\n"
+
+        return head + config_clause + AS_head
+
 
 def issueTail():
 	return "</AS>\n</platform>\n"
