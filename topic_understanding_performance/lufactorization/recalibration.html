@@ -1,12 +1,12 @@
 <p class="ui">
   One problem with our CPU trick is that the simulated wall-clock time will no longer be coherent with our simulation platform, i.e., it
-  no longer has anything to do with our --cfg=smpi/running power command-line option since we use the
+  no longer match with our <code>--cfg=smpi/running-power</code> command-line option since we use the
   <code>SMPI_SAMPLE_FLOPS</code> macro. Instead, we need
   to determine a reasonable value for <code>FLOP_CALIBRATION_FACTOR</code>.
   </p>
 
 <p class="ui">
-  Run your original (i.e., without the "simulation tricks") program from the Matrix Multiplication module in Topic #3,
+  Run your original (i.e., without the "simulation tricks") program from the LU Factorization module in Topic #3,
  using
   <a href=""><code>cluster_1600.xml</code></a> and
   <a href=""><code>hostfile_1600.txt</code></a>, for a matrix of size 2000x2000, with <b>p=4 process</b>.
