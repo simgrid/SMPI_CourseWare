@@ -265,9 +265,9 @@
   <p class="ui">
 
   To make the simulation results consistent regardless of your computer we first calibrate the simulation.
-  More specifically, we simulate a parallel platform in which each processor computes 32 times
-  faster than one core of the laptop of the author of this module in 2016.  Calibration of simulated
-  compute times with SMPI is done by passing a particular floating point value to
+  More specifically, we simulate a parallel platform in which each processor computes at a rate of 10Gflops.  Since
+  SMPI measures compute times on your own machine, we need to tell SMPI how fast your machine is, which is
+  SMPI is done by passing a particular floating point value to
   <code>smpirun</code> using the <code>--cfg=smpi/running-power:VALUE</code> command-line option.
 
   </p>
@@ -456,14 +456,7 @@ This loop performs <i>O(N)</i> floating point operations, and in your SMPI code 
 (note that the original code is simply commented-out without the <code>SMPI_SAMPLE_FLOPS</code> macro / basic block, which is
 likely a good idea instead of simply deleting it. The <code>FLOP_CALIBRATION_FACTOR</code> constant
 is the constant factor hidden in the <i>O(N)</i> asymptotic complexity. In step #3 we use calibration to determine
-and appropriate value. Typically, this constant is
-very low, so it's a good idea to instead declare:
-<div class="ui container segment raised">
-  
-<figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="kt">double</span> <span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">FLOP_CALIBRATION_FACTOR</span> <span class="o">/</span> <span class="mf">1.0E+10</span><span class="p">;</span>
-  </code></pre></figure>
-
-</div>
+an appropriate value. 
 
 <p class="ui">
 Modify your program to do the above, for the basic block that multiplies matrix blocks. At this point,
@@ -472,6 +465,7 @@ initializes the matrices and checks the validity of the results (in fact you rea
 to avoid "invalid results" messages). For now use an arbitrary value for <code>FLOP_CALIBRATION_FACTOR</code> so
 that you can compile and debug your program, and pay no attention to the simulated performance.
 </p>
+
 
 </div>
 
@@ -520,7 +514,7 @@ that you can compile and debug your program, and pay no attention to the simulat
 
   <p class="ui">
   One problem with our CPU trick is that the simulated wall-clock time will no longer be coherent with our simulation platform, i.e., it
-  no longer has anything to do with our --cfg=smpi/running power command-line option since we use the
+  no longer match with our <code>--cfg=smpi/running-power</code> command-line option since we use the
   <code>SMPI_SAMPLE_FLOPS</code> macro. Instead, we need
   to determine a reasonable value for <code>FLOP_CALIBRATION_FACTOR</code>.
   </p>
@@ -536,6 +530,7 @@ that you can compile and debug your program, and pay no attention to the simulat
   can probably just do a quick trial-and-error manual search. Once you've found this value, hard-code it into your
   program, and voila.
 </p>
+
 
 </div>
 

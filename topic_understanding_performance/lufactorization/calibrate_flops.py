@@ -16,7 +16,9 @@ callibrating_C_code = """
 #include <mpi.h>
 #include <math.h>
 
+#ifndef SIZE
 #define SIZE 2000
+#endif
 
 static void matmult(double *A, double *B, double *C, int n) {
   int i,j,k;
@@ -85,11 +87,13 @@ int main(int argc, char *argv[])
 }
 """
 
+SIZE=2000
+
 callibrating_code_filename = "/tmp/callibrating_code.c"
 fh = open(callibrating_code_filename, 'w')
 fh.write(callibrating_C_code)
 fh.close()
-error_code = os.system("smpicc -Ofast "+callibrating_code_filename+" -o /tmp/callibration_code")
+error_code = os.system("smpicc -Ofast "+"-DSIZE="+str(SIZE)+" "+callibrating_code_filename+" -o /tmp/callibration_code")
 if (error_code != 0):
 	print >> sys.stderr, "Can't compile '"+callibrating_code_filename+"'... aborting\n"
 	exit(1)
@@ -122,10 +126,10 @@ print >> sys.stderr, "One-host hostfile generated"
 
 print >> sys.stderr, "Initiating binary search..."
 
-# Target time based on a machine with 32 cores
-# where each core is the same as a core of Henri's laptop
-# (assuming a perfect multi-core speedup)
-target = 4.11/32
+# Coarse approximation of the traget simulated time
+desired_simulated_gflops_rate=10.0
+number_gflop = (3.0 * SIZE * SIZE * SIZE + SIZE * SIZE) / (1000000000.0)
+target = number_gflop / desired_simulated_gflops_rate
 
 # Initial bounds for the binary search
 low = 0
@@ -150,7 +154,8 @@ while (True):
 	else:
 		high = attempt
 	
-	if (abs(high - low) < 100):
+
+	if ((abs(simulated_wallclock - target) < 0.001) or (abs(high - low) < 100)):
 		break
 
 print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
