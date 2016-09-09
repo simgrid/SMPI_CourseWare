@@ -575,7 +575,7 @@ platform file.
 </p>
 
 <p class="ui">
-  We compare the performance of the three implementations on a <b>100-processor physical ring</b>. Although some
+  We compare the performance of the three implementations on a <b>50-processor physical ring</b>. Although some
   supercomputers
   in the old days were designed with a ring network topology, this is no longer the case. The main drawback of a
   physical
@@ -591,8 +591,8 @@ platform file.
   You can download a Python script <a href="./generate_xml_ring_and_hostfile.py">(generate_xml_ring_and_hostfile.py)</a>
   that generates
   these two files given a number of processors passed as a command-line argument. Just in case,
-  here are the files generated using this script for 100 processors: <a href="ring_100.xml">ring_100.xml</a> and
-  <a href="hostfile_100.txt">hostfile_100.txt</a>.
+  here are the files generated using this script for 50 processors: <a href="ring_50.xml">ring_50.xml</a> and
+  <a href="hostfile_50.txt">hostfile_50.txt</a>.
 </p>
 
 <p class="ui">
@@ -602,7 +602,7 @@ platform file.
 <div class="ui container raised segment">
   
 <figure class="highlight"><pre><code class="language-text" data-lang="text">  smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running-power:1Gf
-  -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+  -np 50 -platform ring_50.xml -hostfile hostfile_50.txt
   ./bcast_skeleton &lt;implementation name&gt;
   </code></pre></figure>
 
@@ -617,7 +617,7 @@ platform file.
 <p class="ui">
   Answer the following questions:
 <div class="ui list bulleted">
-  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 100-processor
+  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 50-processor
     ring?
   </div>
   <div class="ui item">How far are your "by hand" implementations from the default
@@ -703,7 +703,7 @@ utilize the network links.
   10,000,000 bytes,
   50,000,000 bytes, and
   100,000,000 (i.e., 1 chunk),
-  on a 25-processor ring, a 50-processor ring, and a 100-processor ring. Report the
+  on a 20-processor ring, a 35-processor ring, and a 50-processor ring. Report the
   simulated execution times. Remember that the <a href="./generate_xml_ring_and_hostfile.py">generate_xml_ring_and_hostfile.py
   </a>Python script can be used to generate platform files and hostfiles.
 </p>
@@ -814,7 +814,7 @@ to use network links even better.
   10,000,000 bytes,
   50,000,000 bytes, and
   100,000,000 (i.e., 1 chunk)
-  on a 100-processor ring. Report the
+  on a 50-processor ring. Report the
   simulated execution times. Remember that the <a href="./generate_xml_ring_and_hostfile.py">generate_xml_ring_and_hostfile.py
   </a>Python script can be used to generate platform files and hostfiles.
 </p>
@@ -895,10 +895,10 @@ and a tree-shaped physical platform.</div>
   default_bcast,
   asynchronous_pipelined_ring_bcast, and
   asynchronous_pipelined_bintree_bcast, on
-  a 100-processor ring platform and a 100-processor binary tree platform.
+  a 50-processor ring platform and a 50-processor binary tree platform.
   For asynchronous_pipelined_ring_bcast and
   asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
-  in Activity #2 for the 100-processor ring platform.
+  in Activity #2 for the 50-processor ring platform.
   </p>
 
 <p class="ui">
@@ -908,19 +908,19 @@ and a tree-shaped physical platform.</div>
   the <a href="./generate_xml_bintree_and_hostfile.py">generate_xml_bintree_and_hostfile.py</a> script,
   the number of processors is passed as a command-line
   argument. Just in case,
-  here are the files generated using this script for 100 processors: <a href="bintree_100.xml">bintree_100.xml</a> and
-  <a href="hostfile_100.txt">hostfile_100.txt</a>.
+  here are the files generated using this script for 50 processors: <a href="bintree_50.xml">bintree_50.xml</a> and
+  <a href="hostfile_50.txt">hostfile_50.txt</a>.
 </p>
 
 <p class="ui">
   Answer the following questions:
 <div class="ui list bulleted">
   <div class="ui item">
-    On the 100-processor ring platform, how does asynchronous_pipelined_bintree_bcast compare
+    On the 50-processor ring platform, how does asynchronous_pipelined_bintree_bcast compare
     to asynchronous_pipelined_ring_bcast?  Is it unexpected?
     </div>
   <div class="ui item">
-    On the 100-processor binary tree platform, how do the three implementations compare?
+    On the 50-processor binary tree platform, how do the three implementations compare?
     Does it seem worth it to implement your own binary tree broadcast on a binary tree physical
     platform?
   </div>
@@ -971,7 +971,7 @@ and a tree-shaped physical platform.</div>
 
   For asynchronous_pipelined_ring_bcast and
   asynchronous_pipelined_bintree_bcast use the "best chunksize" you determined
-  in Activity #2 for the 100-processor ring platform.
+  in Activity #2 for the 50-processor ring platform.
   </p>
 
 

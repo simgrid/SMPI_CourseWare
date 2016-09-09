@@ -6,7 +6,7 @@
 </p>
 
 <p class="ui">
-  We compare the performance of the three implementations on a <b>100-processor physical ring</b>. Although some
+  We compare the performance of the three implementations on a <b>50-processor physical ring</b>. Although some
   supercomputers
   in the old days were designed with a ring network topology, this is no longer the case. The main drawback of a
   physical
@@ -22,8 +22,8 @@
   You can download a Python script <a href="./generate_xml_ring_and_hostfile.py">(generate_xml_ring_and_hostfile.py)</a>
   that generates
   these two files given a number of processors passed as a command-line argument. Just in case,
-  here are the files generated using this script for 100 processors: <a href="ring_100.xml">ring_100.xml</a> and
-  <a href="hostfile_100.txt">hostfile_100.txt</a>.
+  here are the files generated using this script for 50 processors: <a href="ring_50.xml">ring_50.xml</a> and
+  <a href="hostfile_50.txt">hostfile_50.txt</a>.
 </p>
 
 <p class="ui">
@@ -33,7 +33,7 @@
 <div class="ui container raised segment">
   {% highlight text %}
   smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running-power:1Gf
-  -np 100 -platform ring_100.xml -hostfile hostfile_100.txt
+  -np 50 -platform ring_50.xml -hostfile hostfile_50.txt
   ./bcast_skeleton <implementation name>
   {% endhighlight %}
 </div>
@@ -47,7 +47,7 @@
 <p class="ui">
   Answer the following questions:
 <div class="ui list bulleted">
-  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 100-processor
+  <div class="ui item">What are the (simulated) wall-clock time of the three implementations on the 50-processor
     ring?
   </div>
   <div class="ui item">How far are your "by hand" implementations from the default
