@@ -32,7 +32,7 @@ def issueHead():
                        "-->\n"
                        "<config>\n"
                        "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
-                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
+                       "<prop id=\"smpi/running-power\" value=\"200000000000\"></prop>\n"
                        "</config>\n\n")
 
         AS_head = "<AS id=\"AS0\" routing=\"Full\">\n"
@@ -53,7 +53,7 @@ def issueLink3(x,y,bw):
 	return "  <link id=\"link-"+str(x)+"-"+str(y)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(bw)+link_bandwidth_unit+"\"/>\n"
 
 def issueHost(index):
-	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"10Gf\"/>\n"
+	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"200Gf\"/>\n"
 
 def issueRouteHead(index1, index2):
 	return "  <route src=\"host-"+str(index1)+".hawaii.edu\" dst=\"host-"+str(index2)+".hawaii.edu\">\n"

@@ -106,7 +106,7 @@ print >> sys.stderr, "Callibrating code compiled"
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
 fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
-fh.write("  <host id=\"host-0\" speed=\"10Gf\"/>\n")
+fh.write("  <host id=\"host-0\" speed=\"200Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
 print >> sys.stderr, "One-host XML platform file generated"
@@ -127,13 +127,13 @@ print >> sys.stderr, "One-host hostfile generated"
 print >> sys.stderr, "Initiating binary search..."
 
 # Coarse approximation of the traget simulated time
-desired_simulated_gflops_rate=10.0
+desired_simulated_gflops_rate=200.0
 number_gflop = (3.0 * SIZE * SIZE * SIZE + SIZE * SIZE) / (1000000000.0)
 target = number_gflop / desired_simulated_gflops_rate
 
 # Initial bounds for the binary search
 low = 0
-high = 10000000000.0
+high = 500000000000.0
 
 while (True):
 

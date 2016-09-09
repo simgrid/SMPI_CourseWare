@@ -13,6 +13,6 @@ no warning is generated when running smpirun.
 
 
 <AS id="AS0" routing="Full">
-<cluster id="cluster" prefix="host-" suffix=".hawaii.edu" radical="0-63" speed="10Gf" bw="10Gbps" lat="20us"/>
+<cluster id="cluster" prefix="host-" suffix=".hawaii.edu" radical="0-63" speed="200Gf" bw="10Gbps" lat="20us"/>
 </AS>
 </platform>
