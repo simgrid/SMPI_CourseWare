@@ -29,16 +29,14 @@
   <div class="ui list bulleted">
   <div class="item">The intended data distribution should be in as many "slabs" as there are processes, where
     each process is in charge of a set of contiguous rows.</div>
-  <div class="item">The distribution should be <b>as balanced as possible</b> (at most
-    a difference of one row between two processes)</div>
-  </div>
   </div>
 </div>
 
 <p class="ui">
-  <i>Hint: </i> Computing the data distribution  (i.e., for each process finding out which rows it should
-  process) can be done using discrete math so that everything is computed by a single formula.  But many find it simpler to compute
-  it programmatically with a loop (i.e., "counting by hand").
+  <b>For simplicity, you can assume that the number of processes divides n, so that all processes have the same exact number of rows to compute.</b>
+  <i>For more of a challenge,</i> you may want to make sure that the distribution is as balanced as possible (at most
+  a difference of one row between two processes). This can be done using discrete math so that everything is computed by a single formula,
+  but can also be done programmatically with a loop (i.e., "counting by hand").
 </p>
 
 <p class="ui">
@@ -52,7 +50,7 @@
 
 
 <p class="ui">
-  Below are a few sample executions of the program:
+  Below are a few sample executions of the program <b>(this version of the program does not assume that the number of processes divides n, and enforces a "as balanced as possible" data distribution)</b>:
 </p>
 
 <div class="ui accordion  fluid">
