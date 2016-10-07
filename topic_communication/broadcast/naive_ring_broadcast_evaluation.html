@@ -32,8 +32,8 @@
 
 <div class="ui container raised segment">
   {% highlight text %}
-  smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running-power:1Gf
-  -np 50 -platform ring_50.xml -hostfile hostfile_50.txt
+  smpirun --cfg=smpi/bcast:mpich -np 50 
+  -platform ring_50.xml -hostfile hostfile_50.txt
   ./bcast_skeleton <implementation name>
   {% endhighlight %}
 </div>

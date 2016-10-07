@@ -601,8 +601,8 @@ platform file.
 
 <div class="ui container raised segment">
   
-<figure class="highlight"><pre><code class="language-text" data-lang="text">  smpirun --cfg=smpi/bcast:mpich --cfg=smpi/running-power:1Gf
-  -np 50 -platform ring_50.xml -hostfile hostfile_50.txt
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  smpirun --cfg=smpi/bcast:mpich -np 50 
+  -platform ring_50.xml -hostfile hostfile_50.txt
   ./bcast_skeleton &lt;implementation name&gt;
   </code></pre></figure>
 

@@ -575,15 +575,12 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 
 <div class="ui segment raised">
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpirun --cfg=smpi/running-power:1Gf -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip</code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpirun -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip</code></pre></figure>
 
 </div>
 
 <div class="ui list bulleted">
 
-<div class="ui item">The <code>--cfg=smpi/running-power:1Gf</code> options above, which is not very useful for this program but avoids
-  a harmless warning message, is mentioned/explained in some of the pedagogic modules (and of course
-  in the <a href="http://simgrid.gforge.inria.fr/">SimGrid documentation</a>).</div>
 <div class="ui item">The <code>-np 16</code> option, just like in regular MPI, specifies the number of MPI processes to use. </div>
 <div class="ui item">The <code>-hostfile ./cluster_hostfile.txt</code> option, just like in regular MPI, specifies the host file. </div>
 <div class="ui item">The <code>-platform ./cluster_crossbar.xml</code> option, <b>which doesn't exist in regular MPI</b>, specifies the platform configuration to be simulated. </div>

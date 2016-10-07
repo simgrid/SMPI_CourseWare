@@ -50,7 +50,7 @@ Given the above definitions of A and B, there is a simple analytical solution
 
 <div class="ui container raised segment">
   {% highlight text %}
-% smpirun --cfg=smpi/running-power:1Gf -np 4 \
+% smpirun -np 4 \
           -platform cluster_crossbar_64.xml \
           -hostfile hostfile_64.txt \
           ./matmul_init 8
