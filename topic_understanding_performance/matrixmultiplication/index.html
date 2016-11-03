@@ -350,13 +350,13 @@
 
 <p class="ui">
 Plot speed-up curves (speedup vs. number of processors) for the two series of experiments above.
-What parallel efficiency can you achieve with p = 1600 processes on the ideal vs. the non-ideal platform?
+What parallel efficiency can you achieve with p = 400 processes on the ideal vs. the non-ideal platform?
   What do you conclude about the application’s prospects for this matrix size on a real machine?
 </p>
 
 <p class="ui">
   <i>Note:</i>
-The simulations takes time and memory. You can decrease the scale as needed in case you can’t run it on your machine.
+The simulations takes time and memory. You can decrease the scale as needed in case you can't run it on your machine.
   Just for reference, these simulations run well under 10 minutes minutes on the author's laptop.
 </p>
 
@@ -497,7 +497,7 @@ that you can compile and debug your program, and pay no attention to the simulat
   is sufficiently accurate to draw meaningful conclusions for our purpose!
   The point is that this program can be executed faster and for larger matrices.
   We now have an interesting simulation performance trade-off. With a lot of processes, we can scale the memory up.
-  For instance, say the memory space needed for the (sequential) LU factorization is 100GiB.
+  For instance, say the memory space needed for the (sequential) matrix multiplication is 100GiB.
   You can't run the simulation of this computation on your laptop. However, if you simulate a parallel
   execution with 100 processes, the above memory trick makes it so that you only need 1GiB of RAM to run the simulation.
   However, with a lot of processes, the time to simulate the broadcasts with large data sizes is large
@@ -506,6 +506,7 @@ that you can compile and debug your program, and pay no attention to the simulat
   Nevertheless, our CPU and memory simulation "tricks" significantly widens the range of simulation experiments
   that can be done in practice.
   </p>
+
 
 </div>
 
@@ -520,7 +521,7 @@ that you can compile and debug your program, and pay no attention to the simulat
   </p>
 
 <p class="ui">
-  Run your original (i.e., without the "simulation tricks") program from the LU Factorization module in Topic #3,
+  Run your original (i.e., without the "simulation tricks") program from the matrix multiplication module in Topic #3,
  using
   <a href=""><code>cluster_1600.xml</code></a> and
   <a href=""><code>hostfile_1600.txt</code></a>, for a matrix of size 2000x2000, with <b>p=4 process</b>.
