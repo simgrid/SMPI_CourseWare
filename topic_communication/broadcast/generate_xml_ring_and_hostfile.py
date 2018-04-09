@@ -12,7 +12,7 @@ link_bandwidth_unit = "Gbps"
 def issueHead():
         head = ("<?xml version='1.0'?>\n"
                 "<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n"
-                "<platform version=\"4\">\n\n")
+                "<platform version=\"4.1\">\n\n")
 
         config_clause = ("<!--  WARNING:  This <config></config> clause below\n"
                        "makes it so that NO COMPUTATION TIME is simulated. This is because\n"
@@ -23,10 +23,10 @@ def issueHead():
                        "-->\n"
                        "<config>\n"
                        "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
-                       "<prop id=\"smpi/running-power\" value=\"200000000000\"></prop>\n"
+                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
                        "</config>\n\n")
 
-        AS_head = "<AS id=\"AS0\" routing=\"Full\">\n"
+        AS_head = "<AS id=\"AS0\" routing=\"Floyd\">\n"
 
         return head + config_clause + AS_head
 
@@ -44,7 +44,7 @@ def issueLink3(x,y,bw):
 	return "  <link id=\"link-"+str(x)+"-"+str(y)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(bw)+link_bandwidth_unit+"\"/>\n"
 
 def issueHost(index):
-	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"200Gf\"/>\n"
+	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"10Gf\"/>\n"
 
 def issueRouteHead(index1, index2):
 	return "  <route src=\"host-"+str(index1)+".hawaii.edu\" dst=\"host-"+str(index2)+".hawaii.edu\">\n"
@@ -80,13 +80,15 @@ for i in range(0,num_hosts):
 for i in range(0,num_hosts):
 	fh.write(issueLink1(i))
 
-# Create routes
+## Create one-hop routes
 for i in range (0,num_hosts):
-	for j in range(i+1,num_hosts):
-		fh.write(issueRouteHead(i,j))
-		for k in range(i,(j+num_hosts)%num_hosts):
-  			fh.write(issueRouteLink1(k))
-    		fh.write(issueRouteTail())
+	src = i
+	dst = i+1
+	if (dst == num_hosts):
+		dst = 0;
+	fh.write(issueRouteHead(src,dst))
+	fh.write(issueRouteLink1(src))
+	fh.write(issueRouteTail())
 
 fh.write(issueTail())
 fh.close()

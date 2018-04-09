@@ -21,7 +21,7 @@ def pow2(x):
 def issueHead():
         head = ("<?xml version='1.0'?>\n"
                 "<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n"
-                "<platform version=\"4\">\n\n")
+                "<platform version=\"4.1\">\n\n")
 
         config_clause = ("<!--  WARNING:  This <config></config> clause below\n"
                        "makes it so that NO COMPUTATION TIME is simulated. This is because\n"
@@ -32,16 +32,16 @@ def issueHead():
                        "-->\n"
                        "<config>\n"
                        "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
-                       "<prop id=\"smpi/running-power\" value=\"200000000000\"></prop>\n"
+                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
                        "</config>\n\n")
 
-        AS_head = "<AS id=\"AS0\" routing=\"Full\">\n"
+        AS_head = "<zone id=\"AS0\" routing=\"Full\">\n"
 
         return head + config_clause + AS_head
 
 
 def issueTail():
-	return "</AS>\n</platform>\n"
+	return "</zone>\n</platform>\n"
 
 def issueLink1(x):
 	return "  <link id=\"link-"+str(x)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(link_bandwidth)+link_bandwidth_unit+"\"/>\n"
@@ -53,7 +53,7 @@ def issueLink3(x,y,bw):
 	return "  <link id=\"link-"+str(x)+"-"+str(y)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(bw)+link_bandwidth_unit+"\"/>\n"
 
 def issueHost(index):
-	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"200Gf\"/>\n"
+	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"10Gf\"/>\n"
 
 def issueRouteHead(index1, index2):
 	return "  <route src=\"host-"+str(index1)+".hawaii.edu\" dst=\"host-"+str(index2)+".hawaii.edu\">\n"
