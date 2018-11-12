@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
-<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
-<platform version="4">
+<!DOCTYPE platform SYSTEM "https://simgrid.org/simgrid.dtd">
+<platform version="4.1">
 
 <!--  WARNING:  This <config></config> clause below
 specifies a bogus running-power value, which is ok because
@@ -12,8 +12,8 @@ no warning is generated when running smpirun.
 </config>
 
 
-<AS id="AS0" routing="Full">
+<zone id="AS0" routing="Full">
   <cluster id="simple_cluster" prefix="host-" suffix=".me.org"
            radical="0-1023" speed="200Gf" bw="500MBps" lat="5us"/>
-</AS>
+</zone>
 </platform>
