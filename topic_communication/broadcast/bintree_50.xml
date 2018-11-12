@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
-<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
-<platform version="4">
+<!DOCTYPE platform SYSTEM "https://simgrid.org/simgrid.dtd">
+<platform version="4.1">
 
 <!--  WARNING:  This <config></config> clause below
 makes it so that NO COMPUTATION TIME is simulated. This is because
@@ -14,7 +14,7 @@ simulations, unless you remove the <config></config> clause.
 <prop id="smpi/running-power" value="200000000000"></prop>
 </config>
 
-<AS id="AS0" routing="Full">
+<zone id="AS0" routing="Full">
   <host id="host-0.hawaii.edu" speed="200Gf"/>
   <link id="link-0-1" latency="10us" bandwidth="10Gbps"/>
   <link id="link-0-2" latency="10us" bandwidth="10Gbps"/>
@@ -9961,5 +9961,5 @@ simulations, unless you remove the <config></config> clause.
 	<link_ctn id="link-11-23"/>
 	<link_ctn id="link-23-48"/>
   </route>
-</AS>
+</zone>
 </platform>
