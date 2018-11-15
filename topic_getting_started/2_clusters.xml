@@ -1,0 +1,12 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4.1">
+  <zone id="AS0" routing="Full">
+    <cluster id="my_cluster_1" prefix="C1−" suffix=".hawaii.edu" radical="0−15" speed="1Gf" bw="125Mbps" lat="50us" bb_bw="2.25Gbps" bb_lat="500us" />
+    <cluster id="my_cluster_2" prefix="C2−" suffix=".hawaii.edu" radical="0−31" speed="2Gf" bw="125Mbps" lat="50us" />
+    <link id="internet_backbone" bandwidth="0.01Gbps" latency="22500us" />
+    <zoneRoute src="my_cluster_1" dst="my_cluster_2" gw_src="C1−my_cluster_1_router.hawaii.edu" gw_dst="C2−my_cluster_2_router.hawaii.edu" symmetrical="YES">
+      <link_ctn id="internet_backbone" />
+    </zoneRoute>
+  </zone>
+</platform>

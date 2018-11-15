@@ -28,20 +28,7 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   <div class=" content">
     <div class="ui container segment">
     {% highlight XML %}
-    <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-    <platform version="3">
-    <AS id="AS0" routing="Full">
-      <host id="host0" power="1Gf"/>
-      <host id="host1" power="2Gf"/>
-      <host id="host2" power="40Gf"/>
-      <link id="link0" bandwidth="125MBps" latency="100us"/>
-      <link id="link1" bandwidth="50MBps" latency="150us"/>
-      <link id="link2" bandwidth="250MBps" latency="50us"/>
-      <route src="host0" dst="host1"><link_ctn id="link0"/><link_ctn id="link1"/></route>
-      <route src="host1" dst="host2"><link_ctn id="link1"/><link_ctn id="link2"/></route>
-      <route src="host0" dst="host2"><link_ctn id="link0"/><link_ctn id="link2"/></route>
-    </AS>
-  </platform>
+{% include_relative topic_getting_started/3_hosts.xml %}
     {% endhighlight %}
     </div>
   </div>
@@ -50,14 +37,14 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 <p class="ui">
   In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
   with a <code>power</code> (i.e., compute speed in Gflops), and links with a <code>latency</code> (in us)
-  and <code>bandwidth</code> (in MBytes per second). Other units are possible and written as expected.
+  and <code>bandwidth</code> (in Mbit/sec). Other units are possible and written as expected.
   By default, routes are symmetrical. See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 </p>
 
 <p class="ui">
-  Note that this XML file is intended for SimGrid v3.12 or earlier. To
-  use it with SimGrid v3.13 or above, you have to convert it using the
+  This XML file is intended for SimGrid v3.21 or earlier. To
+  use it with more recent versions, you may have to convert it using the
   <code>simgrid_update_xml</code> program, as follows:
 </p>
 <div class="ui list">
@@ -86,14 +73,9 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      {% highlight XML %}
-      <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-      <platform version="3">
-      <AS id="AS0" routing="Full">
-        <cluster id="my_cluster" prefix="host−" suffix=".hawaii.edu" radical="0−255" power="1Gf" bw="225MBps" lat="5us"/>
-      </AS>
-      </platform>
-      {% endhighlight %}
+    {% highlight XML %}
+{% include_relative topic_getting_started/cluster_crossbar.xml %}
+    {% endhighlight %}
     </div>
   </div>
 </div>
@@ -101,7 +83,7 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 <p class="ui">
   In the above XML, note that one simply specifies a name prefix and suffix for each host, and then give an integer
   range (in the example the cluster contains 256 hosts). All hosts have the same power (1 Gflop/sec) and are connected to the switch via links with same latency (5 microseconds) and
-  bandwidth (225 MBytes/sec). See more information on the
+  bandwidth (125 Mbit/sec). See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 
 </p>
@@ -127,23 +109,18 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      {% highlight XML %}
-      <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-      <platform version="3">
-      <AS id="AS0" routing="Full">
-        <cluster id="my_cluster" prefix="host−" suffix=".hawaii.edu" radical="0−255" power="1Gf" bw="125MBps" lat="50us" bb_bw="2.25GBps" bb_lat="500us"/>
-      </AS>
-      </platform>
-      {% endhighlight %}
+    {% highlight XML %}
+{% include_relative topic_getting_started/cluster_backbone.xml %}
+    {% endhighlight %}
     </div>
   </div>
 </div>
 
 <p class="ui">
   In the above XML, note that one specifies the latency and bandwidth of the link that connects a host to the backbone (in this
-  example 50 microsec and 125 MByte/sec), as well
+  example 50 microsec and 125 Mbit/sec), as well
   as the latency and bandwidth of the backbone itself (in this example
-  500 microsec and 2.25 GByte/sec). See more information on the
+  500 microsec and 2.25 Gbit/sec). See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 
 </p>
@@ -168,19 +145,9 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      {% highlight XML %}
-      <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
-      <platform version="3">
-      <AS id="AS0" routing="Full">
-        <cluster id="my_cluster_1" prefix="C1−" suffix=".hawaii.edu" radical="0−15" power="1Gf" bw="125MBps" lat="50us" bb_bw="2.25GBps" bb_lat="500us" />
-        <cluster id="my_cluster_2" prefix="C2−" suffix=".hawaii.edu" radical="0−31" power="2Gf" bw="125MBps" lat="50us" />
-        <link id="internet_backbone" bandwidth="0.01GBps" latency="22500us" />
-        <ASroute src="my_cluster_1" dst="my_cluster_2" gw_src="C1−my_cluster_1_router.hawaii.edu" gw_dst="C2−my_cluster_2_router.hawaii.edu" symmetrical="YES">
-          <link_ctn id="internet_backbone" />
-        </ASroute>
-      </AS>
-      </platform>
-      {% endhighlight %}
+    {% highlight XML %}
+    {% include_relative topic_getting_started/2_clusters.xml %}
+    {% endhighlight %}
     </div>
   </div>
 </div>
