@@ -20,22 +20,22 @@
 
 
 <div class="ui tab segment active" data-tab="first">
-  {% include_relative topic_getting_started/installing_simgrid.html %}
+foo
 </div>
 
 
 <div class="ui tab segment " data-tab="second">
-  {% include_relative topic_getting_started/platform_xml.html %}
+faa
 </div>
 
 
 <div class="ui tab segment" data-tab="third">
-  {% include_relative topic_getting_started/hello_world.html %}
+fuu
 </div>
 
 
 <div class="ui tab segment" data-tab="fourth">
-  {% include_relative topic_getting_started/limitations.html %}
+fii
 </div>
 
 

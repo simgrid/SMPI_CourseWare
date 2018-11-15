@@ -1,3 +1,162 @@
 <p class="ui">
-STUFF
+SMPI simulates the execution of MPI applications by relying on the fast and accurate simulation
+core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
+  user (you!) must describe simulated platforms (i.e., sets of simulated hosts and network links, with
+  some performance characteristics).  The SimGrid documentation provides ample information
+  on platform descriptions, which are written in XML.  Below we simply show a series of examples,
+  which should be sufficient for our purpose. Note that platform files are typically provided
+  in each pedagogic module, but you may have to modify them.
 </p>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+  <b>A simple 3-host example:</b> At the most basic level, you can describe your simulated platform
+  as a graph of hosts and network links. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="../topic_getting_started/3_hosts.jpg" width="240">
+</p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+  See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    {% highlight XML %}
+{% include_relative topic_getting_started/3_hosts.xml %}
+    {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
+  with a <code>power</code> (i.e., compute speed in Gflops), and links with a <code>latency</code> (in us)
+  and <code>bandwidth</code> (in Mbit/sec). Other units are possible and written as expected.
+  By default, routes are symmetrical. See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+</p>
+
+<p class="ui">
+  This XML file is intended for SimGrid v3.21 or earlier. To
+  use it with more recent versions, you may have to convert it using the
+  <code>simgrid_update_xml</code> program, as follows:
+</p>
+<div class="ui list">
+  <div class="ui item"><code>simgrid_update_xml 3_hosts.xml</code></div>
+</div>
+
+
+<div class="ui divider"></div>
+
+
+<p class="ui">
+  <b>A homogeneous cluster with a crossbar switch:</b> A very common parallel computing platform is a homogeneous
+  cluster in which hosts are interconnected via a crossbar switch with as many ports as hosts, so that any disjoint
+  pairs of hosts can communicate concurrently at full speed. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="../topic_getting_started/cluster_crossbar.jpg" width="470">
+</p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    {% highlight XML %}
+{% include_relative topic_getting_started/cluster_crossbar.xml %}
+    {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note that one simply specifies a name prefix and suffix for each host, and then give an integer
+  range (in the example the cluster contains 256 hosts). All hosts have the same power (1 Gflop/sec) and are connected to the switch via links with same latency (5 microseconds) and
+  bandwidth (125 Mbit/sec). See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
+
+<p class="ui">
+  <b>A homogeneous cluster with a shared backbone:</b> Another popular model for a parallel platform is that of a set of homogeneous
+  hosts connected to a shared communication medium, a backbone, with some finite bandwidth capacity and on which communicating host pairs can
+  experience contention. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="../topic_getting_started/cluster_backbone.jpg" width="470">
+</p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    {% highlight XML %}
+{% include_relative topic_getting_started/cluster_backbone.xml %}
+    {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note that one specifies the latency and bandwidth of the link that connects a host to the backbone (in this
+  example 50 microsec and 125 Mbit/sec), as well
+  as the latency and bandwidth of the backbone itself (in this example
+  500 microsec and 2.25 Gbit/sec). See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
+
+<p class="ui">
+  <b>Two interconnected clusters:</b> One can connect clusters together and in fact build simulated platforms
+  hierarchically in arbitrary fashions. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="../topic_getting_started/2_clusters.jpg" width="470">
+</p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    {% highlight XML %}
+    {% include_relative topic_getting_started/2_clusters.xml %}
+    {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  The above XML is a bit more involved. See all details and documentation on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
