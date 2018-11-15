@@ -105,8 +105,8 @@ print >> sys.stderr, "Callibrating code compiled"
 ###########################################
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
-fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
-fh.write("  <host id=\"host-0\" speed=\"400Gf\"/>\n")
+fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4.1\">\n<AS id=\"AS0\" routing=\"Full\">\n")
+fh.write("  <host id=\"host-0\" speed=\"200Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
 print >> sys.stderr, "One-host XML platform file generated"
@@ -127,7 +127,7 @@ print >> sys.stderr, "One-host hostfile generated"
 print >> sys.stderr, "Initiating binary search..."
 
 # Coarse approximation of the traget simulated time
-desired_simulated_gflops_rate=400.0
+desired_simulated_gflops_rate=200.0
 number_gflop = (3.0 * SIZE * SIZE * SIZE + SIZE * SIZE) / (1000000000.0)
 target = number_gflop / desired_simulated_gflops_rate
 
@@ -141,7 +141,7 @@ while (True):
 
 	# Run the code
 	FNULL = open(os.devnull, 'w')
-	output = subprocess.check_output(["smpirun","--cfg=smpi/running-power:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
+	output = subprocess.check_output(["smpirun","--cfg=smpi/host-speed:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
 	FNULL.close()
 
 	# Get the wall-clock time
@@ -158,6 +158,6 @@ while (True):
 	if ((abs(simulated_wallclock - target) < 0.001) or (abs(high - low) < 100)):
 		break
 
-print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
+print "Run smpirun with --cfg=smpi/host-speed:"+str(("%.3f" % attempt))+"\n"
 print "  (and run smpicc with -Ofast)\n"
 
