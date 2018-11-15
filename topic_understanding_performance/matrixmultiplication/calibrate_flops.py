@@ -141,7 +141,7 @@ while (True):
 
 	# Run the code
 	FNULL = open(os.devnull, 'w')
-	output = subprocess.check_output(["smpirun","--cfg=smpi/running-power:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
+	output = subprocess.check_output(["smpirun","--cfg=smpi/host-speed:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
 	FNULL.close()
 
 	# Get the wall-clock time
@@ -158,6 +158,6 @@ while (True):
 	if ((abs(simulated_wallclock - target) < 0.001) or (abs(high - low) < 100)):
 		break
 
-print "Run smpirun with --cfg=smpi/running-power:"+str(("%.3f" % attempt))+"\n"
+print "Run smpirun with --cfg=smpi/host-speed:"+str(("%.3f" % attempt))+"\n"
 print "  (and run smpicc with -Ofast)\n"
 
