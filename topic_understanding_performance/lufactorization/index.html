@@ -372,9 +372,9 @@ This loop performs <i>O(N)</i> floating point operations, and in your SMPI code 
   
 <figure class="highlight"><pre><code class="language-c" data-lang="c">  <span class="kt">double</span> <span class="n">flops</span> <span class="o">=</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="n">FLOP_CALIBRATION_FACTOR</span> <span class="p">;</span>
   <span class="n">SMPI_SAMPLE_FLOPS</span><span class="p">(</span><span class="n">flops</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// for (i=0; i &lt; N; i++) {
-</span>    <span class="c1">//   sum = sum * 3.0 * x * y;
-</span>  <span class="p">}</span>
+    <span class="c1">// for (i=0; i &lt; N; i++) {</span>
+    <span class="c1">//   sum = sum * 3.0 * x * y;</span>
+  <span class="p">}</span>
   </code></pre></figure>
 
 </div>

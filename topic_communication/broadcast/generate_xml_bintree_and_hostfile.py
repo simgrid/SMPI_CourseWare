@@ -21,7 +21,7 @@ def pow2(x):
 def issueHead():
         head = ("<?xml version='1.0'?>\n"
                 "<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n"
-                "<platform version=\"4\">\n\n")
+                "<platform version=\"4.1\">\n\n")
 
         config_clause = ("<!--  WARNING:  This <config></config> clause below\n"
                        "makes it so that NO COMPUTATION TIME is simulated. This is because\n"
@@ -32,16 +32,16 @@ def issueHead():
                        "-->\n"
                        "<config>\n"
                        "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
-                       "<prop id=\"smpi/running-power\" value=\"200000000000\"></prop>\n"
+                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
                        "</config>\n\n")
 
-        AS_head = "<AS id=\"AS0\" routing=\"Full\">\n"
+        AS_head = "<zone id=\"AS0\" routing=\"Floyd\">\n"
 
         return head + config_clause + AS_head
 
 
 def issueTail():
-	return "</AS>\n</platform>\n"
+	return "</zone>\n</platform>\n"
 
 def issueLink1(x):
 	return "  <link id=\"link-"+str(x)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(link_bandwidth)+link_bandwidth_unit+"\"/>\n"
@@ -53,7 +53,7 @@ def issueLink3(x,y,bw):
 	return "  <link id=\"link-"+str(x)+"-"+str(y)+"\" latency=\""+str(link_latency)+"\" bandwidth=\""+str(bw)+link_bandwidth_unit+"\"/>\n"
 
 def issueHost(index):
-	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"200Gf\"/>\n"
+	return "  <host id=\"host-"+str(index)+".hawaii.edu\" speed=\"10Gf\"/>\n"
 
 def issueRouteHead(index1, index2):
 	return "  <route src=\"host-"+str(index1)+".hawaii.edu\" dst=\"host-"+str(index2)+".hawaii.edu\">\n"
@@ -94,35 +94,15 @@ for i in range(0,num_hosts):
 # Create all routes
 for i in range(0,num_hosts):
 	level_i = floor(math.log(1+i,2))
-	for j in range(i+1,num_hosts):
-		fh.write(issueRouteHead(j,i))
-		# Host j is at the same of lower level than host i
-		level_j = floor(math.log(1+j,2))
-		current_host_path_j = j
-		# Go up to the same level of that of host i
-		for l in range(level_j,level_i,-1):
-			parent_host = floor(float(current_host_path_j-1)/2)
-			fh.write(issueRouteLink2(min(current_host_path_j,parent_host),max(current_host_path_j,parent_host)))
-			current_host_path_j = parent_host
-		# Find the common ancestor
-		current_host_path_i = i
-		while (current_host_path_j != current_host_path_i):
-			fh.write(issueRouteLink2(min(current_host_path_j,floor(float(current_host_path_j-1)/2)), max(current_host_path_j,floor(float(current_host_path_j-1)/2))))
-			current_host_path_i = floor(float(current_host_path_i-1)/2)
-			current_host_path_j = floor(float(current_host_path_j-1)/2)
-		common_ancestor = current_host_path_j
-		# Go back from i to the common ancestor
-		current_host_path_i = i
-		sequence = []
-		sequence.append(current_host_path_i)
-		while (current_host_path_i != common_ancestor):
-			parent_host = floor(float(current_host_path_i-1)/2)
-			sequence.append(parent_host)
-			current_host_path_i = parent_host
-		# Issue links in the common ancestor -> i order
-		sequence = sequence[::-1]
-		for k in range(0,len(sequence)-1):
-			fh.write(issueRouteLink2(min(sequence[k],sequence[k+1]),max(sequence[k],sequence[k+1])))
+	left_child = 2*i+1
+	right_child = 2*i+2
+	if (left_child < num_hosts):
+		fh.write(issueRouteHead(i, left_child))
+		fh.write(issueRouteLink2(i,left_child))
+		fh.write(issueRouteTail())
+	if (right_child < num_hosts):
+		fh.write(issueRouteHead(i, right_child))
+		fh.write(issueRouteLink2(i,right_child))
 		fh.write(issueRouteTail())
 
 fh.write(issueTail())

@@ -250,8 +250,10 @@
 </p>
 
 <p class="ui">
-  On a <b>Debian/Ubuntu (virtual) machine</b>, you can retrieve SimGrid directly from the
+  On a <b>recent Debian/Ubuntu (virtual) machine</b>, you can retrieve SimGrid directly from the
   package manager: <code>sudo apt-get install simgrid</code>
+  Do not forget to check that you obtained a sufficiently recent version, e.g., by doing <code>apt-cache show libsimgrid-dev</code>.
+  If the version you obtain this way is too old, we recommend you to manually install simgrid and to follow the instructions bellow.
 </p>
 
 <hr />
@@ -322,20 +324,22 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   <div class=" content">
     <div class="ui container segment">
     
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">    <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
-    <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host0"</span> <span class="na">power=</span><span class="s">"1Gf"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host1"</span> <span class="na">power=</span><span class="s">"2Gf"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host2"</span> <span class="na">power=</span><span class="s">"40Gf"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link0"</span> <span class="na">bandwidth=</span><span class="s">"125MBps"</span> <span class="na">latency=</span><span class="s">"100us"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link1"</span> <span class="na">bandwidth=</span><span class="s">"50MBps"</span> <span class="na">latency=</span><span class="s">"150us"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link2"</span> <span class="na">bandwidth=</span><span class="s">"250MBps"</span> <span class="na">latency=</span><span class="s">"50us"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host1"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;/route&gt;</span>
-      <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host1"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
-      <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
-    <span class="nt">&lt;/AS&gt;</span>
-  <span class="nt">&lt;/platform&gt;</span>
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host0"</span> <span class="na">speed=</span><span class="s">"1Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host1"</span> <span class="na">speed=</span><span class="s">"2Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host2"</span> <span class="na">speed=</span><span class="s">"40Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link0"</span> <span class="na">bandwidth=</span><span class="s">"125MBps"</span> <span class="na">latency=</span><span class="s">"100us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link1"</span> <span class="na">bandwidth=</span><span class="s">"50MBps"</span> <span class="na">latency=</span><span class="s">"150us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link2"</span> <span class="na">bandwidth=</span><span class="s">"250MBps"</span> <span class="na">latency=</span><span class="s">"50us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host1"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+     <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host1"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+    <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
     </code></pre></figure>
 
     </div>
@@ -345,14 +349,14 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 <p class="ui">
   In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
   with a <code>power</code> (i.e., compute speed in Gflops), and links with a <code>latency</code> (in us)
-  and <code>bandwidth</code> (in MBytes per second). Other units are possible and written as expected.
+  and <code>bandwidth</code> (in Mbit/sec). Other units are possible and written as expected.
   By default, routes are symmetrical. See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 </p>
 
 <p class="ui">
-  Note that this XML file is intended for SimGrid v3.12 or earlier. To
-  use it with SimGrid v3.13 or above, you have to convert it using the
+  This XML file is intended for SimGrid v3.21 or earlier. To
+  use it with more recent versions, you may have to convert it using the
   <code>simgrid_update_xml</code> program, as follows:
 </p>
 <div class="ui list">
@@ -381,14 +385,16 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
-      <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"225MBps"</span> <span class="na">lat=</span><span class="s">"5us"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;/AS&gt;</span>
-      <span class="nt">&lt;/platform&gt;</span>
-      </code></pre></figure>
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host-"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0-255"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"5us"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
 
     </div>
   </div>
@@ -397,7 +403,7 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 <p class="ui">
   In the above XML, note that one simply specifies a name prefix and suffix for each host, and then give an integer
   range (in the example the cluster contains 256 hosts). All hosts have the same power (1 Gflop/sec) and are connected to the switch via links with same latency (5 microseconds) and
-  bandwidth (225 MBytes/sec). See more information on the
+  bandwidth (125 Mbit/sec). See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 
 </p>
@@ -423,14 +429,16 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
-      <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125MBps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25GBps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span><span class="nt">/&gt;</span>
-      <span class="nt">&lt;/AS&gt;</span>
-      <span class="nt">&lt;/platform&gt;</span>
-      </code></pre></figure>
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25Gbps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
 
     </div>
   </div>
@@ -438,9 +446,9 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
 
 <p class="ui">
   In the above XML, note that one specifies the latency and bandwidth of the link that connects a host to the backbone (in this
-  example 50 microsec and 125 MByte/sec), as well
+  example 50 microsec and 125 Mbit/sec), as well
   as the latency and bandwidth of the backbone itself (in this example
-  500 microsec and 2.25 GByte/sec). See more information on the
+  500 microsec and 2.25 Gbit/sec). See more information on the
   <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
 
 </p>
@@ -465,19 +473,21 @@ core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
   </div>
   <div class=" content">
     <div class="ui container segment">
-      
-<figure class="highlight"><pre><code class="language-xml" data-lang="xml">      <span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd"&gt;</span>
-      <span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"3"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;AS</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_1"</span> <span class="na">prefix=</span><span class="s">"C1−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−15"</span> <span class="na">power=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125MBps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25GBps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_2"</span> <span class="na">prefix=</span><span class="s">"C2−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−31"</span> <span class="na">power=</span><span class="s">"2Gf"</span> <span class="na">bw=</span><span class="s">"125MBps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="na">bandwidth=</span><span class="s">"0.01GBps"</span> <span class="na">latency=</span><span class="s">"22500us"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;ASroute</span> <span class="na">src=</span><span class="s">"my_cluster_1"</span> <span class="na">dst=</span><span class="s">"my_cluster_2"</span> <span class="na">gw_src=</span><span class="s">"C1−my_cluster_1_router.hawaii.edu"</span> <span class="na">gw_dst=</span><span class="s">"C2−my_cluster_2_router.hawaii.edu"</span> <span class="na">symmetrical=</span><span class="s">"YES"</span><span class="nt">&gt;</span>
-          <span class="nt">&lt;link_ctn</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="nt">/&gt;</span>
-        <span class="nt">&lt;/ASroute&gt;</span>
-      <span class="nt">&lt;/AS&gt;</span>
-      <span class="nt">&lt;/platform&gt;</span>
-      </code></pre></figure>
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">    <span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_1"</span> <span class="na">prefix=</span><span class="s">"C1−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−15"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25Gbps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_2"</span> <span class="na">prefix=</span><span class="s">"C2−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−31"</span> <span class="na">speed=</span><span class="s">"2Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="na">bandwidth=</span><span class="s">"0.01Gbps"</span> <span class="na">latency=</span><span class="s">"22500us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;zoneRoute</span> <span class="na">src=</span><span class="s">"my_cluster_1"</span> <span class="na">dst=</span><span class="s">"my_cluster_2"</span> <span class="na">gw_src=</span><span class="s">"C1−my_cluster_1_router.hawaii.edu"</span> <span class="na">gw_dst=</span><span class="s">"C2−my_cluster_2_router.hawaii.edu"</span> <span class="na">symmetrical=</span><span class="s">"YES"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;link_ctn</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zoneRoute&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
 
     </div>
   </div>
@@ -517,7 +527,8 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 </span>
 <span class="cp">#define N (1024 * 1024 * 1)
 </span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
   <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="n">rank</span><span class="p">;</span>
   <span class="k">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">hostname</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
@@ -527,30 +538,33 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 
   <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
   <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
-  <span class="n">MPI_Get_processor_name</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hostname_len</span><span class="p">);</span>
+  <span class="n">MPI_Get_processor_name</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="o">&amp;</span><span class="n">hostname_len</span><span class="p">);</span>
 
-  <span class="c1">// Allocate a 10MiB buffer
-</span>  <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+  <span class="c1">// Allocate a 10MiB buffer</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
 
-  <span class="c1">// Communicate along the ring
-</span>  <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): sending the message rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
-    <span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): received the message from rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">+</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// Communicate along the ring</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): sending the message rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+       	<span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): received the message from rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  	<span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+  	<span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">+</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">-</span>
+		 	<span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">rank</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): receive the message and sending it to rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">);</span>
-    <span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="p">(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+       	<span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">rank</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): receive the message and sending it to rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">);</span>
+	<span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="p">(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="c1">// Terminate
-</span>  <span class="n">MPI_Finalize</span><span class="p">();</span>
+  <span class="n">MPI_Finalize</span><span class="p">();</span>
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
+
   </code></pre></figure>
 
     </div>
@@ -589,13 +603,16 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 </div>
 
 <p class="ui">
-  Feel free to tweak the content of the XML platform file and the prorgam to see the effect on the simulated execution time.  Note that
+You will see some warnings/information regarding setting some SMPI configuration parameters. Ignore them for now. One of them will say something about not setting the power of the host running the simulation. This is fine here because in this small example we wish only to simulate the network. 
+
+<p class="ui">
+  Feel free to tweak the content of the XML platform file and the program to see the effect on the simulated execution time.  Note that
   the simulation accounts for realistic network protocol effects and MPI implementation effects. As a result, you may see
   "unexpected behavior" like in the real world (e.g., sending a message 1 byte larger may lead to significant higher
   execution time).
 </p>
 
-</div>
+&lt;/div&gt;
 
 <div class="ui tab segment" data-tab="fourth">
   <p class="ui">
@@ -660,6 +677,11 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 
 </div>
 
+
+
+
+
+</p></div>
 
 
   <br>

@@ -285,24 +285,24 @@
 #include &lt;mpi.h&gt;
 #include &lt;string.h&gt;
 </span>
-<span class="c1">// See for the (bad) default random number generator
-</span><span class="cp">#define RAND_SEED 842270
+<span class="c1">// See for the (bad) default random number generator</span>
+<span class="cp">#define RAND_SEED 842270
 </span>
-<span class="c1">// Number of bytes to broadcast
-</span>
+<span class="c1">// Number of bytes to broadcast</span>
+
 <span class="cp">#define NUM_BYTES 100000000
 </span>
-<span class="c1">///////////////////////////////////////////////////////
-//// program_abort() and print_usage() functions //////
-///////////////////////////////////////////////////////
-</span>
+<span class="c1">///////////////////////////////////////////////////////</span>
+<span class="c1">//// program_abort() and print_usage() functions //////</span>
+<span class="c1">///////////////////////////////////////////////////////</span>
+
 <span class="k">static</span> <span class="kt">void</span> <span class="n">program_abort</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">);</span>
 <span class="k">static</span> <span class="kt">void</span> <span class="n">print_usage</span><span class="p">();</span>
 
-<span class="c1">// Abort, printing the usage information only if the
-// first argument is non-NULL (and hopefully set to argv[0]), and
-// printing the second argument regardless.
-</span><span class="k">static</span> <span class="kt">void</span> <span class="nf">program_abort</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// Abort, printing the usage information only if the</span>
+<span class="c1">// first argument is non-NULL (and hopefully set to argv[0]), and</span>
+<span class="c1">// printing the second argument regardless.</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">program_abort</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">my_rank</span><span class="p">;</span>
   <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">my_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -317,8 +317,8 @@
   <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">// Print the usage information
-</span><span class="k">static</span> <span class="kt">void</span> <span class="nf">print_usage</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">// Print the usage information</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">print_usage</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">exec_name</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">my_rank</span><span class="p">;</span>
   <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span><span class="o">&amp;</span><span class="n">my_rank</span><span class="p">);</span>
 
@@ -338,32 +338,32 @@
   <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">///////////////////////////
-////// Main function //////
-///////////////////////////
-</span>
+<span class="c1">///////////////////////////</span>
+<span class="c1">////// Main function //////</span>
+<span class="c1">///////////////////////////</span>
+
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
   <span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">NUM_BYTES</span><span class="p">;</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">bcast_implementation_name</span><span class="p">;</span>
 
-  <span class="c1">// Parse command-line arguments (not using getopt because not thread-safe
-</span>  <span class="c1">// and annoying anyway). The code below ignores extraneous command-line
-</span>  <span class="c1">// arguments, which is lame, but we're not in the business of developing
-</span>  <span class="c1">// a cool thread-safe command-line argument parser.
-</span>
+  <span class="c1">// Parse command-line arguments (not using getopt because not thread-safe</span>
+  <span class="c1">// and annoying anyway). The code below ignores extraneous command-line</span>
+  <span class="c1">// arguments, which is lame, but we're not in the business of developing</span>
+  <span class="c1">// a cool thread-safe command-line argument parser.</span>
+
   <span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
 
-  <span class="c1">// Bcast implementation name
-</span>  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Bcast implementation name</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Missing &lt;bcast implementation name&gt; argument</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="n">bcast_implementation_name</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
   <span class="p">}</span>
 
-  <span class="c1">// Check that the implementation name is valid
-</span>  <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="s">"naive_bcast"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+  <span class="c1">// Check that the implementation name is valid</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">strcmp</span><span class="p">(</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="s">"naive_bcast"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
       <span class="n">strcmp</span><span class="p">(</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="s">"default_bcast"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
       <span class="n">strcmp</span><span class="p">(</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="s">"ring_bcast"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
       <span class="n">strcmp</span><span class="p">(</span><span class="n">bcast_implementation_name</span><span class="p">,</span> <span class="s">"pipelined_ring_bcast"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
@@ -374,8 +374,8 @@
     <span class="n">program_abort</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="n">message</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="c1">// Chunk size optional argument
-</span>  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Chunk size optional argument</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">strcmp</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s">"-c"</span><span class="p">))</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">argc</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">sscanf</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="s">"%d"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chunk_size</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
         <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Invalid &lt;chunk size&gt; argument</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
@@ -383,22 +383,22 @@
     <span class="p">}</span>
   <span class="p">}</span>
   
-  <span class="c1">// Determine rank and number of processes
-</span>  <span class="kt">int</span> <span class="n">num_procs</span><span class="p">;</span>
+  <span class="c1">// Determine rank and number of processes</span>
+  <span class="kt">int</span> <span class="n">num_procs</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">rank</span><span class="p">;</span>
   <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
   <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">num_procs</span><span class="p">);</span>
 
-  <span class="c1">// Allocate buffer
-</span>  <span class="kt">int</span> <span class="n">checksum</span><span class="p">;</span>
+  <span class="c1">// Allocate buffer</span>
+  <span class="kt">int</span> <span class="n">checksum</span><span class="p">;</span>
   <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">;</span>
   
   <span class="k">if</span> <span class="p">((</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">NUM_BYTES</span><span class="p">))</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">program_abort</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s">"Out of memory!"</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="c1">// On rank 0 fill the buffer with random data 
-</span>  <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="c1">// On rank 0 fill the buffer with random data </span>
+  <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="p">{</span> 
     <span class="n">checksum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">srandom</span><span class="p">(</span><span class="n">RAND_SEED</span><span class="p">);</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">NUM_BYTES</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -407,40 +407,40 @@
     <span class="p">}</span>
   <span class="p">}</span>
 
-  <span class="c1">// Start the timer
-</span>  <span class="kt">double</span> <span class="n">start_time</span><span class="p">;</span>
+  <span class="c1">// Start the timer</span>
+  <span class="kt">double</span> <span class="n">start_time</span><span class="p">;</span>
   <span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">MPI_Wtime</span><span class="p">();</span>
   <span class="p">}</span>
 
-  <span class="c1">/////////////////////////////////////////////////////////////////////////////
-</span>  <span class="c1">//////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////
-</span>  <span class="c1">/////////////////////////////////////////////////////////////////////////////
-</span>
-  <span class="c1">// char *bcast_implementation_name:   the bcast implementation name (argument #1)
-</span>  <span class="c1">// int chunk_size:                    the chunk size (optional argument #2)
-</span>  <span class="c1">// int NUM_BYTES:                     the number of bytes to broadcast
-</span>  <span class="c1">// char *buffer:                      the buffer to broadcast
-</span>
-  <span class="c1">// Process rank 0 should be  the source of the broadcast
-</span>
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+  <span class="c1">//////////////////////////// TO IMPLEMENT: BEGIN ////////////////////////////</span>
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+
+  <span class="c1">// char *bcast_implementation_name:   the bcast implementation name (argument #1)</span>
+  <span class="c1">// int chunk_size:                    the chunk size (optional argument #2)</span>
+  <span class="c1">// int NUM_BYTES:                     the number of bytes to broadcast</span>
+  <span class="c1">// char *buffer:                      the buffer to broadcast</span>
+
+  <span class="c1">// Process rank 0 should be  the source of the broadcast</span>
+
 <span class="cp">#include "bcast_solution.c"
 </span>
-  <span class="c1">/////////////////////////////////////////////////////////////////////////////
-</span>  <span class="c1">///////////////////////////// TO IMPLEMENT: END /////////////////////////////
-</span>  <span class="c1">/////////////////////////////////////////////////////////////////////////////
-</span> 
-  <span class="c1">// All processes send checksums back to the root, which checks for consistency
-</span>  <span class="kt">char</span> <span class="n">all_ok</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+  <span class="c1">///////////////////////////// TO IMPLEMENT: END /////////////////////////////</span>
+  <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+ 
+  <span class="c1">// All processes send checksums back to the root, which checks for consistency</span>
+  <span class="kt">char</span> <span class="n">all_ok</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">num_procs</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="kt">int</span> <span class="n">received_checksum</span><span class="p">;</span>
       <span class="n">MPI_Recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">received_checksum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="n">MPI_ANY_SOURCE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
-      <span class="c1">// Print a single message in case of a mismatch, but continue
-</span>      <span class="c1">// receiving other checksums to ensure that all processes
-</span>      <span class="c1">// reach the MPI_Finalize()
-</span>      <span class="k">if</span> <span class="p">((</span><span class="n">all_ok</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">checksum</span> <span class="o">!=</span> <span class="n">received_checksum</span><span class="p">))</span> <span class="p">{</span>
+      <span class="c1">// Print a single message in case of a mismatch, but continue</span>
+      <span class="c1">// receiving other checksums to ensure that all processes</span>
+      <span class="c1">// reach the MPI_Finalize()</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">all_ok</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">checksum</span> <span class="o">!=</span> <span class="n">received_checksum</span><span class="p">))</span> <span class="p">{</span>
 	    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="s">"</span><span class="se">\t</span><span class="s">** Non-matching checksum! **</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 	    <span class="n">all_ok</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 	    <span class="k">break</span><span class="p">;</span>
@@ -454,8 +454,8 @@
     <span class="n">MPI_Send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">checksum</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_INT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="c1">// Print out bcast implementation name and wall-clock time, only if the bcast was successful
-</span>  <span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="c1">// Print out bcast implementation name and wall-clock time, only if the bcast was successful</span>
+  <span class="n">MPI_Barrier</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">((</span><span class="mi">0</span> <span class="o">==</span> <span class="n">rank</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">all_ok</span><span class="p">))</span> <span class="p">{</span>
     <span class="n">fprintf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="s">"implementation: %s | chunksize: %d |  time: %.3lf seconds</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
 		    <span class="n">bcast_implementation_name</span><span class="p">,</span> 
@@ -463,8 +463,8 @@
 		    <span class="n">MPI_Wtime</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="c1">// Clean-up
-</span>  <span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+  <span class="c1">// Clean-up</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
   <span class="n">MPI_Finalize</span><span class="p">();</span>
 
   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
