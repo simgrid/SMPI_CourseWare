@@ -4,37 +4,40 @@
 <div class="container ui raised segment">
 <h3 class="ui header">Overview</h3>
 
-  <p class="ui">This topic focuses on getting you started with SMPI (Simulated MPI)
-  so that you are ready for the modules in the next topics. Simply read through the
-  4 tabs below:
+  <p class="ui">This topic shows you how to install SimGrid/SMPI, introduces you to the main concepts,
+     have you run a Hello World example, 
+     and gives limitations of SMPI simulations. The goal is for you to be prepared for the other
+     topics and their hands-on activities.
   </p>
 </div>
 
 
-<div class="ui pointing secondary menu">
-  <a class="item active" data-tab="first">Installing SimGrid</a>
-  <a class="item " data-tab="second">Platform XML</a>
-  <a class="item" data-tab="third">Hello World</a>
-  <a class="item" data-tab="fourth">Limitations</a>
+<div class="container ui raised segment">
+<h3 class="ui header">Available content </h3>
+
+<div class="ui list bulleted">
+
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_getting_started/installing_simgrid/">Installing SimGrid</a></h4>
 </div>
 
-<div class="ui tab segment active" data-tab="first">
-  {% include_relative topic_getting_started/installing_simgrid.html %}
-</div>
-
-
-<div class="ui tab segment " data-tab="second">
-  {% include_relative topic_getting_started/platform_xml.html %}
-</div>
-
-<div class="ui tab segment" data-tab="third">
-  {% include_relative topic_getting_started/hello_world.html %}
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_getting_started/platforms/">Describing Simulated Platforms</a></h4>
 </div>
 
 
-<div class="ui tab segment" data-tab="fourth">
-  {% include_relative topic_getting_started/limitations.html %}
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_getting_started/hello_world/">Hello World!</a></h4>
 </div>
 
 
+
+<div class="ui item">
+<h4 class="ui header"><a href="{{site.baseurl}}topic_getting_started/limitations/">Limitations</a></h4>
+</div>
+
+
+</div>
+
+</div>
 
