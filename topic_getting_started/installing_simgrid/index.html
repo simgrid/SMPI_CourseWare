@@ -10,7 +10,7 @@
 
   <title>
     
-      Topic &#35;5 &middot; SMPI CourseWare
+      Topic &#35;0 Module &middot; SMPI CourseWare
     
   </title>
 
@@ -89,7 +89,7 @@
   
   
   
-  <a class="ui popable item fluid " href="/SMPI_CourseWare//00_topic/"
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//00_topic/"
        data-content="Getting started with SMPI" data-variation="inverted">
       <h3 class="ui header fluid">Topic &#35;0
       </h3>
@@ -149,7 +149,7 @@
   
   
   
-  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//05_topic/"
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
        data-content="Flexible distributed memory programs" data-variation="inverted">
       <h3 class="ui header fluid">Topic &#35;5
       </h3>
@@ -244,14 +244,60 @@
 	<div class="page">
   <br>
 	
-	<h1 class="ui header">Topic &#35;5: Flexible distributed memory programs</h1>
+	<h1 class="ui header">Topic &#35;0 Module: Installing SimGrid</h1>
 	
   <div class="ui divider"></div>
 
-	
-<p style="text-align:center;" class="ui">
-    <img align="center" width="200" src="../public/under_construction.jpg" />
-  </p>
+	<p class="ui">
+<b>
+  This CourseWare was tested with <a href="http://simgrid.gforge.inria.fr/">SimGrid</a>
+  version 3.13 (small changes <i>may</i> be needed with other versions).
+  </b>
+</p>
+
+<p class="ui">
+  On a <b>recent Debian/Ubuntu (virtual) machine</b>, you can retrieve SimGrid directly from the
+  package manager: <code>sudo apt-get install simgrid</code>
+  Do not forget to check that you obtained a sufficiently recent version, e.g., by doing <code>apt-cache show libsimgrid-dev</code>.
+  If the version you obtain this way is too old, we recommend you to manually install simgrid and to follow the instructions bellow.
+</p>
+
+<hr />
+
+<p class="ui">
+  For other systems, please refer to the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a>
+  that have all the information you need. But just to be sure, here is
+  a typical way to compile the version you want on a Linux (virtual) box:
+</p>
+
+<div class="ui list bulleted">
+  <div class="ui item">Install the dependencies: <code>sudo apt-get install g++ libboost-all-dev</code></div>
+  <div class="ui item">Download the .tar.gz of the latest stable version from the <a href="http://simgrid.gforge.inria.fr/download.html">Download page</a></div>
+  <div class="ui item">Extract the archive: <code>tar -xvf SimGrid-x.x.x.tar.gz</code></div>
+  <div class="ui item">Go to the extracted directory: <code>cd SimGrid-x.x.x</code></div>
+  <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br /> (Assuming you want to install in <code>/usr/local/</code>)</div>
+  <div class="ui item">Build: <code>make</code></div>
+  <div class="ui item">Run the tests (for the paranoid): <code>make check</code></div>
+  <div class="ui item">Install libraries and executables: <code>sudo make install</code></div>
+</div>
+
+<p class="ui">
+  Assuming your path includes <code>/usr/local/bin</code> (which it should), you now can invoke two new
+  commands: <b><code>smpicc</code></b> and <b><code>smpirun</code></b>.
+</p>
+
+<hr />
+
+<p class="ui">
+  If you are not a superuser on your system, then you have to install SimGrid in your home directory, say in a directory
+  called <code>local</code>, with the modified <code>cmake</code>
+  invocation. The binaries are then available as
+  <code>~/bin/smpicc</code> and <code>~/bin/smpirun</code>.
+</p>
+
+<div class="ui list">
+  <div class="ui item"><code>cmake -DCMAKE_INSTALL_PREFIX=$HOME/local/ -Denable_smpi=on -Denable_documentation=off</code></div>
+</div>
 
 
 

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Topic &#35;0 Module &middot; SMPI CourseWare
+    
+  </title>
+
+
+
+  <!-- Semantic UI, JQuery, etc. -->
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
+
+  <script language='javascript'>
+               $(document).ready(function(){
+               $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
+
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
+                     })
+                 ;
+
+               });
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+	
+
+<div class="ui vertical left fixed menu basic  ">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
+  <br>
+  <br>
+
+
+
+
+  <a class="ui item " href="/SMPI_CourseWare/">
+    <h3 class="ui header">Home</h3>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Curricular information" data-variation="inverted">
+      <h3 class="ui header fluid">About
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;0
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Basics of distributed memory programming" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;1
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//02_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;2
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
+       data-content="Understanding performance" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;4
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;5
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ui divider" style="margin-top:0em"></div>
+
+</div>
+
+
+
+	<div class="contentpage container fluid">
+	<div class="page">
+  <br>
+	
+	<h1 class="ui header">Topic &#35;0 Module: Hello World!</h1>
+	
+  <div class="ui divider"></div>
+
+	<p class="ui">
+We are now ready to simulate the execution of an MPI program using SMPI. Let us use the following simple
+  MPI program,
+  <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>, in which the processes pass around a message and
+  print the elpased time:
+  </p>
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the code of <a href="../topic_getting_started/roundtrip.c"><code>roundtrip.c</code></a>...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+      
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;mpi.h&gt;
+</span>
+<span class="cp">#define N (1024 * 1024 * 1)
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">size</span><span class="p">,</span> <span class="n">rank</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">timeval</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">hostname</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">hostname_len</span><span class="p">;</span>
+
+  <span class="n">MPI_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">argv</span><span class="p">);</span>
+
+  <span class="n">MPI_Comm_rank</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">rank</span><span class="p">);</span>
+  <span class="n">MPI_Comm_size</span><span class="p">(</span><span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+  <span class="n">MPI_Get_processor_name</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="o">&amp;</span><span class="n">hostname_len</span><span class="p">);</span>
+
+  <span class="c1">// Allocate a 10MiB buffer</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+
+
+  <span class="c1">// Communicate along the ring</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): sending the message rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+	<span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+       	<span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): received the message from rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  	<span class="n">gettimeofday</span><span class="p">(</span><span class="o">&amp;</span><span class="n">end</span><span class="p">,</span><span class="nb">NULL</span><span class="p">);</span>
+  	<span class="n">printf</span><span class="p">(</span><span class="s">"%f</span><span class="se">\n</span><span class="s">"</span><span class="p">,(</span><span class="n">end</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">+</span> <span class="n">end</span><span class="p">.</span><span class="n">tv_usec</span> <span class="o">-</span>
+		 	<span class="n">start</span><span class="p">.</span><span class="n">tv_sec</span><span class="o">*</span><span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span> <span class="o">-</span> <span class="n">start</span><span class="p">.</span><span class="n">tv_usec</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+       	<span class="n">MPI_Recv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="n">rank</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">,</span> <span class="n">MPI_STATUS_IGNORE</span><span class="p">);</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Rank %d (running on '%s'): receive the message and sending it to rank %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">hostname</span><span class="p">,(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">);</span>
+	<span class="n">MPI_Send</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">MPI_BYTE</span><span class="p">,</span> <span class="p">(</span><span class="n">rank</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">MPI_COMM_WORLD</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">MPI_Finalize</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+  </code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  Say we want to simulate the execution of this program on a homogeneous cluster, such as the one we saw
+  in the "XML Platforms" tab: <a href="../topic_getting_started/cluster_crossbar.xml">cluster_crossbar.xml</a>.
+  We need an "MPI host file", that is a simple text file that lists all hosts on which we wish to
+  start an MPI process: <a href="../topic_getting_started/cluster_hostfile.txt">cluster_hostfile.txt</a>.
+</p>
+
+<p class="ui">Compiling the program is straightforward:</p>
+<div class="ui segment raised">
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpicc -O4 roundtrip.c -o roundtrip</code></pre></figure>
+
+</div>
+
+<p class="ui">Running (simulating) it using 16 hosts on the cluster is done as follows:</p>
+
+<div class="ui segment raised">
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">  % smpirun -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip</code></pre></figure>
+
+</div>
+
+<div class="ui list bulleted">
+
+<div class="ui item">The <code>-np 16</code> option, just like in regular MPI, specifies the number of MPI processes to use. </div>
+<div class="ui item">The <code>-hostfile ./cluster_hostfile.txt</code> option, just like in regular MPI, specifies the host file. </div>
+<div class="ui item">The <code>-platform ./cluster_crossbar.xml</code> option, <b>which doesn't exist in regular MPI</b>, specifies the platform configuration to be simulated. </div>
+<div class="ui item">At the end of the command, one finds the executable name and command-line arguments (in this case there are none).</div>
+
+</div>
+
+<p class="ui">
+You will see some warnings/information regarding setting some SMPI configuration parameters. Ignore them for now. One of them will say something about not setting the power of the host running the simulation. This is fine here because in this small example we wish only to simulate the network. 
+</p>
+
+<p class="ui">
+  Feel free to tweak the content of the XML platform file and the program to see the effect on the simulated execution time.  Note that
+  the simulation accounts for realistic network protocol effects and MPI implementation effects. As a result, you may see
+  "unexpected behavior" like in the real world (e.g., sending a message 1 byte larger may lead to significant higher
+  execution time).
+</p>
+
+
+
+  <br>
+
+</div>
+	</div>
+
+
+
+</body>
+</html>

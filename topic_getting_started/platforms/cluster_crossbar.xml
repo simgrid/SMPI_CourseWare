@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4.1">
+    <zone id="AS0" routing="Full">
+        <cluster id="my_cluster" prefix="host-" suffix=".hawaii.edu" radical="0-255" speed="1Gf" bw="125Mbps" lat="5us"/>
+    </zone>
+</platform>

@@ -10,7 +10,7 @@
 
   <title>
     
-      Topic &#35;5 &middot; SMPI CourseWare
+      Topic &#35;0 Module &middot; SMPI CourseWare
     
   </title>
 
@@ -89,7 +89,7 @@
   
   
   
-  <a class="ui popable item fluid " href="/SMPI_CourseWare//00_topic/"
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//00_topic/"
        data-content="Getting started with SMPI" data-variation="inverted">
       <h3 class="ui header fluid">Topic &#35;0
       </h3>
@@ -149,7 +149,7 @@
   
   
   
-  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//05_topic/"
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
        data-content="Flexible distributed memory programs" data-variation="inverted">
       <h3 class="ui header fluid">Topic &#35;5
       </h3>
@@ -244,14 +244,68 @@
 	<div class="page">
   <br>
 	
-	<h1 class="ui header">Topic &#35;5: Flexible distributed memory programs</h1>
+	<h1 class="ui header">Topic &#35;0 Module: Limitations</h1>
 	
   <div class="ui divider"></div>
 
-	
-<p style="text-align:center;" class="ui">
-    <img align="center" width="200" src="../public/under_construction.jpg" />
-  </p>
+	<p class="ui">
+  SMPI is robust, but it still has some limitations, as listed (and further explained) below:
+</p>
+
+<div class="ui accordion">
+
+  <div class="ui container segment">
+
+    <div class=" title">
+      <h4 class="header"><i class="dropdown icon"></i> Do not use global variables that should be distinct across MPI
+        processes</h4>
+    </div>
+    <div class=" content">
+      SMPI runs your MPI processes as threads within a single process. So when you declare a global variable in your
+      program
+      (which is rarely a good idea anyway), all the threads will share it, as threads do. That's likely not what you
+      want
+      in terms of your MPI processes. Use local variables instead.
+    </div>
+  </div>
+
+  <div class="ui container segment">
+
+    <div class=" title">
+      <h4 class="header">
+        <i class="dropdown icon"></i>
+        Do not use multithreading in your program
+      </h4>
+    </div>
+    <div class=" content">
+      Because SMPI already uses multithreading to simulate your MPI program's execution, if your MPI program uses
+      threads
+      as well, mayhem can occur. In practice, i.e., with real MPI, you typically want to use threads to exploit
+      multi-core
+      machines. In these pedagogic modules, simply pretend that each host is single-core and that you don't need to use
+      threads.
+      This has no impact on your learning MPI, and if/when you transition to real (as opposed to simulated) MPI
+      executions, you
+      can then simply multi-thread computational sections of your code.
+    </div>
+  </div>
+
+  <div class="ui container segment">
+
+    <div class=" title">
+      <h4 class="header">
+        <i class="dropdown icon"></i>
+        Don't make your C code weird
+      </h4>
+    </div>
+    <div class=" content">
+      Yes, this is vague. <code>smpicc</code> compiles your code, and is fairly robust. But if you go crazy with
+      tons of macros and C oddness, <code>smpicc</code> may get confused. It should happen only in rather extreme
+      cases, but you are now warned.
+    </div>
+  </div>
+
+</div>
 
 
 

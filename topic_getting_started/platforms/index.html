@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Topic &#35;0 Module &middot; SMPI CourseWare
+    
+  </title>
+
+
+
+  <!-- Semantic UI, JQuery, etc. -->
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/basics.css">
+  <link rel="stylesheet" type="text/css" href="/SMPI_CourseWare//public/syntax.css">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+  <script src="/SMPI_CourseWare//jquery/jquery.min.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/accordion.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/popup.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/transition.js"></script>
+  <script src="/SMPI_CourseWare//semantic/components/tab.js"></script>
+
+  <script language='javascript'>
+               $(document).ready(function(){
+               $('.ui.accordion').accordion();
+               $('.popable')
+                   .popup({
+                     position: 'right center'
+                   })
+               ;
+                 $('.menu .item').tab();
+
+                 $('.paths.example .menu .item')
+                     .tab({
+                       context: '.paths.example'
+                     })
+                 ;
+
+               });
+  </script>
+
+
+</head>
+
+
+
+<body>
+
+	
+
+<div class="ui vertical left fixed menu basic  ">
+  <br>
+  <a href="http://simgrid.org" target="_blank">
+  <img width=99 src="/SMPI_CourseWare/public/simgrid_logo.jpg" style="margin-left:5px">
+  </a>
+  <br>
+  <br>
+
+
+
+
+  <a class="ui item " href="/SMPI_CourseWare/">
+    <h3 class="ui header">Home</h3>
+  </a>
+
+
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//000_objectives/"
+       data-content="Curricular information" data-variation="inverted">
+      <h3 class="ui header fluid">About
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid  active" href="/SMPI_CourseWare//00_topic/"
+       data-content="Getting started with SMPI" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;0
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//01_topic/"
+       data-content="Basics of distributed memory programming" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;1
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//02_topic/"
+       data-content="Communication on distributed platforms" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;2
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//03_topic/"
+       data-content="Rigid distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;3
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//04_topic/"
+       data-content="Understanding performance" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;4
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  <a class="ui popable item fluid " href="/SMPI_CourseWare//05_topic/"
+       data-content="Flexible distributed memory programs" data-variation="inverted">
+      <h3 class="ui header fluid">Topic &#35;5
+      </h3>
+  </a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="ui divider" style="margin-top:0em"></div>
+
+</div>
+
+
+
+	<div class="contentpage container fluid">
+	<div class="page">
+  <br>
+	
+	<h1 class="ui header">Topic &#35;0 Module: Describing Simulated Platforms</h1>
+	
+  <div class="ui divider"></div>
+
+	<p class="ui">
+SMPI simulates the execution of MPI applications by relying on the fast and accurate simulation
+core provided by <a href="http://simgrid.gforge.inria.fr">SimGrid</a>. The SMPI
+  user (you!) must describe simulated platforms (i.e., sets of simulated hosts and network links, with
+  some performance characteristics).  The SimGrid documentation provides ample information
+  on platform descriptions, which are written in XML.  Below we simply show a series of examples,
+  which should be sufficient for our purpose. Note that platform files are typically provided
+  in each pedagogic module, but you may have to modify them.
+</p>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+  <b>A simple 3-host example:</b> At the most basic level, you can describe your simulated platform
+  as a graph of hosts and network links. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./3_hosts.jpg" width="240" />
+</p>
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+  See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host0"</span> <span class="na">speed=</span><span class="s">"1Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host1"</span> <span class="na">speed=</span><span class="s">"2Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;host</span> <span class="na">id=</span><span class="s">"host2"</span> <span class="na">speed=</span><span class="s">"40Gf"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link0"</span> <span class="na">bandwidth=</span><span class="s">"125MBps"</span> <span class="na">latency=</span><span class="s">"100us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link1"</span> <span class="na">bandwidth=</span><span class="s">"50MBps"</span> <span class="na">latency=</span><span class="s">"150us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"link2"</span> <span class="na">bandwidth=</span><span class="s">"250MBps"</span> <span class="na">latency=</span><span class="s">"50us"</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host1"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+     <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host1"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link1"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+    <span class="nt">&lt;route</span> <span class="na">src=</span><span class="s">"host0"</span> <span class="na">dst=</span><span class="s">"host2"</span><span class="nt">&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link0"</span><span class="nt">/&gt;&lt;link_ctn</span> <span class="na">id=</span><span class="s">"link2"</span><span class="nt">/&gt;&lt;/route&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note the way in which hosts, links, and routes are defined. Note that all hosts are defined
+  with a <code>power</code> (i.e., compute speed in Gflops), and links with a <code>latency</code> (in us)
+  and <code>bandwidth</code> (in Mbit/sec). Other units are possible and written as expected.
+  By default, routes are symmetrical. See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+</p>
+
+<p class="ui">
+  This XML file is intended for SimGrid v3.21 or earlier. To
+  use it with more recent versions, you may have to convert it using the
+  <code>simgrid_update_xml</code> program, as follows:
+</p>
+<div class="ui list">
+  <div class="ui item"><code>simgrid_update_xml 3_hosts.xml</code></div>
+</div>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+  <b>A homogeneous cluster with a crossbar switch:</b> A very common parallel computing platform is a homogeneous
+  cluster in which hosts are interconnected via a crossbar switch with as many ports as hosts, so that any disjoint
+  pairs of hosts can communicate concurrently at full speed. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./cluster_crossbar.jpg" width="470" />
+</p>
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host-"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0-255"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"5us"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note that one simply specifies a name prefix and suffix for each host, and then give an integer
+  range (in the example the cluster contains 256 hosts). All hosts have the same power (1 Gflop/sec) and are connected to the switch via links with same latency (5 microseconds) and
+  bandwidth (125 Mbit/sec). See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+  <b>A homogeneous cluster with a shared backbone:</b> Another popular model for a parallel platform is that of a set of homogeneous
+  hosts connected to a shared communication medium, a backbone, with some finite bandwidth capacity and on which communicating host pairs can
+  experience contention. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./cluster_backbone.jpg" width="470" />
+</p>
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster"</span> <span class="na">prefix=</span><span class="s">"host−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−255"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25Gbps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  In the above XML, note that one specifies the latency and bandwidth of the link that connects a host to the backbone (in this
+  example 50 microsec and 125 Mbit/sec), as well
+  as the latency and bandwidth of the backbone itself (in this example
+  500 microsec and 2.25 Gbit/sec). See more information on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
+<p class="ui">
+  <b>Two interconnected clusters:</b> One can connect clusters together and in fact build simulated platforms
+  hierarchically in arbitrary fashions. For instance:
+</p>
+
+<p style="text-align:center;" class="ui">
+  <img align="center" src="./2_clusters.jpg" width="470" />
+</p>
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the XML platform description file...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+    
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">    <span class="cp">&lt;?xml version='1.0'?&gt;</span>
+<span class="cp">&lt;!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd"&gt;</span>
+<span class="nt">&lt;platform</span> <span class="na">version=</span><span class="s">"4.1"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;zone</span> <span class="na">id=</span><span class="s">"AS0"</span> <span class="na">routing=</span><span class="s">"Full"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_1"</span> <span class="na">prefix=</span><span class="s">"C1−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−15"</span> <span class="na">speed=</span><span class="s">"1Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="na">bb_bw=</span><span class="s">"2.25Gbps"</span> <span class="na">bb_lat=</span><span class="s">"500us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;cluster</span> <span class="na">id=</span><span class="s">"my_cluster_2"</span> <span class="na">prefix=</span><span class="s">"C2−"</span> <span class="na">suffix=</span><span class="s">".hawaii.edu"</span> <span class="na">radical=</span><span class="s">"0−31"</span> <span class="na">speed=</span><span class="s">"2Gf"</span> <span class="na">bw=</span><span class="s">"125Mbps"</span> <span class="na">lat=</span><span class="s">"50us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="na">bandwidth=</span><span class="s">"0.01Gbps"</span> <span class="na">latency=</span><span class="s">"22500us"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;zoneRoute</span> <span class="na">src=</span><span class="s">"my_cluster_1"</span> <span class="na">dst=</span><span class="s">"my_cluster_2"</span> <span class="na">gw_src=</span><span class="s">"C1−my_cluster_1_router.hawaii.edu"</span> <span class="na">gw_dst=</span><span class="s">"C2−my_cluster_2_router.hawaii.edu"</span> <span class="na">symmetrical=</span><span class="s">"YES"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;link_ctn</span> <span class="na">id=</span><span class="s">"internet_backbone"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/zoneRoute&gt;</span>
+  <span class="nt">&lt;/zone&gt;</span>
+<span class="nt">&lt;/platform&gt;</span>
+
+    </code></pre></figure>
+
+    </div>
+  </div>
+</div>
+
+<p class="ui">
+  The above XML is a bit more involved. See all details and documentation on the
+  <a href="http://simgrid.gforge.inria.fr">SimGrid Web site</a>.
+
+</p>
+
+<div class="ui divider"></div>
+
+
+
+  <br>
+
+</div>
+	</div>
+
+
+
+</body>
+</html>
