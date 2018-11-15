@@ -18,6 +18,8 @@
   <a class="item" data-tab="fourth">Limitations</a>
 </div>
 
+<!--
+
 <div class="ui tab segment active" data-tab="first">
   {% include_relative topic_getting_started/installing_simgrid.html %}
 </div>
@@ -27,7 +29,6 @@
   {% include_relative topic_getting_started/platform_xml.html %}
 </div>
 
-<!--
 
 <div class="ui tab segment" data-tab="third">
   {% include_relative topic_getting_started/hello_world.html %}
