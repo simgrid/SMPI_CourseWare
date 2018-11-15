@@ -32,7 +32,7 @@ def issueHead():
                        "-->\n"
                        "<config>\n"
                        "<prop id=\"smpi/simulate-computation\" value=\"0\"></prop>\n"
-                       "<prop id=\"smpi/running-power\" value=\"1\"></prop>\n"
+                       "<prop id=\"smpi/host-speed\" value=\"1\"></prop>\n"
                        "</config>\n\n")
 
         AS_head = "<zone id=\"AS0\" routing=\"Floyd\">\n"

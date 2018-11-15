@@ -105,7 +105,7 @@ print >> sys.stderr, "Callibrating code compiled"
 ###########################################
 platform_filename = "/tmp/platform_one_host.xml"
 fh = open(platform_filename, 'w')
-fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4\">\n<AS id=\"AS0\" routing=\"Full\">\n")
+fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd\">\n<platform version=\"4.1\">\n<AS id=\"AS0\" routing=\"Full\">\n")
 fh.write("  <host id=\"host-0\" speed=\"200Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
