@@ -24,11 +24,9 @@
 </div>
 
 
-<!--
 <div class="ui tab segment " data-tab="second">
   {% include_relative topic_getting_started/platform_xml.html %}
 </div>
--->
 
 
 <div class="ui tab segment" data-tab="third">
