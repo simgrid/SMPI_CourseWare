@@ -27,6 +27,8 @@
   {% include_relative topic_getting_started/platform_xml.html %}
 </div>
 
+<!--
+
 <div class="ui tab segment" data-tab="third">
   {% include_relative topic_getting_started/hello_world.html %}
 </div>
@@ -36,5 +38,6 @@
   {% include_relative topic_getting_started/limitations.html %}
 </div>
 
+-->
 
 
