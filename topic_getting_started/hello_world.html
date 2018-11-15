@@ -20,6 +20,7 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
   </div>
 </div>
 
+
 <p class="ui">
   Say we want to simulate the execution of this program on a homogeneous cluster, such as the one we saw
   in the "XML Platforms" tab: <a href="../topic_getting_started/cluster_crossbar.xml">cluster_crossbar.xml</a>.
@@ -51,8 +52,10 @@ We are now ready to simulate the execution of an MPI program using SMPI. Let us 
 
 </div>
 
+
 <p class="ui">
 You will see some warnings/information regarding setting some SMPI configuration parameters. Ignore them for now. One of them will say something about not setting the power of the host running the simulation. This is fine here because in this small example we wish only to simulate the network. 
+</p>
 
 <p class="ui">
   Feel free to tweak the content of the XML platform file and the program to see the effect on the simulated execution time.  Note that
@@ -60,3 +63,4 @@ You will see some warnings/information regarding setting some SMPI configuration
   "unexpected behavior" like in the real world (e.g., sending a message 1 byte larger may lead to significant higher
   execution time).
 </p>
+
