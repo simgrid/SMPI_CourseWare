@@ -39,11 +39,10 @@ Here are three approaches that could be considered:
       <div class="ui item">...</div>
 </div>
 </p>
-￼
 
 <p class="ui"> 
 <b>Pipeline tree:</b>
-<div class="ui list bulleted">￼￼￼￼￼￼￼￼
+<div class="ui list bulleted">
       <div class="ui item">Chunk the data</div>
       <div class="ui item">Step 0: process n sends chunk 0 to process n − 1</div>
       <div class="ui item">Step 1: process n − 1 sends chunk 0 to process n − 2, and process n sends chunk 1 to process n − 1 </div>
@@ -53,7 +52,7 @@ Here are three approaches that could be considered:
 
 <p class="ui">
 <b>Binary reduction tree:</b>
-<div class="ui list bulleted">￼￼￼￼￼￼￼￼
+<div class="ui list bulleted">
       <div class="ui item">Chunk the data</div>
       <div class="ui item">Step 0: processes n and n−1 send chunk 0 to process n−2 (two communications that happen in sequence), processes n−3 and n−4 send chunk 0 to process n−5, ...</div>
       <div class="ui item">Step 1: processes n and n−1 send chunk 1 to process n−2 (two communications that happen in sequence), processes n−3 and n-4 send chunk 0 to process n−5, ...  </div>
