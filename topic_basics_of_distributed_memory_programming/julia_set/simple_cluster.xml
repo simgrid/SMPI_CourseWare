@@ -3,12 +3,12 @@
 <platform version="4.1">
 
 <!--  WARNING:  This <config></config> clause below
-specifies a bogus running-power value, which is ok because
+specifies a bogus host-speed value, which is ok because
 for this module we don't measure execution times. And this way,
 no warning is generated when running smpirun.
 -->
 <config>
-<prop id="smpi/running-power" value="1"></prop>
+<prop id="smpi/host-speed" value="1f"></prop>
 </config>
 
 

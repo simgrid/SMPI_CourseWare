@@ -11,7 +11,7 @@ simulations, unless you remove the <config></config> clause.
 -->
 <config>
 <prop id="smpi/simulate-computation" value="0"></prop>
-<prop id="smpi/host-speed" value="1"></prop>
+<prop id="smpi/host-speed" value="1f"></prop>
 </config>
 
 
