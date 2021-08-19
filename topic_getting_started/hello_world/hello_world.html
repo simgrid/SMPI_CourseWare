@@ -1,0 +1,66 @@
+<p class="ui">
+We are now ready to simulate the execution of an MPI program using SMPI. Let us use the following simple
+  MPI program,
+  <a href="./roundtrip.c"><code>roundtrip.c</code></a>, in which the processes pass around a message and
+  print the elpased time:
+  </p>
+
+
+<div class="ui accordion">
+  <div class=" title">
+    <i class="dropdown icon"></i>
+    See the code of <a href="./roundtrip.c"><code>roundtrip.c</code></a>...
+  </div>
+  <div class=" content">
+    <div class="ui container segment">
+      {% highlight C %}
+{% include_relative roundtrip.c %}
+  {% endhighlight %}
+    </div>
+  </div>
+</div>
+
+
+<p class="ui">
+  Say we want to simulate the execution of this program on a homogeneous cluster, such as the one we saw
+  in the "XML Platforms" tab: <a href="./cluster_crossbar.xml">cluster_crossbar.xml</a>.
+  We need an "MPI host file", that is a simple text file that lists all hosts on which we wish to
+  start an MPI process: <a href="./cluster_hostfile.txt">cluster_hostfile.txt</a>.
+</p>
+
+<p class="ui">Compiling the program is straightforward:</p>
+<div class="ui segment raised">
+{% highlight text %}
+  % smpicc -O4 roundtrip.c -o roundtrip
+{% endhighlight %}
+</div>
+
+<p class="ui">Running (simulating) it using 16 hosts on the cluster is done as follows:</p>
+
+<div class="ui segment raised">
+{% highlight text %}
+  % smpirun -np 16 -hostfile ./cluster_hostfile.txt -platform ./cluster_crossbar.xml ./roundtrip
+{% endhighlight %}
+</div>
+
+<div class="ui list bulleted">
+
+<div class="ui item">The <code>-np 16</code> option, just like in regular MPI, specifies the number of MPI processes to use. </div>
+<div class="ui item">The <code>-hostfile ./cluster_hostfile.txt</code> option, just like in regular MPI, specifies the host file. </div>
+<div class="ui item">The <code>-platform ./cluster_crossbar.xml</code> option, <b>which doesn't exist in regular MPI</b>, specifies the platform configuration to be simulated. </div>
+<div class="ui item">At the end of the command, one finds the executable name and command-line arguments (in this case there are none).</div>
+
+</div>
+
+
+<p class="ui">
+You will see some warnings/information regarding setting some SMPI configuration parameters. Ignore them for now. One of them will say something about not setting the power of the host running the simulation. This is fine here because in this small example we wish only to simulate the network. 
+</p>
+
+<p class="ui">
+  Feel free to tweak the content of the XML platform file and the program to see the effect on the simulated execution time.  Note that
+  the simulation accounts for realistic network protocol effects and MPI implementation effects. As a result, you may see
+  "unexpected behavior" like in the real world (e.g., sending a message 1 byte larger may lead to significant higher
+  execution time).
+</p>
+
