@@ -292,16 +292,16 @@
   More specifically, we simulate a parallel platform in which each processor computes at a rate of 200Gflops.  Since
   SMPI measures compute times on your own machine, we need to tell SMPI how fast your machine is, which is
   SMPI is done by passing a particular floating point value to
-  <code>smpirun</code> using the <code>--cfg=smpi/running-power:VALUE</code> command-line option.
+  <code>smpirun</code> using the <code>--cfg=smpi/host-speed:VALUE</code> command-line option.
 
   </p>
 
   <p class="ui">
     A python script called <a href="./calibrate_flops.py"><code>calibrate_flops.py</code></a> is
-    provided, which you should run once on your idle computer. This script
+    provided, which you should run once on your idle computer (or on your Docker container). This script
     performs a binary search to find the necessary calibration factor,
     which is printed to the screen and should be passed to the
-    <code>--cfg=smpi/running-power</code> command-line option.  Of course,
+    <code>--cfg=smpi/host-speed</code> command-line option.  Of course,
     if you change computer, you'll have to re-run the script to find a new
     calibration factor.
 
@@ -539,7 +539,7 @@ that you can compile and debug your program, and pay no attention to the simulat
 
   <p class="ui">
   One problem with our CPU trick is that the simulated wall-clock time will no longer be coherent with our simulation platform, i.e., it
-  no longer match with our <code>--cfg=smpi/running-power</code> command-line option since we use the
+  no longer match with our <code>--cfg=smpi/host-speed</code> command-line option since we use the
   <code>SMPI_SAMPLE_FLOPS</code> macro. Instead, we need
   to determine a reasonable value for <code>FLOP_CALIBRATION_FACTOR</code>.
   </p>
