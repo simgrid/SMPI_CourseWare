@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import sys
 import os
 import subprocess
@@ -95,9 +95,9 @@ fh.write(callibrating_C_code)
 fh.close()
 error_code = os.system("smpicc -Ofast "+"-DSIZE="+str(SIZE)+" "+callibrating_code_filename+" -o /tmp/callibration_code")
 if (error_code != 0):
-	print >> sys.stderr, "Can't compile '"+callibrating_code_filename+"'... aborting\n"
+	sys.stderr.write("Can't compile '"+callibrating_code_filename+"'... aborting\n")
 	exit(1)
-print >> sys.stderr, "Callibrating code compiled"
+sys.stderr.write("Callibrating code compiled\n")
 
 
 ###########################################
@@ -109,7 +109,7 @@ fh.write("<?xml version='1.0'?>\n<!DOCTYPE platform SYSTEM \"http://simgrid.gfor
 fh.write("  <host id=\"host-0\" speed=\"200Gf\"/>\n")
 fh.write("</AS>\n</platform>\n")
 fh.close()
-print >> sys.stderr, "One-host XML platform file generated"
+sys.stderr.write("One-host XML platform file generated\n")
 
 ###########################################
 # Create host file (one host)
@@ -118,13 +118,13 @@ hostfile_filename = "/tmp/hostfile_one_host"
 fh = open(hostfile_filename, 'w')
 fh.write("host-0\n")
 fh.close()
-print >> sys.stderr, "One-host hostfile generated"
+sys.stderr.write("One-host hostfile generated\n")
 
 ###########################################
 # Binary search to find the running power
 ###########################################
 
-print >> sys.stderr, "Initiating binary search..."
+sys.stderr.write("Initiating binary search...\n")
 
 # Coarse approximation of the traget simulated time
 desired_simulated_gflops_rate=200.0
@@ -141,13 +141,13 @@ while (True):
 
 	# Run the code
 	FNULL = open(os.devnull, 'w')
-	output = subprocess.check_output(["smpirun","--cfg=smpi/host-speed:"+str(attempt),"-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL)
+	output = subprocess.check_output(["smpirun","--cfg=smpi/host-speed:"+str(attempt)+"f","-platform",platform_filename,"-hostfile",hostfile_filename,"-np","1","/tmp/callibration_code"],stderr = FNULL, encoding='UTF-8')
 	FNULL.close()
 
 	# Get the wall-clock time
 	simulated_wallclock = float(output.split('\t')[0])
 
-	print "candidate value: "+str(("%.3f" % attempt))+"\t-->  wallclock = "+str(("%.3f" % simulated_wallclock))+" (target ="+str(("%.3f" % target))+")"
+	print("candidate value: "+str(("%.3f" % attempt))+"\t-->  wallclock = "+str(("%.3f" % simulated_wallclock))+" (target ="+str(("%.3f" % target))+")")
 
 	if (simulated_wallclock < target):
 		low = attempt
@@ -158,6 +158,6 @@ while (True):
 	if ((abs(simulated_wallclock - target) < 0.001) or (abs(high - low) < 100)):
 		break
 
-print "Run smpirun with --cfg=smpi/host-speed:"+str(("%.3f" % attempt))+"\n"
-print "  (and run smpicc with -Ofast)\n"
+print("Run smpirun with --cfg=smpi/host-speed:"+str(("%.3f" % attempt))+"\n")
+print("  (and run smpicc with -Ofast)\n")
 
