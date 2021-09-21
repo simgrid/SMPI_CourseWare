@@ -252,50 +252,82 @@
 <p class="ui">
 <b>
   This CourseWare was tested with <a href="http://simgrid.gforge.inria.fr/">SimGrid</a>
-  version 3.27 (small changes <i>may</i> be needed with other versions).
+  version 3.27 (small changes <i>may</i> be needed with later versions).
   </b>
 </p>
 
 <hr />
 
-<h2>Using a Docker container </h2>
+<h2> Two options</h2>
 
-<p>You need to have access to the <tt>smpicc</tt> and <tt>smpirun</tt> SimGrid executables to go
-through the CourseWare. If you don’t want to install SimGrid (see below how to do it), then, provided
-you have <a href="https://www.docker.com/">Docker</a> installed on your system, for instance you can
-use the following container to run these two commands:</p>
-
+<p>You need to have access to the <b><code>smpicc</code></b> and <b><code>smpirun</code></b> SimGrid executables to go
+through the CourseWare.  To get access to these executables you have two options:</p>
 <div class="ui list bulleted">
-    <div class="ui item"> docker run --rm -it --mount type=bind,source="$(pwd)",target=/home/smpi henricasanova/ics632_smpi smpicc ...</div>
-      <div class="ui item"> docker run --rm -it --mount type=bind,source="$(pwd)",target=/home/smpi henricasanova/ics632_smpi smpirun ...</div>
+    <div class="ui item"> <b>Easiest Option:</b> Run SimGrid from a Docker container; or</div>
+    <div class="ui item"> <b>Not-as-Eaasy Option: </b> Install SimGrid yourself on a Linux machine/VM/Container.</div>
 </div>
-
-<p>(If, on Mac OS, you get exit code 137 for any of these commands, you may want to increase the memory allocated to Docker.)</p>
 
 <hr />
 
-<h2>Installing SimGrid on your machine </h2>
+<h3>Easiest Option: Using a Docker container </h3>
+
+<p>Provided you have <a href="https://www.docker.com/">Docker</a> installed on
+your system, you can use the <code>henricasanova/ics632_smpi</code> container.</p>
+
+<p>You can 
+of course run this container and connect to it via a shell, like with any other Docker container, and do
+all your work within the container.</p>
+
+<p>Alternately, you can run the <b><code>smpicc</code></b>
+and <b><code>smpirun</code></b> commands in the container but from your host. That is, on your host (in your shell/command-prompt),
+instead of typing <b><code>smpicc</code></b> or <b><code>smpirun</code></b> (which would require SimGrid to be
+installed on your host), instead you type the commands below.</p>
+
+<h4>On Linux or MacOS</h4>
+
+<div class="ui list bulleted">
+    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpicc</code></div>
+    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpirun</code></div>
+</div>
+
+<p>On MacOS: If you get exit code 137 for any of these commands, you may want to increase the memory allocated to Docker (e.g., through the Docker Dashboard preferences)</p>
+
+<h4>On Windows</h4>
+
+<div class="ui list bulleted">
+    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpicc</code></div>
+    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpirun</code></div>
+</div>
+
+<hr />
+
+<h3>Not-as-Easy Option: Installing SimGrid by hand</h3>
 
 <p class="ui">
   On a <b>recent Debian/Ubuntu (virtual) machine</b>, you can retrieve SimGrid directly from the
-  package manager: <code>sudo apt-get install simgrid</code>
+  package manager: 
+
+  <div class="ui list bulletted">
+      <div class="ui item"><code>sudo apt update &amp;&amp; apt upgrade -y</code></div>
+      <div class="ui item"><code>sudo apt install simgrid</code></div>
+  </div>
+
   Do not forget to check that you have installed a sufficiently recent version, e.g., by doing <code>apt-cache show libsimgrid-dev</code>.
-  If the version you obtain this way is too old, we recommend you to manually install simgrid and to follow the instructions bellow.
+  If the version you obtain is too old (see the top of this page),  we recommend you manually install SimGrid following the instructions bellow.
 </p>
 
 <p class="ui">
-  For other systems, please refer to the <a href="https://simgrid.org/">The SimGrid page</a>
-  that has all the information you need. But just to be sure, here is
-  a typical way to compile the version you want on a Linux (virtual) box:
+  For instructions regarding installation, please refer to the <a href="https://simgrid.org/">The SimGrid page</a>. But just in case, here is
+  a typical way to install SimGrid manually on a Linux system:
 </p>
 
 <div class="ui list bulleted">
-  <div class="ui item">Install the dependencies: <code>sudo apt-get install g++ libboost-all-dev</code></div>
+  <div class="ui item">Install the dependencies: <code>sudo apt install -y g++ libboost-all-dev cmake</code></div>
   <div class="ui item">Download the .tar.gz of the latest stable version of SimGrid</div>
-  <div class="ui item">Extract the archive: <code>tar -xvf SimGrid-x.x.x.tar.gz</code></div>
-  <div class="ui item">Go to the extracted directory: <code>cd SimGrid-x.x.x</code></div>
+  <div class="ui item">Extract the archive: <code>tar -xvf simgrid-x.y.tar.gz</code></div>
+  <div class="ui item">Go to the extracted directory: <code>cd simgrid-x.y</code></div>
   <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br /> (Assuming you want to install in <code>/usr/local/</code>)</div>
-  <div class="ui item">Build: <code>make</code></div>
+  <div class="ui item">Build: <code>make -j</code></div>
   <div class="ui item">Run the tests (for the paranoid): <code>make check</code></div>
   <div class="ui item">Install libraries and executables: <code>sudo make install</code></div>
 </div>
@@ -306,15 +338,14 @@ use the following container to run these two commands:</p>
 </p>
 
 <p class="ui">
-  If you are not a superuser on your system, then you have to install SimGrid in your home directory, say in a directory
-  called <code>local</code>, with the modified <code>cmake</code>
-  invocation. The binaries are then available as
-  <code>~/bin/smpicc</code> and <code>~/bin/smpirun</code>.
+<b>If you are not a superuser on your system (i.e., <code>sudo</code> access is denied),</b> but the dependencies are installed, then you can install SimGrid in your home directory, say in a directory
+  called <code>local</code>. Do do so, modify the <code>cmake</code> invocation above using
+  <code>-DCMAKE_INSTALL_PREFIX=$HOME/local</code>. You can then do <code>make install</code>
+  instead of <code>sudo make install</code>, and binaries will be available as
+  <code>~/local/bin/smpicc</code> and <code>~/local/bin/smpirun</code>.
 </p>
 
-<div class="ui list">
-  <div class="ui item"><code>cmake -DCMAKE_INSTALL_PREFIX=$HOME/local/ -Denable_smpi=on -Denable_documentation=off</code></div>
-</div>
+<hr />
 
 
 
