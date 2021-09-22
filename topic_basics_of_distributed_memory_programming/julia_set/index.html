@@ -504,7 +504,7 @@ the image in the bmp format.  A bmp file consists of two parts:
   </p>
 
 <p class="ui">
-  To make the above easier you are provided with a helper C function, <code>write_bmp_header()</code>, which
+  To make the above easier you are first provided with a helper C function, <code>write_bmp_header()</code>, which
   writes to a file the 40-byte header required for a bmp file.
   <a target="_blank" href="/SMPI_CourseWare/topic_basics_of_distributed_memory_programming/julia_set/write_bmp_header.c">[Download
     source of write_bmp_header()]</a>
@@ -577,26 +577,28 @@ the image in the bmp format.  A bmp file consists of two parts:
   </div>
 </div>
 
+
 <p class="ui">
-  <b>Warning: </b> If the width of the image in number of pixels, 2n, is not a multiple of 4 (i.e., in our case
-  if n is odd), then the bmp file format requires that each row of pixel be <i>padded</i>. This means that
-  extra bytes must be written to the file to make the number of bytes in each pixel row a multiple of 4 in case it
-  is not.  <b>For
-  our purposes, you can simply assume that n is always even, so that no padding is necessary.</b> But if you want to allow odd values of n, then you must
-  write extra padding bytes to the file after each row of pixels (for instance bytes with value 0).
+  Second, here is a code fragment that shows how to write the pixels in a 1-D pixed array  to 
+  a bpm file (opened as file <code>output_file</code>) after the header has been written:
 </p>
 
 
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="c1">// Writing the pixels after the header</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">height</span><span class="p">;</span> <span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">width</span><span class="p">;</span> <span class="n">x</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fwrite</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">pixels</span><span class="p">[</span><span class="n">y</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]),</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">output_file</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// padding in case of an even number of pixels per row</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">padding</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+  <span class="n">fwrite</span><span class="p">(</span><span class="n">padding</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">),</span> <span class="p">((</span><span class="n">width</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">),</span> <span class="n">output_file</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
 
 <p class="ui">
-  Verify that your program outputs the expected Julia set, by opening the bmp file with your favorite
-  image viewer. Try different values of n and check that
-  your obtain images with the expected resolutions/dimensions.
-</p>
-
-
-<p class="ui">
-  You are now ready to go on to Activity #2, in which we make the program parallel.
+  Given the above, it should be straightforward to augment your program so that it
+  produces a bmp file of the Julia set.  Once this is done, you are ready
+  to go on to Activity #2, in which we make the program parallel!
 </p>
 
 

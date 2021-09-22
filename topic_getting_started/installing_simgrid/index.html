@@ -260,11 +260,14 @@
 
 <h2> Two options</h2>
 
-<p>You need to have access to the <b><code>smpicc</code></b> and <b><code>smpirun</code></b> SimGrid executables to go
-through the CourseWare.  To get access to these executables you have two options:</p>
+<p>You need to have access to the <b><code>smpicc</code></b> (compiler for MPI
+code in C), <b><code>smpicxx</code></b> (compiler for MPI code in C++), and
+<b><code>smpirun</code></b> (tool to execute compiled MPI code) SimGrid
+executables to go through the CourseWare.  To get access to these
+executables you have two options:</p>
 <div class="ui list bulleted">
     <div class="ui item"> <b>Easiest Option:</b> Run SimGrid from a Docker container; or</div>
-    <div class="ui item"> <b>Not-as-Eaasy Option: </b> Install SimGrid yourself on a Linux machine/VM/Container.</div>
+    <div class="ui item"> <b>Not-as-Easy Option: </b> Install SimGrid yourself on a Linux machine/VM/Container.</div>
 </div>
 
 <hr />
@@ -272,11 +275,11 @@ through the CourseWare.  To get access to these executables you have two options
 <h3>Easiest Option: Using a Docker container </h3>
 
 <p>Provided you have <a href="https://www.docker.com/">Docker</a> installed on
-your system, you can use the <code>henricasanova/ics632_smpi</code> container.</p>
+your system, you can use the <code>henricasanova/ics632_smpi</code>
+container.</p>
 
-<p>You can 
-of course run this container and connect to it via a shell, like with any other Docker container, and do
-all your work within the container.</p>
+<p>You can of course run this container and connect to it via a shell, like
+with any other Docker container, and do all your work within the container.</p>
 
 <p>Alternately, you can run the <b><code>smpicc</code></b>
 and <b><code>smpirun</code></b> commands in the container but from your host. That is, on your host (in your shell/command-prompt),
@@ -286,8 +289,9 @@ installed on your host), instead you type the commands below.</p>
 <h4>On Linux or MacOS</h4>
 
 <div class="ui list bulleted">
-    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpicc</code></div>
-    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpirun</code></div>
+    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b><br /> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpicc</code></div>
+    <div class="ui item"> <b><code>smpicxx</code> is executed by running:</b><br /> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpicxx</code></div>
+    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b><br /> <code>docker run --rm -it -v $(pwd):/home/smpi --user $(id -u):$(id -g) henricasanova/ics632_smpi smpirun</code></div>
 </div>
 
 <p>On MacOS: If you get exit code 137 for any of these commands, you may want to increase the memory allocated to Docker (e.g., through the Docker Dashboard preferences)</p>
@@ -295,8 +299,9 @@ installed on your host), instead you type the commands below.</p>
 <h4>On Windows</h4>
 
 <div class="ui list bulleted">
-    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpicc</code></div>
-    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpirun</code></div>
+    <div class="ui item"> <b><code>smpicc</code> is executed by running:</b><br /> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpicc</code></div>
+    <div class="ui item"> <b><code>smpicxx</code> is executed by running:</b><br /> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpicxx</code></div>
+    <div class="ui item"> <b><code>smpirun</code> is executed by running:</b><br /> <code>docker run --rm -it -v %cd%:/home/smpi henricasanova/ics632_smpi smpirun</code></div>
 </div>
 
 <hr />
