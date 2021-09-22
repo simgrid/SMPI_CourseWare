@@ -461,7 +461,7 @@ Julia set and saves it to a bitmap file. We break it down into the two steps bel
 
   <div class="content">
     <div class="ui container raised segment">
-      <h4 class="ui header">Storing 2-D data is a row-major 1-D array</h4>
+      <h4 class="ui header">Storing 2-D data in a row-major 1-D array</h4>
       <p class="ui">
         You may find the use of a 1-D array to store the pixels surprising, since after all the image is 2-D. However, it is
         common to use 1-D arrays, especially when they are dynamically allocated. One option would be to allocate an array
@@ -535,7 +535,7 @@ the image in the bmp format.  A bmp file consists of two parts:
 	  <span class="p">((</span><span class="n">width</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">));</span>
 
   <span class="c1">// Define all fields in the bmp header</span>
-  <span class="kt">char</span> <span class="n">id</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">"BM"</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">id</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="s">"BM"</span><span class="p">;</span>
   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">filesize</span> <span class="o">=</span> <span class="mi">54</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">row_size_in_bytes</span> <span class="o">*</span> <span class="n">height</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">));</span>
   <span class="kt">short</span> <span class="n">reserved</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
   <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">54</span><span class="p">;</span>
@@ -596,8 +596,16 @@ the image in the bmp format.  A bmp file consists of two parts:
 
 
 <p class="ui">
-  Given the above, it should be straightforward to augment your program so that it
-  produces a bmp file of the Julia set.  Once this is done, you are ready
+  Given the above, it should be straightforward to augment your program so
+  that it produces a bmp file of the Julia set. Verify that the produced image is as shown below (by opening in whatever image viewing application, or a Web browser):
+</p>
+
+  <p style="text-align:center;" class="ui">
+    <img align="center" src="./julia_small.jpg" />
+  </p>
+
+
+<p class="ui">Once this is done, you are ready
   to go on to Activity #2, in which we make the program parallel!
 </p>
 

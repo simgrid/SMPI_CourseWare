@@ -1,3 +1,21 @@
+Topic #1:
+
+# Activity 1
+# Step 1
+-> I would add a second argument for the tint (unless it never changes). Set the output filename to sprintf("./julia-%d-%.2f", n, tint)? (that will make sense later)
+-> I would also mention the compilation flags (-Wall., possibly -g), memory leaks and valgrind
+-> Storing 2-D data in a row-major 1-D array 
+
+# Step2
+-> Verify that your program outputs the expected Julia set [...]
+
+Give a few expected samples, 100, 201, ... or better provide a docker image to verify them
+$ docker run [...] julia-1000-0.5.bmp
+PASS
+$ docker run [...] julia-1003-0.5.bmp
+FAIL
+
+
 Topic #3/4: Stencil application?
 
 
