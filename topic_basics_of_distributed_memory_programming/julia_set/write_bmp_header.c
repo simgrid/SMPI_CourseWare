@@ -15,7 +15,7 @@ int write_bmp_header(FILE *f, int width, int height) {
 	  ((width * 3) % 4 == 0 ? 0 : (4 - (width * 3) % 4));
 
   // Define all fields in the bmp header
-  char id[2] = "BM";
+  char id[3] = "BM";
   unsigned int filesize = 54 + (int)(row_size_in_bytes * height * sizeof(char));
   short reserved[2] = {0,0};
   unsigned int offset = 54;

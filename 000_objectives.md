@@ -14,8 +14,8 @@ Target audience
 
 <div class="ui list bulleted">
 
-<div class="ui item"> Students/Researchers/Practitioners who want to complement their learning with hands-on experience with distributed-memory programming, message-passing, MPI, and high performance computing</div>
-<div class="ui item"> Instructors who want to provide students with compelling hands-on experiences as part of the coursework they develop</div>
+<div class="ui item"> Students/Researchers/Practitioners who want to <b>complement their learning</b> with hands-on homework assignments focused with distributed-memory programming, message-passing, MPI, and high performance computing</div>
+<div class="ui item"> Instructors who want to provide students with tested and compelling homework assignments as part of the coursework they develop</div>
 </div>
 
 </div>
@@ -27,11 +27,11 @@ Prerequisites
 </h3>
 
 <div class="ui list bulleted">
-<div class="ui item">Access to a Linux (virtual) machine</div>
+<div class="ui item">Have Docker installed or have access to a Linux system/vm/container)</div>
 <div class="ui item">Some Computer Science background (i.e., a few courses)</div>
-<div class="ui item">Basic C programming skills (i.e., a 1-semester course)</div>
+<div class="ui item">Some C programming (i.e., a 1-semester course)</div>
 <div class="ui item">Elementary Linux command-line skills</div>
-<div class="ui item">Access to MPI documentation/tutorials</div>
+<div class="ui item">Knowledge of MPI (or access to tutorial or course materials)</div>
 </div>
 
 </div>
@@ -50,7 +50,6 @@ programs that run on distributed-memory architectures, using the MPI standard.</
 
 Specific learning objectives include:
 <div class="ui list bulleted">
-<div class="ui item"> Learn the fundamentals of the MPI API</div>
 <div class="ui item"> Understand general distributed-memory programming techniques and learn standard solutions to common problems</div>
 <div class="ui item"> Learn how to implement distributed-memory programs, going from traditional "rigid" programs to more "dynamic" programs</div>
 <div class="ui item"> Understand and experience performance trade-offs when implementing and executing distributed-memory programs on ranges of distributed-memory platforms</div>
@@ -64,12 +63,12 @@ Specific learning objectives include:
 Approach
 </h3>
 
-While many curricular materials have been developed for teaching message-passing, MPI, and distributed-memory programming,
-SMPI CourseWare relies on the use of <b>simulation</b>, which has the following advantages:
+While many curricular materials have been developed homework assignments to be executed
+on parallel platforms, SMPI CourseWare relies on <b>simulation</b>. This approach has the following advantages:
 
 
 <div class="ui list bulleted">
-<div class="ui item"> No need to have access to a distributed-memory platform</div>
+<div class="ui item"> No need to have access to a distributed-memory platform, such as a cluster</div>
 <div class="ui item"> Ability to run many experiments quickly and reproducibly on one's own computer</div>
 <div class="ui item"> Ability to explore arbitrary "what if?" scenarios, in particular to experience performance trade-offs first-hand</div>
 </div>
