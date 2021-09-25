@@ -1,0 +1,10 @@
+host-0.hawaii.edu
+host-1.hawaii.edu
+host-2.hawaii.edu
+host-3.hawaii.edu
+host-4.hawaii.edu
+host-5.hawaii.edu
+host-6.hawaii.edu
+host-7.hawaii.edu
+host-8.hawaii.edu
+host-9.hawaii.edu

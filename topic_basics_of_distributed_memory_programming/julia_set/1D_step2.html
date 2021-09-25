@@ -6,6 +6,12 @@
 </p>
 
 <p class="ui">
+<b> Have each process print its rank and time (using <tt>MPI_Wtime()</tt>, which returns a double) right before
+    performing the computation and right after performing the computation!</b>. Our cluster is not completely
+homogeneous, and these (simulated) times will show it. 
+</p>
+
+<p class="ui">
   The main difficulty here is keeping local vs. global indexing straight. That is, although as programmers
   we think of the image as an array of, say, N pixels, no N-pixel array is ever allocated in the program (only
   smaller arrays allocated by each process).

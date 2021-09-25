@@ -1,0 +1,165 @@
+<?xml version='1.0'?>
+<!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid/simgrid.dtd">
+<platform version="4.1">
+
+<!--  WARNING:  This <config></config> clause below
+makes it so that NO COMPUTATION TIME is simulated. This is because
+in this module, for pedagogic purposes, we don't want to muddy the
+(simulation) waters with computational times. As a results, this
+XML platform file may not be suitable for running other
+simulations, unless you remove the <config></config> clause.
+-->
+<config>
+<prop id="smpi/simulate-computation" value="0"></prop>
+<prop id="smpi/host-speed" value="200Gf"></prop>
+</config>
+
+<AS id="AS0" routing="Floyd">
+  <host id="host-0.hawaii.edu" speed="204Gf"/>
+  <host id="host-1.hawaii.edu" speed="208Gf"/>
+  <host id="host-2.hawaii.edu" speed="194Gf"/>
+  <host id="host-3.hawaii.edu" speed="194Gf"/>
+  <host id="host-4.hawaii.edu" speed="196Gf"/>
+  <host id="host-5.hawaii.edu" speed="201Gf"/>
+  <host id="host-6.hawaii.edu" speed="200Gf"/>
+  <host id="host-7.hawaii.edu" speed="208Gf"/>
+  <host id="host-8.hawaii.edu" speed="198Gf"/>
+  <host id="host-9.hawaii.edu" speed="203Gf"/>
+  <link id="link" latency="10us" bandwidth="100Gbps"/>
+  <route src="host-0.hawaii.edu" dst="host-1.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-2.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-0.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-2.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-1.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-3.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-2.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-4.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-3.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-5.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-4.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-6.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-5.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-7.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-6.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-8.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-7.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+  <route src="host-8.hawaii.edu" dst="host-9.hawaii.edu">
+	<link_ctn id="link"/>
+  </route>
+</AS>
+</platform>
