@@ -32,7 +32,8 @@ static void program_abort(char *exec_name, char *message) {
       print_usage(exec_name);
     }
   }
-  MPI_Abort(MPI_COMM_WORLD, 1);
+  MPI_Finalize();
+  //MPI_Abort(MPI_COMM_WORLD, 1);
   exit(1);
 }
 
@@ -50,7 +51,7 @@ static void print_usage(char *exec_name) {
     fprintf(stderr,"\t<XML platform file>: a Simgrid platform description file\n");
     fprintf(stderr,"\t<host file>: MPI host file with host names from the platform file\n");
     fprintf(stderr,"PROGRAM arguments:\n");
-    fprintf(stderr,"\t<bcast implementation name>: the name of the broadcast implementaion (e.g., naive_bcast)\n");
+    fprintf(stderr,"\t<bcast implementation name>: the name of the broadcast implementation (e.g., naive_bcast)\n");
     fprintf(stderr,"\t[-c <chunk size>]: chunk size in bytes for message splitting (optional)\n");
     fprintf(stderr,"\n");
   }
