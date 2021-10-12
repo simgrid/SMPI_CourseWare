@@ -2,7 +2,13 @@
 
 
 <p class="ui">
-  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+Look at the section of code in <code>bcast_skeleton.c</code> between the <code>TO IMPLEMENT: BEGIN</code>
+and <code>TO IMPLEMENT: END</code> comments. The comments list the relevant variables that you will use 
+in your code. You will note, in that section, that <code>bcast_skeleton.c</code> does an <code>#include bcast_solution.c</code>. So you should create a file <code>bcast_solution.c</code> in which you will write all the code for this assignment. This is more convenient that modifying the <code>bcast_skeleton.c</code> directly.
+</p>
+
+<p class="ui">
+  In <code>bcast_solution.c</code>, implement a broadcast implementation named
   <b><code>naive_bcast</code></b> (first command-line argument). This implementation simply
   has the root of the broadcast (process with rank 0) perform a single
   point-to-point <code>MPI_Send</code> of the whole buffer to each other process (which performs an <code>MPI_Recv</code>).
