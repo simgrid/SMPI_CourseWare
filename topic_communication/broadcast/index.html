@@ -557,7 +557,13 @@ platform file.
 
 
 <p class="ui">
-  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+Look at the section of code in <code>bcast_skeleton.c</code> between the <code>TO IMPLEMENT: BEGIN</code>
+and <code>TO IMPLEMENT: END</code> comments. The comments list the relevant variables that you will use 
+in your code. You will note, in that section, that <code>bcast_skeleton.c</code> does an <code>#include bcast_solution.c</code>. So you should create a file <code>bcast_solution.c</code> in which you will write all the code for this assignment. This is more convenient that modifying the <code>bcast_skeleton.c</code> directly.
+</p>
+
+<p class="ui">
+  In <code>bcast_solution.c</code>, implement a broadcast implementation named
   <b><code>naive_bcast</code></b> (first command-line argument). This implementation simply
   has the root of the broadcast (process with rank 0) perform a single
   point-to-point <code>MPI_Send</code> of the whole buffer to each other process (which performs an <code>MPI_Recv</code>).
@@ -575,7 +581,8 @@ platform file.
 <div class="ui bottom attached tab segment" data-tab="ring_broadcast">
 
   <p class="ui">
-  Augment the <code>bcast_skeleton.c</code> program with a broadcast implementation named
+  Augment your code in file <code>bcast_solution.c</code> with 
+  a broadcast implementation named
   <b><code>ring_bcast</code></b> (first command-line argument). In this implementation,
   the process of rank 0 (the root of the broadcast) does a single <code>MPI_Send</code> of the
   whole buffer to the process of rank 1, the process of rank 1 then does a single <code>MPI_Send</code>
@@ -592,8 +599,8 @@ platform file.
 <div class="ui bottom attached tab segment" data-tab="naive_ring_broadcast_evaluation">
 
   <p class="ui">
-  Before you proceed with the evaluation of your two implementations, augment <code>bcast_skeleton.c</code>
-  with a third broadcast implementation named <b>default_bcast</b> that simply has all processes
+  Before you proceed with the evaluation of your two implementations, implement
+  a third broadcast implementation, named <b>default_bcast</b>, that simply has all processes
   call <code>MPI_Bcast</code>. This is the MPI implementation of the broadcast collective communication,
   which in this module we implement "by hand" using point-to-point communications.
 </p>
@@ -691,7 +698,7 @@ utilize the network links.
 
   <p class="ui">
   One of the reasons why the default MPI broadcast is fast is that it does <i>pipelining</i>
-  of communication. Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  of communication. Augment your code in <code>bcast_solution.c</code> with a new broadcast implementation
   called <b>pipelined_ring_bcast</b>.
 </p>
 
@@ -793,7 +800,7 @@ to use network links even better.
   to send chunk #i to its successor while receiving chunk #i+1 from its predecessor. Intuitively,
   it should make it possible to hide network overheads better and
   perhaps to achieve higher data transfer rates.
-  Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  Augment your code in <code>bcast_solution.c</code> program with a new broadcast implementation
   called <b>asynchronous_pipelined_ring_bcast</b>. This implementation builds on the
   pipelined_ring_bcast implementation but uses the following MPI asynchronous communication primitives:
   <code>MPI_Isend</code> and <code>MPI_Wait</code>.
@@ -886,7 +893,7 @@ and a tree-shaped physical platform.</div>
 <div class="ui bottom attached tab segment active" data-tab="bintree_broadcast">
 
   <p class="ui">
-  Augment your code with an implementation called
+Augment your code in <code>bcast_solution.c</code> with an implementation called
   <b>asynchronous_pipelined_bintree_bcast</b> that
   implements the broadcast along a binary tree, splitting the message into chunks for
   <b>pipelining</b> and using <b>asynchronous communication</b>. The root of the broadcast,

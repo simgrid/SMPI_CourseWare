@@ -5,7 +5,7 @@
   to send chunk #i to its successor while receiving chunk #i+1 from its predecessor. Intuitively,
   it should make it possible to hide network overheads better and
   perhaps to achieve higher data transfer rates.
-  Augment the <code>bcast_skeleton.c</code> program with a new broadcast implementation
+  Augment your code in <code>bcast_solution.c</code> program with a new broadcast implementation
   called <b>asynchronous_pipelined_ring_bcast</b>. This implementation builds on the
   pipelined_ring_bcast implementation but uses the following MPI asynchronous communication primitives:
   <code>MPI_Isend</code> and <code>MPI_Wait</code>.
