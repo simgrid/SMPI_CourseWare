@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 import sys
 import os
 import math
@@ -50,8 +50,8 @@ def issueRouteLink():
 ######################################################################
 # Parse command-line arguments
 if (len(sys.argv) != 2):
-	print >> sys.stderr, "Usage:a"+sys.argv[0]+" <num hosts>\n"
-	print >> sys.stderr, "  Will generate a cluster_<num hosts>.xml and hostfile_<num hosts>.txt file\n"
+	sys.stderr.write("Usage: "+sys.argv[0]+" <num hosts>\n")
+	sys.stderr.write("  Will generate a cluster_<num hosts>.xml and hostfile_<num hosts>.txt file\n")
 	exit(1)
 
 num_hosts = int(sys.argv[1])
@@ -78,7 +78,7 @@ for src in range (0,num_hosts):
 
 fh.write(issueTail())
 fh.close()
-print >> sys.stderr, "Cluster XML platform file created: "+filename
+sys.stderr.write("Cluster XML platform file created: "+filename+"\n")
 
 ###############################################################
 ## Generate host file
@@ -89,5 +89,5 @@ for i in range(0,num_hosts):
 	fh.write("host-"+str(i)+".hawaii.edu\n")
 
 fh.close()
-print >> sys.stderr, "Hostfile created: "+filename
+sys.stderr.write("Hostfile created: "+filename+"\n")
 
