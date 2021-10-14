@@ -71,7 +71,7 @@ def issueRouteLink2(x,y):
 if (len(sys.argv) != 2):
     sys.stderr.write("Usage: "+sys.argv[0]+" <num hosts>\n")
     sys.stderr.write("  Will generate a bintree_<num hosts>.xml and hostfile_<num hosts>.txt file\n")
-	exit(1)
+    sys.exit(1)
 
 num_hosts = int(sys.argv[1])
 
