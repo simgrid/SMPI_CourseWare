@@ -84,7 +84,7 @@ On MacOS: If you get exit code 137 for any of these commands, you may want to in
   <div class="ui item">Extract the archive: <code>tar -xvf simgrid-x.y.tar.gz</code></div>
   <div class="ui item">Go to the extracted directory: <code>cd simgrid-x.y</code></div>
   <div class="ui item">Generate all makefiles: <code>cmake -DCMAKE_INSTALL_PREFIX=/usr/local -Denable_smpi=on -Denable_documentation=off</code><br> (Assuming you want to install in <code>/usr/local/</code>)</div>
-  <div class="ui item">Build: <code>make -j</code></div>
+  <div class="ui item">Build (using 4 cores for compilation): <code>make -j4</code></div>
   <div class="ui item">Run the tests (for the paranoid): <code>make check</code></div>
   <div class="ui item">Install libraries and executables: <code>sudo make install</code></div>
 </div>
