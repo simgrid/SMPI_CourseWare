@@ -26,7 +26,7 @@ static void matmult(double *A, double *B, double *C, int n) {
   for (i=0; i < n; i++) {
     for (k=0; k < n; k++) {
       for (j=0; j < n; j++) {
-        C[i*n+j] = A[i*n+k] * B[k*n+j];
+        C[i*n+j] += A[i*n+k] * B[k*n+j];
       }
     }
   }
